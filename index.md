@@ -1,8 +1,10 @@
-# Welcome to our Tutorial!
+# PEARC19: HPC In The Cloud Tutorial!
 
 ## Portable, Reproducible High Performance Computing In the Cloud
 
-## Block 1: Intro to Docker
+## Part 1: Welcome and Background
+
+## Part 2: Introduction to Docker
 * [Introduction to Jupyter](./block1/intro-to-jupyter.md)
   * [Starting a Jupyter Notebook](./block1/intro-to-jupyter.md#starting-up-your-jupyter-notebook-environment)
   * [Creating a Notebook](./block1/intro-to-jupyter.md#creating-a-notebook)
@@ -18,8 +20,7 @@
   * [Running a Docker Container](./block1/intro-to-docker.md#running-a-docker-container)
   * [Removing Docker Containers](./block1/intro-to-docker.md#removing-docker-containers)
   
-
-## Block 2: Using Abaco
+## Part 3: Introduction to Abaco
 * [Intro to Abaco](./block2/intro-to-abaco.md)
   * [What is Abaco?](./block2/intro-to-abaco.md#what-is-abaco)
   * [Using Abaco](./block2/intro-to-abaco.md#using-abaco)
@@ -34,13 +35,14 @@
   * [Creating and Actor](./block2/running-image-classifier-in-abaco.md#creating-an-abaco-actor)
   * [Executing Actor with curl](./block2/running-image-classifier-in-abaco.md#executing-classifier-with-curl)
   * [Executing Actor with Python](./block2/running-image-classifier-in-abaco.md#executing-classifier-on-abaco-using-a-jupyter-notebook--tapispy)
-## Block 3: Intro to Singularity and Tapis(Agave) CLI & Systems
+  
+## Block 3: Introduction to Tapis and Command Line
 * [Intro to Singularity](./block3/intro-singularity.md)
 * [Intro to Tapis(Agave)](./block3/tapis-intro.md)
 * [Intro to Tapis CLI](./block3/tapis-cli.md)
 * [Intro to Tapis Systems](./block3/tapis-systems.md)
 
-## Block 4: Intro to Tapis(Agave) Apps & Tapis(Aloe) Jobs
+## Block 4: Services, Applications and Job Submission
 * [Intro to Apps](./block4/apps.md)
   * [What is a Tapis(Agave) app?](./block4/apps.md#what-is-a-tapisagave-app)
   * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
