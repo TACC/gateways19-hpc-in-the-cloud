@@ -1,6 +1,5 @@
-# Welcome to our Tutorial!
 
-## Portable, Reproducible High Performance Computing In the Cloud
+# PEARC19 Tutorial Portable, Reproducible High Performance Computing In the Cloud
 
 ## Block 1: Intro to Docker
 * [Introduction to Jupyter](./block1/intro-to-jupyter.md)
