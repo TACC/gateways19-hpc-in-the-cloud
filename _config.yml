@@ -1,5 +1,4 @@
-#remote_theme: tapis-project/edition-jekyll-template
+remote_theme: pawamoy/jekyll-readthedocs
 
 #theme: jekyll-theme-cayman
-
-theme: jekyll-theme-minimal
+#theme: jekyll-theme-minimal
