@@ -1,6 +1,7 @@
 ## PEARC19 Portable, Reproducible High Performance Computing In the Cloud
 
 ## Part 1: Welcome and Background
+* [Welcome](./intro/welcome.md)
 
 ## Part 2: Introduction to Docker
 * [Introduction to Jupyter](./block1/intro-to-jupyter.md)
