@@ -9,5 +9,5 @@ nav:
   - Welcome and Background:
     - Welcome: ''
   - Intro to Jupyter & Docker:
-    - Intro to Jupyter: block1/intro-to-jupyter.html
-    - Using Docker: block1/intro-to-docker.html
+    - Intro to Jupyter: block1/intro-to-jupyter
+    - Using Docker: block1/intro-to-docker
