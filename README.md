@@ -1,7 +1,8 @@
 
 # PEARC19 Tutorial Portable, Reproducible High Performance Computing In the Cloud
 
-## Block 1: Intro to Docker
+
+## Part 1: Intro to Docker
 * [Introduction to Jupyter](./block1/intro-to-jupyter.md)
   * [Starting a Jupyter Notebook](./block1/intro-to-jupyter.md#starting-up-your-jupyter-notebook-environment)
   * [Creating a Notebook](./block1/intro-to-jupyter.md#creating-a-notebook)
@@ -33,6 +34,7 @@
   * [Creating and Actor](./block2/running-image-classifier-in-abaco.md#creating-an-abaco-actor)
   * [Executing Actor with curl](./block2/running-image-classifier-in-abaco.md#executing-classifier-with-curl)
   * [Executing Actor with Python](./block2/running-image-classifier-in-abaco.md#executing-classifier-on-abaco-using-a-jupyter-notebook--tapispy)
+  
 ## Block 3: Intro to Singularity and Tapis(Agave) CLI & Systems
 * [Intro to Singularity](./block3/intro-singularity.md)
 * [Intro to Tapis(Agave)](./block3/tapis-intro.md)

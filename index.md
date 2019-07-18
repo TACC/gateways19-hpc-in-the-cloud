@@ -1,6 +1,4 @@
-# PEARC19: HPC In The Cloud Tutorial!
-
-## Portable, Reproducible High Performance Computing In the Cloud
+## PEARC19 Portable, Reproducible High Performance Computing In the Cloud
 
 ## Part 1: Welcome and Background
 
