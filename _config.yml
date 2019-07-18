@@ -3,3 +3,12 @@ remote_theme: marella/jekyll-theme-documentation
 
 #theme: jekyll-theme-cayman
 #theme: jekyll-theme-minimal
+
+permalink: pretty
+nav:
+  - Welcome and Background:
+    - Welcome: ''
+  - Intro to Jupyter & Docker:
+    - Intro to Jupyter: block1/intro-to-jupyter.html
+    - Using Docker: block1/intro-to-docker.html
+    - Table of Conents: demos/toc
