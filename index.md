@@ -35,13 +35,13 @@
   * [Executing Actor with curl](./block2/running-image-classifier-in-abaco.md#executing-classifier-with-curl)
   * [Executing Actor with Python](./block2/running-image-classifier-in-abaco.md#executing-classifier-on-abaco-using-a-jupyter-notebook--tapispy)
   
-## Block 3: Introduction to Tapis and Command Line
+## Part 4: Introduction to Tapis and Command Line
 * [Intro to Singularity](./block3/intro-singularity.md)
 * [Intro to Tapis(Agave)](./block3/tapis-intro.md)
 * [Intro to Tapis CLI](./block3/tapis-cli.md)
 * [Intro to Tapis Systems](./block3/tapis-systems.md)
 
-## Block 4: Services, Applications and Job Submission
+## Part 5: Services, Applications and Job Submission
 * [Intro to Apps](./block4/apps.md)
   * [What is a Tapis(Agave) app?](./block4/apps.md#what-is-a-tapisagave-app)
   * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
