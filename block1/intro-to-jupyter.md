@@ -13,14 +13,14 @@ jupyter notebook
 
 This will open a browser with your new Jupyter environment, and should appear similarly to this: 
 
-<img src="../images/jupyter1.png" class="img-responsive" alt=""> 
-![jupyter notebook]({{site.url}}/assets/jupyter1.png "Initial Jupyter Interface")
+<img src="../images/jupyter1.png" class="img-responsive" alt="Jupyter interface"> 
+
 
 ### Creating a Notebook
 
 To create a new notebook for writing code, start by clicking 'New' in the upper right corner. From here, you will be able to choose what type of notebook you want. For this tutorial, we will be using Python 3. 
 
-![jupyter notebook](images/jupyter2.png "Jupyter Notebook")
+![jupyter notebook](../images/jupyter2.png alt="Jupyter Notebook")
 
 Once you open a notebook, you can write and run python code. To execute a line of code, press `shift + Enter`. 
 
