@@ -13,6 +13,7 @@ jupyter notebook
 
 This will open a browser with your new Jupyter environment, and should appear similarly to this: 
 
+<img src="../assets/jupyter1.png" class="img-responsive" alt=""> 
 ![jupyter notebook]({{site.url}}/assets/jupyter1.png "Initial Jupyter Interface")
 
 ### Creating a Notebook
