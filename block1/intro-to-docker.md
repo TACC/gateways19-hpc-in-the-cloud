@@ -9,8 +9,7 @@
   * Reproducibility
   * Ease of installation
 
-![alt text](images/linux_containers_intro.png "Linux Containers")
-
+<img src="../images/linux_containers_intro" alt="Linux Containers">
 
 ### Containers vs VMs
 * Containers
