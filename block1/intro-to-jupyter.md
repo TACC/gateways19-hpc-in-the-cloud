@@ -13,7 +13,7 @@ jupyter notebook
 
 This will open a browser with your new Jupyter environment, and should appear similarly to this: 
 
-![jupyter notebook](https://github.com/TACC/pearc19-hpc-in-the-cloud/blob/master/block1/images/jupyter1.png "Initial Jupyter Interface")
+![jupyter notebook]({{site.url}}/assets/jupyter1.png "Initial Jupyter Interface")
 
 ### Creating a Notebook
 
