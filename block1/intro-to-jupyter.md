@@ -13,7 +13,7 @@ jupyter notebook
 
 This will open a browser with your new Jupyter environment, and should appear similarly to this: 
 
-![alt text](block1/images/jupyter1.png "Initial Jupyter Interface")
+![jupyter notebook](images/jupyter1.png "Initial Jupyter Interface")
 
 ### Creating a Notebook
 
