@@ -1,9 +1,9 @@
-# Running Classifier Image in Abaco
+# Exercise: Running Classifier Image in Abaco
 
 ### Getting the Image Ready and Registering an Actor
 
 #### Preparing our code for Abaco
-To run our classifier image with Abaco, we will first need to create a script that will take the message sent to an actor and send it to our classifier script. This could be written in anything, including the original Python script; for simplicity, we'll write a short Bash script. 
+To run our classifier docker image with Abaco, we will first need to create a script that will take the message sent to an actor and send it to our classifier script. This could be written in anything, including the original Python script; for simplicity, we'll write a short Bash script. 
 
 Create a new file called `abaco.sh` and add the following content:
 
@@ -13,8 +13,11 @@ Create a new file called `abaco.sh` and add the following content:
 # print the special MSG variable:
 echo "Contents of MSG: "$MSG
 
-python "/classify_image.py --image_file=$MSG
+python /app/classify_image.py --image_file=$MSG
 ```
+
+NOTE: In this case, `--image_file` does not refer to a docker image, but a JPEG image. This tag expects a URL from the internet to a JPEG picture file. 
+
 
 Once we register our actor and sent it a message, Abaco will pass the contents of the message in the `$MSG` environment variable. We can use a bash script to capture it, and then run our classifier script with it.
 Because we have added this wrapper script, we will need to update our Dockerfile before we create an Abaco actor.
@@ -36,7 +39,7 @@ CMD ["/app/abaco.sh"]
 ```
 
 
-Notice that instead of our entrypoint being `classify_image.py` as it was before, it is now set to run our wrapper script, `abaco.sh`.
+Notice that instead of our entrypoint being `classify_image.py` as it was in the example, it is set to run our wrapper script, `abaco.sh`.
 
 Another difference with running on Abaco is that Abaco will run our actor using the UID associated with our TACC account.
 This ensures files created and modified by the actor are owned by the API user. 
@@ -76,7 +79,7 @@ CMD ["/app/abaco.sh"]
 
 Once our new dockerfile is built and pushed to DockerHub, we can create our Abaco actor. 
 ```
-$ curl -H "Authorization: Bearer $TOKEN" \
+$ curl -k -H "Authorization: Bearer $TOKEN" \
 -H "Content-Type: application/json" \
 -d '{"image": "taccsciapps/abaco_classifier", "name": "abaco_classifier", "description": "Using the image classifier with abaco."}' \
 https://api.tacc.cloud/actors/v2
@@ -89,14 +92,15 @@ Take note of the actor ID that is returned, since you will need it to send the a
 To execute our Actor with our image classifier, we will need to send our actor a raw string message:
 
 ```
-$ curl -H "Authorization: Bearer $TOKEN" -d "message=https://path/to/an/image.jpg" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
+$ curl -k -H "Authorization: Bearer $TOKEN" -d "message=https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
 ```
 
 To see the results of the execution, we can check the logs:
 ```
-$ curl -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
+$ curl -k -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID
 ```
 
 
 ### Executing Classifier on Abaco using a Jupyter Notebook & TapisPy
 
+See the jupyter notebook here: [Using tapispy to Execute Actor Containers on the Abaco Cloud.ipynb](/block2/Using%20tapispy%20to%20Execute%20Actor%20Containers%20on%20the%20Abaco%20Cloud.ipynb)
