@@ -11,7 +11,7 @@ http://bit.ly/pearc19tapis
 
 Please join the TACC Cloud Slack:
 
-http://bit.ly/slack-tapis 
+http://bit.ly/join-tapis 
 
 Join the channel #pearc19
 
