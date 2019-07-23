@@ -156,19 +156,20 @@ You can use the `pull` command to download pre-built images from a number of Con
 
 Container Registries:
 
-* `shub` - images hosted on Singularity Hub
+* `shub` - images hosted on Singularity Hub 
+* `library` - *this is only accessible on Singularity 3 or greater
 * `docker` - images hosted on Docker Hub
 
-In this example I am pulling a base Ubuntu container from Singularity-Hub:
+In this example I am pulling a base Ubuntu container from Docker Hub:
 
 ```
-    $ singularity pull shub://singularityhub/ubuntu
+    $ singularity pull docker://ubuntu
 ```
 
 You can rename the container using the `--name` flag:
 
 ```
-    $ singularity pull --name ubuntu_test.simg shub://singularityhub/ubuntu
+    $ singularity pull --name ubuntu_test.simg docker://ubuntu
 ```
 
 
@@ -177,7 +178,7 @@ You can rename the container using the `--name` flag:
 After your image has finished downloading it should be in the present working directory, unless you specified to download it somewhere else.
 
 ```
-	$ singularity pull --name ubuntu_test.simg shub://singularityhub/ubuntu
+	$ singularity pull --name ubuntu_test.simg docker://ubuntu
 	Progress |===================================| 100.0%
 	Done. Container is at: /home/***/ubuntu_test.simg
 	$ singularity run ubuntu_test.simg
@@ -360,19 +361,19 @@ Commands:
 
 
 ```
-    $ singularity exec shub://singularityhub/ubuntu cat /etc/os-release
+    $ singularity exec docker://ubuntu cat /etc/os-release
 ```
 
 ###4.2 Using the `shell` command
 
 ```
-    $ singularity shell shub://singularityhub/ubuntu
+    $ singularity shell docker://ubuntu
 ```
 
 ### 4.3 Using the `run` command
 
 ```
-    $ singularity run shub://singularityhub/ubuntu
+    $ singularity run docker://ubuntu
 ```
 
 ### 4.4 Using the `inspect` command
@@ -380,22 +381,8 @@ Commands:
 You can inspect the build of your container using the `inspect` command
 
 ```
-    $ singularity pull  shub://vsoch/hello-world
-    Progress |===================================| 100.0%
-    Done. Container is at: /home/***/vsoch-hello-world-master-latest.simg
+    $ singularity inspect ubuntu-docker.simg
 
-    $ singularity inspect vsoch-hello-world-master-latest.simg
-    {
-        "org.label-schema.usage.singularity.deffile.bootstrap": "docker",
-        "MAINTAINER": "vanessasaur",
-        "org.label-schema.usage.singularity.deffile": "Singularity",
-        "org.label-schema.schema-version": "1.0",
-        "WHATAMI": "dinosaur",
-        "org.label-schema.usage.singularity.deffile.from": "ubuntu:14.04",
-        "org.label-schema.build-date": "2017-10-15T12:52:56+00:00",
-        "org.label-schema.usage.singularity.version": "2.4-feature-squashbuild-secbuild.g780c84d",
-        "org.label-schema.build-size": "333MB"
-    }
 ```
 
 ### 4.5 Using the `--sandbox` and `--writable` commands
@@ -405,17 +392,7 @@ As of Singularity v2.4 by default `build` produces immutable images in the 'squa
 Creating a `--writable` image must use the `sudo` command, thus the owner of the container is `root`
 
 ```
-   	$ sudo singularity build --writable ubuntu-master.simg shub://singularityhub/ubuntu
-	Cache folder set to /root/.singularity/shub
-	Progress |===================================| 100.0%
-	Building from local image: /root/.singularity/shub/singularityhub-ubuntu-master-latest.simg
-	Creating empty Singularity writable container 208MB
-	Creating empty 260MiB image file: ubuntu-master.simg
-	Formatting image with ext3 file system
-	Image is done: ubuntu-master.simg
-	Building Singularity image...
-	Singularity container built: ubuntu-master.simg
-	Cleaning up...
+   	$ sudo singularity build --writable ubuntu-master.simg docker://ubuntu
 ```
 
 You can convert these images to writable versions using the `--writable` and `--sandbox` commands.
@@ -423,15 +400,7 @@ You can convert these images to writable versions using the `--writable` and `--
 When you use the `--sandbox` the container is written into a directory structure. Sandbox folders can be created without the `sudo` command.
 
 ```
-    	$ singularity build --sandbox lolcow/ shub://GodloveD/lolcow
-	WARNING: Building sandbox as non-root may result in wrong file permissions
-	Cache folder set to /home/.../.singularity/shub
-	Progress |===================================| 100.0%
-	Building from local image: /home/.../.singularity/shub/GodloveD-lolcow-master-latest.simg
-	WARNING: Building container as an unprivileged user. If you run this container as root
-	WARNING: it may be missing some functionality.
-	Singularity container built: lolcow/
-	Cleaning up...
+    	$ singularity build --sandbox lolcow/ docker://ubuntu
 	@vm142-73:~$ cd lolcow/
 	@vm142-73:~/lolcow$ ls
 	bin  boot  dev  environment  etc  home  lib  lib64  media  mnt  opt  proc  run  sbin  singularity  srv  sys  tmp  usr  var
