@@ -1,5 +1,7 @@
 # Intro to Docker
 
+## Lecture: What is Docker?
+
 ### What is a Container?
 
 * Isolated Userland processes
@@ -34,7 +36,7 @@ Docker is a platform (among serveral) for building and executing containers.
     * Additional client APIs - run commands in containers, get resources consumed, view logs, 
     * Docker Compose, Machine, Swarm - Tools for distributing containers across multiple hosts
 
-### Initial setup
+### Exercise: Initial setup
 Typically, accessing the docker daemon requires the user to be in the docker group. For the purposes of this introduction,
  we can simply do everything as the ubuntu user, which you are already logged in as. 
 
@@ -66,7 +68,7 @@ Create a test directory to contain your docker work:
 $ mkdir docker; cd docker
 ```
 
-### Docker Images and Tags, Docker Hub, and Pulling Images
+### Lecture: Docker Images and Tags, Docker Hub, and Pulling Images
 A Docker image is a container template from which one or more containers can be run. It is a rooted filesystem that,
 by definition, contains all of the file dependencies needed for whatever application(s) will be run within the
 containers launched from it. The image also contains metadata describing options available to the operator running
@@ -99,6 +101,8 @@ tapis
 abaco
 ```
 
+### Exercise: Pulling and Running Images
+
 Let's check that our docker installation is set up correctly by pulling the `tacc/pearc19:0.1` and image
 and running a simple container from it:
 ```
@@ -113,6 +117,7 @@ We'll cover the `docker run` statement in more detail momentarily, but for now j
 should have started a single container from the `tacc/pearc19:0.1` image which printed a welcome
 message to standard out.
 
+### Lecture: About Official Images
 Official images such as the python official image are not owned by a repository, but all other images are.
 
 To pull an image off Docker Hub use the `docker pull` command and provide the full image name:
@@ -135,7 +140,7 @@ python                 latest              a5b7afcfdcc8        3 hours ago      
 ```
 
 
-### Building Images From a DockerFile
+### Exercise: Building Images From a DockerFile
 We can build images from a text file called a Dockerfile. You can think of a Dockerfile as a recipe for creating images.
 The instructions within a dockerfile either add files/folders to the image, add metadata to the image, or both.
 
@@ -206,7 +211,7 @@ docker run YOUR-IMAGE-NAME
 ```
 
 
-#### Building a Pre-trained Image Classifier Docker Image
+#### Exercise: Building a Pre-trained Image Classifier Docker Image
 In this workshop we will be working with a pre-trained image classifier based on Tensoflow. Our first step will be to 
 build a Docker image containing the image classifier software.
 
@@ -215,13 +220,13 @@ show how one would package that into a Docker image for computational portabilit
 
 You can delete or override your previous Dockerfile, because now we will need a different one. Open a file called Dockerfile in the text editor of your choice and work through the following steps.  
 
-##### Task 1. Descend from the official Tensflow image
+##### Step 1. Descend from the official Tensflow image
 For this app, we will need Tensorflow. Fortunately, there is an image maintained by the Tensorflow project that has 
 everything we need! The image is `tensorflow/tensorflow:1.5.0-py3`
 
 Add a line to your Dockerfile to start your image with this image as a base.
 
-##### Task 2. Install app requirements
+##### Step 2. Install app requirements
 For this app, we need to install the `requests` package (a python package dependency) using the Python package manager `pip`. 
 If you aren't familiar with `pip`  just know that the package can be installed by running the following command in the shell
 ```
@@ -229,14 +234,14 @@ pip install requests
 ```
 What Dockerfile instruction would you use to ensure the `requests` package is installed in your image? 
 
-##### Task 3. Add the python script
+##### Step 3. Add the python script
 Our app uses a single python script, `classify_image.py`, located in the repository 
 (https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/classify_image.py). You can either copy/paste the code from the github repo into a file called `classify_image.py` or clone this repo and copy this file over to your working directory. 
 
 
 Now let's add this Python script to our image.
 
-##### Task 4. Add the ENTRYPOINT
+##### Step 4. Add the ENTRYPOINT
 
 We will launch our app using `python` which can be accomplished by executing:
 ```
@@ -250,7 +255,7 @@ Set up an entrypoint in your Dockerfile so that running this executable is the d
 *Note:* A complete Dockerfile for the classifier image is available in the workshop repository:
 https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/Dockerfile
 
-##### Task 5. Build the image
+##### Step 5. Build the image
 
 In general, to build an image from a Dockerfile we use the `docker build` command. We use the `-t` flag to tag the 
 image: that is, give our image a name. We also need to specify the working directory for the buid. We specify the 
