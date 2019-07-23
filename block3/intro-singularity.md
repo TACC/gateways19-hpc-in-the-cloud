@@ -26,21 +26,22 @@ Singularity uses a 'flow' whereby you can (1) create and modify images on your d
 
 ![singularityflow](http://singularity.lbl.gov/assets/img/diagram/singularity-2.4-flow.png)
 
-## 2. Singularity Installation
+
+The workflow we recommend for most researchers is to create Docker containers of their software and then run them on HPC and shared resources with Singularity using Singularity's ability to convert the Docker image to a Singularity image. Docker is simpler to install on most modern operating systems that are on a laptop or desktop.
+
+## 2. Singularity Installation (Not Needed For the Workshop Today  - Move to Section 2.4)
+
+We don't have to install singularity for this workshop as it is already installed on the VM but the instructions below are useful outside of this workshop.  Jump to section [2.4](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block3/intro-singularity.md#24-check-installation)
 
 Singularity homepage: [http://sylabs.io](http://sylabs.io/)
 
 While Singularity is more likely to be used on a remote system, e.g. HPC or cloud, you may want to develop your own containers first on a local machine or dev system.
 
-## Exercise 1 (10-15 mins)
-
-### 2.1 Setting up your Laptop
+## 2.1 Setting up your Laptop (Not Needed For the Workshop Today - Use At Home)
 
 To Install Singularity on your laptop or desktop PC follow the instructions from Singularity: [Install Singularity Windows or Mac ](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-windows-or-mac) or [Install Singularity on Linux](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-linux)
 
-
-
-### 2.2 HPC
+## 2.2 HPC (Not Needed For the Workshop Today - Use At Home)
 
 Load the Singularity module on a HPC
 
@@ -59,8 +60,8 @@ If Singularity is installed:
     
 ```
 
+## 2.3 XSEDE Jetstream Cloud (Not Needed For the Workshop Today - Use At Home)
 
-### 2.3 XSEDE Jetstream Cloud
 We have already installed Singularity for you on your Jestream VM but in the future if you need to you can do the following:
 
 Jetstream staff have deployed an Ansible playbooks called `ez` installation which includes [Singularity](https://cyverse-ez-quickstart.readthedocs-hosted.com/en/latest/#) that only requires you to type a short line of code.
@@ -81,7 +82,7 @@ Type in the following:
 ```
 
 
-### 2.4 Check Installation
+## 2.4 Check Installation (Jump to Here for the Workshop)
 
 ACK! UNFORTUNATELY SINGULARITY HUB IS DOWN FOR MAINTENANCE - NORMALLY SHUB PULLS WORK - WE WILL JUST RUN THE DOCKER PULLS TODAY - YOU CAN COME BACK LATER AND TRY SHUB EXAMPLES WHEN THE HUB IS BACK UP.
 
@@ -145,7 +146,7 @@ website: http://singularity.lbl.gov/
 
 ## 3. Downloading Singularity containers
 
-The easiest way to use a Singularity container is to `pull` an existing container from one of the Container Registries maintained by the Singularity group.
+The easiest way to use a Singularity container is to `pull` an existing container from one of the Container Registries maintained by the Singularity group or from Docker Hub.  There are ways to build a container with a recipe similar to how you create a Dockerfile - see [Singulairty Recipie Documentation](https://sylabs.io/guides/2.6/user-guide/quick_start.html#singularity-recipes)
 
 ## Exercise 2 (~10 mins)
 
@@ -441,8 +442,15 @@ When you use the `--sandbox` the container is written into a directory structure
 When Singularity creates the new file system inside a container it ignores directories that are not part of the standard kernel, e.g. `/scratch`, `/xdisk`, `/global`, etc. These paths can be added back into the container by binding them when the container is run.
 
 ```
-	$ singularity shell --bind /xdisk ubuntu14.simg
+	$ sudo mkdir /xdisk
+	$ sudo touch /xdisk/atest.txt
+	$ singularity shell --bind /xdisk ubuntu-16.04.simg
+	Singularity: Invoking an interactive shell within container...
+	$Singularity ubuntu-16.04.simg:~> ls /xdisk
+	atest.txt
+	
 ```
+The above commands - you create a "xdisk" folder at the root space and then we bind it to the container so it is available inside the container and start the container and go inside the container and then list the files from inside the container in "xdisk" - note that the file from the host we made "atest.txt" is in the container.
 
 The system administrator can also define what is added to a container. This is important on campus HPC systems that often have a `/scratch` or `/xdisk` directory structure. By editing the `/etc/singularity/singularity.conf` a new path can be added to the system containers.
 

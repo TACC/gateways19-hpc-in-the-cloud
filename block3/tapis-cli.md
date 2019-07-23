@@ -5,44 +5,71 @@ The following instructions will guide you through setting up Tapis CLI.  As an a
 
 The Tapis CLI commands all respond with help for -h and return back information on the parameters that can be passed.  
 
-TODO - WILL THIS STILL WORK
-Also note that in Jupyter you can start typing a command and use tab auto-complete or list the options which is useful when looking for some of the CLI commands.  We can for example try this with "system"
-
-Need help?  Ask your questions using the TACC Cloud Slack Channel TODO_SLACKLINK
+Need help?  Ask your questions using the [TACC Cloud Slack Channel](https://bit.ly/2XHYJEk)
 
 Initial Requirements
 ===============================================
 
 Before getting started, you need to have the following:
 * A TACC Account - today you have a test account
-* SSH access to the Stampede 2 compute cluster
+* SSH access to the Stampede 2 compute cluster and an allocation.
 * Familiarity with [editing text files](https://www.nano-editor.org/dist/v2.7/nano.html) and [working at the command line](http://www.gnu.org/software/bash/manual/bashref.html#Introduction)
 
-Any questions?  Join the TACC CLOUD SLACK and ask away.
+Any questions?  Join the [TACC CLOUD SLACK CHANNEL](https://bit.ly/2XHYJEk) and ask away.
 
 
 Command Line Access
 ===================
 
-We won't install it in this workshop, but everything we do today can also be done from the standard shell using the Tapis CLI tools.  Instructions for installing those tools are below:
+We won't install it in this workshop (since it is already installed on the VM), but everything we do today can also be done from the standard shell using the Tapis CLI tools.  
 
-Installing the Tapis CLI Tools
+Open a terminal in your Jupyter instance and that is what we will use to run the CLI commands.
+
+Jump to the [Authentication](https://github.com/tapis-project/uh-hpc-in-the-cloud/blob/master/block3/tapis-cli.md#authentication) section for the workshop.
+
+Installing the Tapis CLI Tools (Skip for Workshop- this is at home )
 ------------------------------
 
 Tapis has a downloadable set of command line tools that make it easier to work with the API from the shell. Using these scripts is generally easier than hand-crafting cURL commands, but if you prefer that route, consult the [Tapis API Documentation](https://tacc-cloud.readthedocs.io/en/latest/). We include these scripts in the training virtual machines and supplement them with additional support scripts, example files, and documents.
 
-During the course, we will use the Jetstream Cloud virtual machines, but if you have a shell on your personal computer, you can install these tools on your own personal computer by:
+During the course, we will use the Jetstream Cloud virtual machines, but if you have a shell on your personal computer, you can install these tools on your own personal later.
 
-Using your Terminal program in Jupyter, *ssh* into the system you will be working with:
+To use access the CLI for this tutorial you can open a Terminal  in Jupyter which give you access to the shell in the Jetstream VM, OR *ssh* into the system from you own terminal:
 
-```ssh TEST_USERNAME@jetstreamvm_ip_address```
+```ssh ubunut@jetstreamvm_ip_address```
 
-
-Install the CLI tools with Docker
+Install the CLI tools (Skip for Workshop- this is at home )
 ----------------------------------
 
+The CLI tools and instructions for installation can be found in the [CLI repository](https://github.com/TACC-Cloud/agave-cli)
+
+
+Install the CLI tools with Docker (Skip for Workshop- this is at home )
+----------------------------------
+We can create the Dockerfile for the Tapis CLI 
+
 ```
-docker pull tapis-cli:latest
+FROM gzynda/tacc-base:latest
+RUN apt-get update && \
+    apt-get install --upgrade && \
+    apt-get install -y jq && \
+    apt-get install -y curl && \
+    apt-get install -y python3 && \
+    apt-get install -y python3-pip && \
+    apt-get install -y git && \
+    apt-get install -y vim && \ 
+    apt-get install -y nano
+RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN pip3 install agavepy
+RUN git clone https://github.com/TACC-Cloud/agave-cli.git
+ENV PATH=$PATH:/agave-cli/bin/
+ENV LANG="C.UTF-8"
+```
+
+and then build the container:
+
+```
+docker build -t tapis-cli:latest .
 ```
 
 Let create the directory the Tapis CLI needs to save and track it's state in:
@@ -55,20 +82,22 @@ Now we can run CLI command with the docker container and mount the our home dire
 docker run -v /home/username/.agave:/root/.agave tapis-cli:latest
 ```
 
-NOTE that we use -v to mount a volume that continat /home/username/.agave so that the container can write directly to that folder and anything written there will be available on the host and therefore can exist after we remove the Docker container - this is useful for using different versions of the CLI container as updates and patches are released.
+NOTE that we use -v to mount a volume that contains /home/username/.agave so that the container can write directly to that folder and anything written there will be available on the host and therefore can exist after we stop or remove the Docker container - this is useful for using different versions of the CLI container as updates and patches are released.
 
-The CLI tools are installed in /agave-cli/bin within the Docker conatiner so if you move do that directory you can see all the commands available:
+The CLI tools are installed in /agave-cli/bin within the Docker conatiner so if you move to that directory you can see all the commands available:
 ```
-cd /agave/cli
-ls
+>docker run -v /home/username/.agave:/root/.agave tapis-cli:latest
+>root@5c8c91edb474:/# auth-session-init
+>root@5c8c91edb474:/# cd /agave/cli
+>root@5c8c91edb474:/agave/cli# ls
 ```
 
-Updating the CLI
+Updating the CLI with Docker (Skip for Workshop- this is at home )
 ----------------
 
-In the future, you can update the Tapis CLI automatically to the latest version by pulling down the docker container with the tag "latest" and running you
+In the future, you can update the Tapis CLI automatically to the latest version by building a new docker container this will pull the latest CLI into the new container.  You can use a different tag than latest if you wish to have multiple versions or you can edit the Dockerfile to target a specific git branch or release as well.
 
-```docker pull tapis-cli:latest```
+```docker build -t tapis-cli:latest .```
 
 
 Authentication
@@ -78,12 +107,13 @@ Tapis has robust Authentication/Authorization pathways - we could easliy spend a
 
 The Tapis API uses OAuth 2 for managing authentication and authorization. 
 
-Run the following in you CLI docker container
+Run the following in the CLI
 ```
 >auth-check
 Please run /agave-cli/bin/tenants-init to initialize your client before attempting to interact with the APIs.
 ```
 We will see that we have to initialize some things before we can use Tapis.
+
 Initialize the CLI
 ------------------
 
@@ -91,9 +121,7 @@ The first time you install the CLI tools on a computer, you need to initialize i
 You can initialize the TACC tenant by runnning:
 
 ```
->mkdir ~/.agave
->docker run -v /home/username/.agave:/root/.agave tapis-cli:latest
->root@5c8c91edb474:/# auth-session-init
+> auth-session-init
 ID                   NAME                                     URL
 vdjserver.org        VDJ Server                               https://vdj-agave-api.tacc.utexas.edu/
 sgci                 Science Gateways Community Institute     https://sgci.tacc.cloud/
@@ -126,7 +154,7 @@ Creating a Client
 The Tapis API uses OAuth 2 for managing authentication and authorization. Before you work with Tapis, you must create an OAuth client application and record the API keys that are returned. This is a one-time action per machine that you use the CLI and the 'auth-session-init' can take care of this.  In the event you need to create your own client you can pass additional parameters to the 'auth-session-init' command.  For instance if we want to make a new client.
 
 ```
->root@d4c62ca5988b:/agave-cli/bin# auth-session-init -h
+> auth-session-init -h
 usage: auth-session-init [-h] [-c CACHEDIR] [--tenants TENANTS] [-t TENANT]
                          [-u USERNAME] [-N CLIENT_NAME] [-D DESCRIPTION]
 
@@ -146,7 +174,7 @@ optional arguments:
   -D DESCRIPTION, --description DESCRIPTION
                         Description of client.
 
->root@d4c62ca5988b:/agave-cli/bin# auth-session-init -N myclient1
+> auth-session-init -N myclient1
 Client 'myclient1' is not saved in /root/.agave, so we will create it...
 Creating a client...
 API password:
@@ -167,7 +195,7 @@ Tokens are a form of short-lived, temporary authenticiation and authorization us
 On a host where you have configured a Tapis OAuth2 client already, the CLI command to get a new token is:
 
 ```
->root@291b0fe43291:/# auth-tokens-create -v
+> auth-tokens-create -v
 API password:
 ```
 
@@ -190,7 +218,7 @@ NOTE that the CLI will cache the new access and refresh tokens in the ~/.agave/c
 
 This tutorial won't take very long, but if you are interrupted and come back later, you might find your token has expired. You can always refresh a token as follows:
 
-```root@291b0fe43291:/# auth-tokens-refresh -v```
+```> auth-tokens-refresh -v```
 
 A successful refresh should appear:
 

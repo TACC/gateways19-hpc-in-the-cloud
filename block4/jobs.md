@@ -6,6 +6,19 @@ The Agave jobs service is rearchitectured, to a new code-named Aloe, which provi
 
 
 ### Jobs Parameters 
+An example Job JSON defintion:
+```
+{
+  "name":"UPDATEUSERNAME.app.imageclassify",
+  "appId":"UPDATEAPPID",
+  "archive":true,
+  "archiveSystem":"UPDATESTORAGESYSTEM",
+  "memoryPerNode":"1",
+  "parameters": { 
+    "imagefile": "https://texassports.com/images/2015/10/16/bevo_1000.jpg"
+    } 
+}
+```
 * **appId**	- The unique ID (name + version) of the application run by this job. This must be a valid application that the user has permission to run.
 * **name**	-  The user selected name for the job.
 * **archive**	-	Whether the job output should be archived. When true, all new file created during job execution will be moved to the archivePath.
@@ -38,13 +51,14 @@ From your home directory, where job.json file is located run job submission comm
 ```
 jobs-submit -F job.json
 ```
-You should see a message "Successfully submitted job <jobID>. This is the job uuid, which is unique, everytime you submit a job. You will use this uuid to get the Job Status, output listing and much more.
-
 Alternately, to get a detialed job response run with a -V option
 ```
 jobs-submit -F job.json -V
 
 ```
+You should see a message "Successfully submitted job <jobID>. This is the job uuid is unique, everytime you submit a job. You will use this uuid to get the Job Status, output listing and much more.
+
+
 
 ### Jobs List
 Now, when you do a jobs-list you can see your job
@@ -57,7 +71,7 @@ jobs-list
 Job status allows you to see the current state of the job. You can also set up email or webhook notification, when the job state changes
 
 ```
-job-status <jobId>
+jobs-status <jobId>
 
 ```
 Details about different job states are given here [JOB STATES](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#job-states)
@@ -75,7 +89,7 @@ To view the output, run the below curl command
 First Grab your access token from current and store it in a variable
 ```
 cat ~/.agave/current
-export token =<acces_token>
+export token=<acces_token>
 ```				
 Run below curl command
 ```
@@ -106,8 +120,8 @@ You should see email notifications pop up in your inbox as the job changes state
 
 If you made it this far, you have successfully created a new app within a container and have deployed that tool on an HPC system, and now you can run that tool through the cloud from anywhere!  That is quite a lot in one workshop.
 
-At this point, it would be a good idea to connect with other developers that are publishing apps and running workflows through Tapis by joining the Tapis API Slack channel: [tacc-cloud.slack.com](tacc-cloud.slack.com)
+At this point, it would be a good idea to connect with other developers that are publishing apps and running workflows through Tapis by joining the Tapis API Slack channel: [tacc-cloud.slack.com](https://bit.ly/2XHYJEk)
+
+[BACK](https://github.com/tapis-project/uh-hpc-in-the-cloud/blob/master/README.md)
 
 
-
-[Back](index.md)
