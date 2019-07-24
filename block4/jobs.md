@@ -34,34 +34,36 @@ Note that you can specify which queue to use as well as runtime limits in your j
 
 If you have direct access to the system where you are running the job, it is fun to watch it progress through on the system itself.  
 
-* Step 1: Crafting **Job Definition**
+* Step 1: Crafting a Job Definition 
 
 Create [job.json](./templates/job.json) in your home directory on local VM and update the values for fields **name** and **appID**. 
 Using the command below, grab the id of the app that you just registered.
 
 ```
 apps-list
-
 ```
 In the job.json, you will see archive set as "True". With this setting, all new files created during job execution will go to the archiveSystem's home directory. 
 
 
-* Step 2: Submit job
-From your home directory, where job.json file is located run job submission command
+* Step 2: Submit job <br\>
+From your home directory, where job.json file is located run the job submission command
+
 ```
 jobs-submit -F job.json
 ```
+
 Alternately, to get a detialed job response run with a -V option
+
 ```
 jobs-submit -F job.json -V
-
 ```
-You should see a message "Successfully submitted job <jobID>. This is the job uuid is unique, everytime you submit a job. You will use this uuid to get the Job Status, output listing and much more.
 
+You should see a message "Successfully submitted job <jobID>. This is the job uuid is unique, everytime you submit a job. You will use this uuid to get the Job Status, output listing and much more.
 
 
 ### Jobs List
 Now, when you do a jobs-list you can see your job
+
 
 ```
 jobs-list
@@ -69,6 +71,7 @@ jobs-list
 
 ### Jobs Status
 Job status allows you to see the current state of the job. You can also set up email or webhook notification, when the job state changes
+
 
 ```
 jobs-status <jobId>
@@ -79,6 +82,7 @@ Details about different job states are given here [JOB STATES](https://tacc-clou
 
 ### Jobs Output
 
+
 ```
 jobs-output-list -L <jobId>
 ```
@@ -88,6 +92,7 @@ With this command you see the current files in the output folder. When archive i
 To view the output, run the below curl command
 
 First Grab your access token from current and store it in a variable
+
 ```
 cat ~/.agave/current
 export token=<acces_token>
@@ -108,6 +113,7 @@ jobs-output-get -r <jobId>
 ### Jobs Notifications
 You can monitor progress of your job by setting by email or webhook notifications
 Add this to your job definition and try to submit the job again
+
 ```
 "notifications":[
     {
@@ -126,6 +132,6 @@ If you made it this far, you have successfully created a new app within a contai
 
 At this point, it would be a good idea to connect with other developers that are publishing apps and running workflows through Tapis by joining the Tapis API Slack channel: [tacc-cloud.slack.com](https://bit.ly/2XHYJEk)
 
-[BACK](https://github.com/tapis-project/uh-hpc-in-the-cloud/blob/master/README.md)
+[BACK](./README.md)
 
 
