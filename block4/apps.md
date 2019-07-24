@@ -14,7 +14,8 @@ Apps service is a central registry for all Tapis(Agave) apps. With Apps service 
 * manage or share app permissions
 * revise existing apps
 * view information about each app such as its version number, owner, revision number to name a few <br/>
-The rest of this tutorial explains details about how to package your Tapis(Agave) app, register your app with the Apps service and some other useful apps CLI commands. 
+
+The rest of this tutorial explains details about how to package your Tapis(Agave) app, register your app with the Apps service and some other useful CLI commands for Apps. 
 
 
 ### App Packaging 
