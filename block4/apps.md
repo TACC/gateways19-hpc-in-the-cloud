@@ -13,16 +13,16 @@ Apps service is a central registry for all Tapis(Agave) apps. With Apps service 
 * register new apps
 * manage or share app permissions
 * revise existing apps
-* view information about each app such as its version number, owner, revision number to name a few
+* view information about each app such as its version number, owner, revision number to name a few <br/>
 The rest of this tutorial explains details about how to package your Tapis(Agave) app, register your app with the Apps service and some other useful apps CLI commands. 
 
 
 ### App Packaging 
-Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis(Aloe) jobs can properly invoke it. Tapis(Aloe) is the new code name for rearchitectured Agave Jobs service. More on this in the next part of the tutorial. Though there is plenty of opportunity to establish your own conventions, at the very least, your application folder should have the following in it:
+Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis(Aloe) jobs can properly invoke it. Tapis(Aloe) is the new code name for rearchitectured Agave Jobs service. We will discuss more on this in the next part of the tutorial. Though there is plenty of opportunity to establish your own conventions, at the very least, your application folder should have the following in it:
 
 * An execution script that creates and executes an instance of the application. We refer to this as the <em>wrapper template</em> throughout the documentation. For the sake of maintainability, it should be named something simple and intuitive like `wrapper.sh`. 
 * A library subdirectory: This contains all scripts, non-standard dependencies, binaries needed to execute an instance of the application.  
-* A test directory containing a script named something simple and intuitive like `test.sh`, along with any sample data needed to evaluating whether the application can be executed in a current command-line environment. It should exit with a status of 0 on success when executed on the command line. A simple way to create your test script is to create a script that sets some sensible default values for your app's inputs and parameters and then call your wrapper template.
+* A test directory containing a script named something simple and intuitive like `test.sh`, along with any sample data needed to evaluating whether the application can be executed in a current command-line environment. It should exit with a status of 0 on success when executed on the command line. A simple way to create your test script is tohttps://github.com/TACC/pearc19-hpc-in-the-cloud/blob/master/block4/apps.md create a script that sets some sensible default values for your app's inputs and parameters and then call your wrapper template.
 
 The resulting minimal app bundle would look something like the following:
 
@@ -134,12 +134,12 @@ systems-list
 
 
 ### Step 1: Creating the app bundle locally on your Jetstream VM
- *  From ~/applications/classifyApp-1.0 directory on your VM,  singularity pull the classifier docker image using the command below. This should take 7-9 mins to build the image. 
+ *  Inside ~/applications/classifyApp-1.0 directory on your Jetstream VM,  you should see a pre-pulled classifier docker image "pearc19-classifier.simg". 
 
 ```
 cd ~/applications/classifyApp-1.0
 
-singularity pull docker://tacc/pearc19-classifier
+ls -la
 
 ```
 
