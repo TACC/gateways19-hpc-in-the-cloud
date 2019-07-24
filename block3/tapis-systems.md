@@ -46,7 +46,8 @@ Storage systems tell Tapis where data resides.  You can store files for running 
 * **default** - TRUE or FALSE if this is the default system for Tapis to use when not explicitly passed a system.
 
 More details on the possible parameters for storage systems can be found in the [Tapis Storage System documentation](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/systems-storage.html).
-### Hands-on
+
+### Hands-on (We have already provisioned this storage system for the PEARC workshop for you. Skip for the workshop.)
 
 As a hands on exercise, using the Tapis CLI, register a data storage system using PASSWORD authentication with the above template for the TACC Corral Cloud store. Don't forget to replace *UPDATEUSERNAME* and *UPDATE PASSWORD*.  Call the JSON file "cloud_corral.json"
 
@@ -136,7 +137,8 @@ We covered what some of these keywords are in the storage systems section.  Belo
 Complete reference information is located here:
 https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/introduction.html
 
-### Hands-on
+### Hands-on (We have already provisioned this execution system for the PEARC workshop for you. Skip for the workshop.)
+
 As a hands on exercise, register the Stampede2 HPC as a execution system using the Tapis-CLI using the above JSON template. - Don't forget to change *UPDATEUSERNAME* and *UPDATEPASSWORD* to your tutorial or TACC username and *UPDATEPROJECT* and *UPDATERESERVATION* for this workshops Stampede2 provided project and reservation (or your personal ones if doing this on your own).  
 
 In your CLI you can now get a list of your systems using:
