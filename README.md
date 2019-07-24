@@ -1,13 +1,41 @@
+# Portable, Reproducible High Performance Computing In the Cloud
 
-# PEARC19 Tutorial Portable, Reproducible High Performance Computing In the Cloud
+## Schedule
 
+* 8:30AM - Introduction
+* 9:00AM - Intro to Jupyter, Intro to Docker
+* 10:30AM - Break
+* 10:45AM - Intro to Docker(cont), Intro to Tapis and CLI, Intro to Abaco
+* Noon - Lunch
+* 1PM - Using Abaco, Intro to Singularity
+* 2:30PM - Break
+* 2:45PM - Tapis Systems, Tapis Apps, Tapis Jobs
+* 4:15PM - Workshop Wrap-up
 
-## Part 1: Intro to Docker
+## Workshop Introduction
+Presenters: 
+* Joe Stubbs (TACC)
+* Julia Looney (TACC)
+* Anagha Jamthe (TACC)
+* Sean Cleveland (UH)
+
+The resources you will be using today are provided by funding from the National Science Foundation:
+
+* [Jetstream](https://jetstream-cloud.org/) is a cloud service for research that provides on-demand, user-controled, Virtual Machines (VMs) - you can request and account after the workshop using these [instructions](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/76150553/Get+a+Jetstream+Trial+Access+account).  
+* Stampede2 is the flagship supercomputer at The University of Texas at Austin's Texas Advanced Computing Center (TACC). A strategic national resource, Stampede2 provides high-performance computing capabilities to thousands of researchers across the U.S.  To gain access after the workshop you need to request a [startup allocation](https://portal.xsede.org/allocations/startup) with an XSEDE portal account, you can [Request and Account](https://portal.xsede.org/my-xsede?p_p_id=58&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_58_struts_action=%2Flogin%2Fcreate_account) and then [Submit an Allocation request](http://portal.xsede.org/submit-request) - If you have question please contact us via the TACC-Cloud slack channel.
+
+You should have recieved a paper with a training account for Stampede2 and a slip of paper with a Jetstream Virtual Machine(VM) IP with username and password for that VM.  These are the credentials that we will use today and are only valid for todays workshop.
+
+The Jetstream VMs all have the same configuration running Ubuntu 18 with all required software (Docker, Singularity, Tapis-CLI, Tapis PY and Jupyterhub).
+
+## Intro to Jupyter
 * [Introduction to Jupyter](./block1/intro-to-jupyter.md)
   * [Starting a Jupyter Notebook](./block1/intro-to-jupyter.md#starting-up-your-jupyter-notebook-environment)
   * [Creating a Notebook](./block1/intro-to-jupyter.md#creating-a-notebook)
   * [Starting a Terminal](./block1/intro-to-jupyter.md#starting-a-terminal)
 
+
+## Intro to Docker
 * [Using Docker](./block1/intro-to-docker.md)
   * [What is a container?](./block1/intro-to-docker.md#what-is-a-container)
   * [Containers vs VMs](./block1/intro-to-docker.md#containers-vs-vms)
@@ -17,9 +45,13 @@
   * [Building Images from a Dockerfile](./block1/intro-to-docker.md#building-images-from-a-dockerfile)
   * [Running a Docker Container](./block1/intro-to-docker.md#running-a-docker-container)
   * [Removing Docker Containers](./block1/intro-to-docker.md#removing-docker-containers)
-  
 
-## Block 2: Using Abaco
+## Intro to Tapis (Agave)
+* [Intro to Tapis(Agave)](./block3/tapis-intro.md)
+
+* [Intro to Tapis CLI](./block3/tapis-cli.md)
+
+## Using Abaco
 * [Intro to Abaco](./block2/intro-to-abaco.md)
   * [What is Abaco?](./block2/intro-to-abaco.md#what-is-abaco)
   * [Using Abaco](./block2/intro-to-abaco.md#using-abaco)
@@ -33,15 +65,14 @@
   * [Preparing our Code for Abaco](./block2/running-image-classifier-in-abaco.md#preparing-our-code-for-abaco)
   * [Creating and Actor](./block2/running-image-classifier-in-abaco.md#creating-an-abaco-actor)
   * [Executing Actor with curl](./block2/running-image-classifier-in-abaco.md#executing-classifier-with-curl)
-  * [Executing Actor with Python](./block2/running-image-classifier-in-abaco.md#executing-classifier-on-abaco-using-a-jupyter-notebook--tapispy)
-  
-## Block 3: Intro to Singularity and Tapis(Agave) CLI & Systems
+  * [Executing Actor with Python on the Abaco Cloud](./block2/Using%20tapispy%20to%20Execute%20Actor%20Containers%20on%20the%20Abaco%20Cloud.ipynb)
+## Intro to Singularity
 * [Intro to Singularity](./block3/intro-singularity.md)
-* [Intro to Tapis(Agave)](./block3/tapis-intro.md)
-* [Intro to Tapis CLI](./block3/tapis-cli.md)
+
+## Tapis Systems
 * [Intro to Tapis Systems](./block3/tapis-systems.md)
 
-## Block 4: Intro to Tapis(Agave) Apps & Tapis(Aloe) Jobs
+## Tapis Apps
 * [Intro to Apps](./block4/apps.md)
   * [What is a Tapis(Agave) app?](./block4/apps.md#what-is-a-tapisagave-app)
   * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
@@ -51,6 +82,7 @@
   * [List Apps](./block4/apps.md#list-apps)
   * [Managing App Permissions](./block4/apps.md#apps-permissions)
 
+## Tapis Jobs
 * [Intro to Tapis(Aloe) Jobs](./block4/jobs.md)
   * [Tapis(Aloe) Jobs Service](./block4/jobs.md#tapisaloe-jobs-service)
   * [Jobs Parameters](./block4/jobs.md#jobs-parameters)
