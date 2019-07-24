@@ -23,21 +23,22 @@ An example Job JSON defintion:
 * **name**	-  The user selected name for the job.
 * **archive**	-	Whether the job output should be archived. When true, all new files created during job execution will be moved to the archivePath.
 * **memoryPerNode**	-	The memory requested for each node on which the job runs. Values are expressed as [num][units], where num can be a decimal number and units can be KB, MB, GB, TB (default = GB). Examples include 200MB, 1.5GB and 5.
-* **archiveSystem**	-	The unique id of the storage system on which the job output will be archived. <br/>
+* **archiveSystem**	-	The unique id of the storage system on which the job output will be archived. 
+* **parameters** - Application-specific parameters with types defined in the application defintion. <br/>
 **appId** and **name** are required parameters. 
 Please refer to all the job parameters here [Job Parameters](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#submission-request-parameters)
 
 
 ### Submitting a Job
 Once you have at least one app registered, you can start running jobs.  To run a job, Tapis just needs to know what app you want to run and what inputs and parameters you want to use. <br/>
-There are number of other optional features, which are explained in detail in the [Job Management Tutorial](https://tacc-cloud.readthedocs. io/projects/agave/en/latest/agave/guides/jobs/job-submission.html).  <br/>
+There are number of other optional features, which are explained in detail in the [Job Management Tutorial](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/job-submission.html).  <br/>
 Note that you can specify which **queue** to use as well as **runtime limits** in your job.  If those are absent, Tapis falls back to whatever was listed in the app description (also optional). If that app doesn't specify, then it falls back to the defaults given for the execution system.
 
 Lets run our very first Tapis(Aloe) Job! <br/>
 
 * Step 1: Crafting a Job Definition 
 
-Create [job.json](./templates/job.json) in your home directory on Jetstream VM and update the values for fields **name** and **appID**. 
+Create [job.json](./templates/job.json) file in your home directory on Jetstream VM and update the values for fields **name** and **appID**. 
 
 You can find the appId of the app that you just registered with the command below.
 
@@ -61,11 +62,11 @@ Alternately, this command can be run with -V option to get a detialed job respon
 jobs-submit -F job.json -V
 ```
 
-You should see a message **Successfully submitted job <jobID>**. Everytime you submit a job, a unique job id is created. You will use this job id with other CLI commands to get the Job Status, output listing and much more.
+You should see a message **Successfully submitted job job-id **. Everytime you submit a job, a unique job id is created. You will use this job id with other CLI commands to get the Job Status, output listing and much more.
 
 
 ### Jobs List
-Now, when you do a jobs-list you can see your job listed
+Now, when you do a jobs-list you can see your job id
 
 
 ```
@@ -80,7 +81,7 @@ Job status allows you to see the current state of the job. You can also set up e
 jobs-status <jobId>
 ```
 
-Details about different job states are given here [JOB STATES](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#job-states)
+Job enters into different states throughout the execution. Details about different job states are given here [JOB STATES](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#job-states)
 
 
 ### Jobs Output
@@ -109,7 +110,6 @@ Modify the curl command below to include your storage system id, username and jo
 ```
 curl -sk -H "Authorization: Bearer $token" 'https://api.tacc.utexas.edu/files/v2/media/system/UPDATESTORAGESYSTEM/UPDATEUSER/archive/jobs/job-UPDATEJOBID/predictions.txt'
 ```
-
 
 
 ### Jobs Notifications
