@@ -64,7 +64,6 @@ You should see a message "Successfully submitted job <jobID>. This is the job uu
 Now, when you do a jobs-list you can see your job
 ```
 jobs-list
-
 ```
 
 ### Jobs Status
@@ -72,7 +71,6 @@ Job status allows you to see the current state of the job. You can also set up e
 
 ```
 jobs-status <jobId>
-
 ```
 Details about different job states are given here [JOB STATES](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#job-states)
 
@@ -80,7 +78,6 @@ Details about different job states are given here [JOB STATES](https://tacc-clou
 ### Jobs Output
 ```
 jobs-output-list -L <jobId>
-
 ```
 With this command you see the current files in the output folder. When archive is true, all the new files will get copied to archive directory on your archive system. When it is false all the output files can be found on the execution system's scratch directory
 
@@ -90,8 +87,9 @@ First Grab your access token from current and store it in a variable
 ```
 cat ~/.agave/current
 export token=<acces_token>
-```				
+```
 Run below curl command
+
 ```
 curl -sk -H "Authorization: Bearer $token" 'https://api.tacc.utexas.edu/files/v2/media/system/UPDATESTORAGESYSTEM/UPDATEUSER/archive/jobs/job-UPDATEJOBID/predictions.txt'
 ```
