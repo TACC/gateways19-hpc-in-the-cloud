@@ -62,6 +62,7 @@ You should see a message "Successfully submitted job <jobID>. This is the job uu
 
 ### Jobs List
 Now, when you do a jobs-list you can see your job
+
 ```
 jobs-list
 ```
@@ -72,13 +73,16 @@ Job status allows you to see the current state of the job. You can also set up e
 ```
 jobs-status <jobId>
 ```
+
 Details about different job states are given here [JOB STATES](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#job-states)
 
 
 ### Jobs Output
+
 ```
 jobs-output-list -L <jobId>
 ```
+
 With this command you see the current files in the output folder. When archive is true, all the new files will get copied to archive directory on your archive system. When it is false all the output files can be found on the execution system's scratch directory
 
 To view the output, run the below curl command
@@ -88,6 +92,7 @@ First Grab your access token from current and store it in a variable
 cat ~/.agave/current
 export token=<acces_token>
 ```
+
 Run below curl command
 
 ```
@@ -95,10 +100,10 @@ curl -sk -H "Authorization: Bearer $token" 'https://api.tacc.utexas.edu/files/v2
 ```
 
 You can also download, the output files using the command below
+
 ```
 jobs-output-get -r <jobId>
 ```
-
 
 ### Jobs Notifications
 You can monitor progress of your job by setting by email or webhook notifications
@@ -112,6 +117,7 @@ Add this to your job definition and try to submit the job again
     }
     ]
 ```
+
 You should see email notifications pop up in your inbox as the job changes state.
 
 ## What's next?
