@@ -36,7 +36,7 @@ If you have direct access to the system where you are running the job, it is fun
 
 * Step 1: Crafting **Job Definition**
 
-Create [job.json](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block4/templates/job.json) in your home directory on local VM and update the values for fields **name** and **appID**. 
+Create [job.json](./templates/job.json) in your home directory on local VM and update the values for fields **name** and **appID**. 
 Using the command below, grab the id of the app that you just registered.
 
 ```

@@ -26,7 +26,7 @@ Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis
 
 The resulting minimal app bundle would look something like the following:
 
-```always
+```
 package-name-version
 |- app.json
 |+ bin
@@ -140,23 +140,21 @@ systems-list
 cd ~/applications/classifyApp-1.0
 
 ls -la
-
 ```
 
-*  In the same classifyAp-1.0 directory, create a wrapper script file **wrapper.sh**
+*  In the same classifyAp-1.0 directory, create a wrapper script file **wrapper.sh** and copy the script below into the wrapper.sh file. We have set this up to have a minimal wrapper script:
+
 ```
 touch wrapper.sh
-
 ```
-Copy the script below into the wrapper.sh file. We have set this up to have a minimal wrapper script:
 
 ```
 #!/bin/bash
 module load tacc-singularity/2.6.0
 
 singularity run pearc19-classifier.simg python /classify_image.py ${imagefile} ${predictions} > predictions.txt
-
 ```
+
 Within a wrapper script, you can reference the ID of any Tapis(Agave) input or parameter from the app description.  Before executing a wrapper script, Tapis(Agave) will look for the these references and substitute in whatever was that value was.  This will make more sense once we start running jobs, but this is the way we connect what you tell the Tapis(Agave) API that you want to do and what actually runs on the execution system.  The other thing Tapis(Agave) will do with the wrapper script is prepend all the scheduler information necessary to run the script on the execution system.
 
 * Test data:
@@ -167,8 +165,8 @@ cd ~/applications/classifyApp-1.0 && mkdir test && cd test && touch test.sh
 ```
 
 Test script
-
 It is always a good idea to include a test script that can run your app against test data.  Paste the below bash script in your test.sh file
+
 
 ```
 #!/bin/bash
@@ -179,16 +177,20 @@ export predictions="--num_top_predictions 5"
 
 cd ../ && bash wrapper.sh
 ```
+
 Before you actually tranfer the app bundle to cloud storage, let's just verify if the wrapper script works as expected. We will run test.run on your Jetstream VM.
 Give executable permissions to your test.sh
+
 ```
 chmod 700 test.sh
 ```
+
 and then run command
-```
-./test.sh
 
 ```
+./test.sh
+```
+
 You should see the output prediction score inside **predicitons.txt** file in classifyApp1.0 folder. 
 
 
@@ -206,14 +208,13 @@ files-mkdir agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/te
 ```
 
 Copy the app bundle (Image file, wrapper script and test.sh) to your cloud storage system
+
 ```
 files-cp pearc19-classifier.simg agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/
 
 files-cp wrapper.sh agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/
 
 files-cp test/test.sh agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/test/
-
-
 ```
 
 ### Step 3: Crafting your app definition 
@@ -226,6 +227,7 @@ copy the template app.json and make changes for your username
 
 ### Step 4: Registering an app
 Once you have an application bundle ready to go and app definition crafted, you can run the following CLI command from classifyApp-1.0 directory from your Jetstream VM
+
 ```
 apps-addupdate -F app.json
 ```
@@ -236,15 +238,15 @@ Some other useful CLI commands:
 
 ### List apps 
 Now if you list apps you should see the app you just registered. You should also see other public apps available to the user in that tenant
+
 ```
 apps-list 
-
 ```
 
 To see details about a specific app 
+
 ```
 apps-list -V {app_ID}
-
 ```
 
 ### Managing App Permissions
@@ -253,10 +255,10 @@ To view the permissions on the app for different users
 
 ```
  apps-pems-list {app_ID}
-
  ```
 
  To grant permissions to a user
+ 
  ```
  apps-pems-update -u {uname} -p READ_WRITE  {app_id}
  ```
