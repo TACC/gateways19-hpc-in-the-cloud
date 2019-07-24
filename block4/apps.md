@@ -143,7 +143,7 @@ ls -la
 
 ```
 
-*  Inside classifyAp-1.0 directory create a wrapper script file **wrapper.sh**
+*  In the same classifyAp-1.0 directory, create a wrapper script file **wrapper.sh**
 ```
 touch wrapper.sh
 
@@ -198,28 +198,30 @@ You should run below commands from your Jetstream VM's classifyApp-1.0 folder. R
 We are making folders on your cloud storage systems with the commands below
 
 ```
-files-mkdir agave://UPDATESTORAGESYSTEMID/applications/
+files-mkdir agave://trainXXX.tacc.corral.storage/applications/
 
-files-mkdir agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0
+files-mkdir agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0
 
-files-mkdir agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/test
+files-mkdir agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/test
 ```
 
 Copy the app bundle (Image file, wrapper script and test.sh) to your cloud storage system
 ```
-files-cp pearc19-classifier.simg agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/
+files-cp pearc19-classifier.simg agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/
 
-files-cp wrapper.sh agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/
+files-cp wrapper.sh agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/
 
-files-cp test/test.sh agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/test/
+files-cp test/test.sh agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/test/
 
 
 ```
 
 ### Step 3: Crafting your app definition 
-Your classifier app definiton [app.json](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block4/templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as updating the names of storage and execution systems, you should be able to register your very first Tapis(Agave) app.
+Your classifier app definiton [app.json](./block4/templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as updating the names of storage and execution systems, you should be able to register your very first Tapis(Agave) app.
 
-Store this app.json in your classifyApp-1.0 directory on the Jetstream VM. 
+cd ~/applications/classifyApp-1.0 && touch app.json
+
+copy the template app.json and make changes for your username
 
 
 ### Step 4: Registering an app
@@ -228,8 +230,7 @@ Once you have an application bundle ready to go and app definition crafted, you 
 apps-addupdate -F app.json
 ```
 
-
-Tapis(Agave) will check the app description, look for the app bundle on the deploymentSystem, and if everything passes, make it available to run jobs with Tapis Jobs service.
+Tapis(Agave) will check the app description, look for the app bundle on the deploymentSystem, and if everything passes, make it available to run jobs with Tapis Jobs service.<br/>
 
 Some other useful CLI commands:
 
@@ -262,7 +263,7 @@ To view the permissions on the app for different users
 
  Now that we have our very first app ready to use, we are ready to run it on Stampede2 using Tapis(Aloe) Jobs service. 
 
- [NEXT-> JOBS](https://github.com/tapis-project/uh-hpc-in-the-cloud/blob/master/block4/jobs.md)
+ [NEXT-> JOBS](./block4/jobs.md)
 
 
 ## More Resources
