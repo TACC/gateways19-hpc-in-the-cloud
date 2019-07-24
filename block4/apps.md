@@ -217,7 +217,7 @@ files-cp test/test.sh agave://trainXXX.tacc.corral.storage/applications/classify
 ```
 
 ### Step 3: Crafting your app definition 
-Your classifier app definiton [app.json](./block4/templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as updating the names of storage and execution systems, you should be able to register your very first Tapis(Agave) app.
+Your classifier app definiton [app.json](./templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as updating the names of storage and execution systems, you should be able to register your very first Tapis(Agave) app.
 
 cd ~/applications/classifyApp-1.0 && touch app.json
 
@@ -263,7 +263,7 @@ To view the permissions on the app for different users
 
  Now that we have our very first app ready to use, we are ready to run it on Stampede2 using Tapis(Aloe) Jobs service. 
 
- [NEXT-> JOBS](./block4/jobs.md)
+ [NEXT-> JOBS](./jobs.md)
 
 
 ## More Resources
