@@ -207,7 +207,8 @@ files-mkdir agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0
 files-mkdir agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/test
 ```
 
-Copy the app bundle (Image file, wrapper script and test.sh) to your cloud storage system
+Copy the app bundle (Image file, wrapper script and test.sh) to your cloud storage system. 
+** Note: Make sure you do not miss the trailing / in the files-cp command ***
 
 ```
 files-cp pearc19-classifier.simg agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/
