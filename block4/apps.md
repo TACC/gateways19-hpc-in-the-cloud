@@ -21,7 +21,7 @@ The rest of this tutorial explains details about how to package your Tapis(Agave
 ### App Packaging 
 Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis(Aloe) jobs can properly invoke it. Tapis(Aloe) is the new code name for rearchitectured Agave Jobs service. We will discuss more on this in the next part of the tutorial. Though there is plenty of opportunity to establish your own conventions, at the very least, your application folder should have the following in it:
 
-* An execution script that creates and executes an instance of the application. We refer to this as the <em>wrapper template</em> throughout the documentation. For the sake of maintainability, it should be named something simple and intuitive like `wrapper.sh`. 
+* In order to run your application, you will need to create a wrapper template that calls your executable code. For the sake of maintainability, it should be named something simple and intuitive like `wrapper.sh`. 
 * A library subdirectory: This contains all scripts, non-standard dependencies, binaries needed to execute an instance of the application.  
 * A test directory containing a script named something simple and intuitive like `test.sh`, along with any sample data needed to evaluating whether the application can be executed in a current command-line environment. It should exit with a status of 0 on success when executed on the command line. A simple way to create your test script is tohttps://github.com/TACC/pearc19-hpc-in-the-cloud/blob/master/block4/apps.md create a script that sets some sensible default values for your app's inputs and parameters and then call your wrapper template.
 
@@ -121,7 +121,7 @@ An example Tapis App JSON definition:
 Some of the above fields are manadatory to register the app. A complete list of application metadata can be found at [Application Metadata](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/app-wrapper-templates.html#application-metadata)
 
 
-### Registering an app  
+### Exercise: Registering an app  
 Registering an app with the Apps service is conceptually simple. Just describe your app as a JSON document and POST it to the Apps service. 
 
 
@@ -221,7 +221,9 @@ files-cp test/test.sh agave://trainXXX.tacc.corral.storage/applications/classify
 ### Step 3: Crafting your app definition 
 Your classifier app definiton [app.json](./templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as updating the names of storage and execution systems, you should be able to register your very first Tapis(Agave) app.
 
+```
 cd ~/applications/classifyApp-1.0 && touch app.json
+```
 
 copy the template app.json and make changes for your username
 

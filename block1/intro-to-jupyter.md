@@ -1,4 +1,4 @@
-Introduction to the Jupyter Notebook Environment
+Lecture: Introduction to the Jupyter Notebook Environment
 ===
 
 

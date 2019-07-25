@@ -1,12 +1,7 @@
 
 # Introduction to Singularity
 
-## 1. Prerequisites
-
-There are no specific skills needed for this tutorial beyond a basic comfort with the command line and Jupyter Notebooks. Prior experience developing web applications could be helpful but is not required.
-
-
-### Docker and Singularity
+## 1. Docker and Singularity (Lecture)
 
 #### Important: 
 Docker and Singularity are [friends](http://singularity.lbl.gov/docs-docker) but they have distinct differences.
@@ -84,20 +79,7 @@ Type in the following:
 
 ## 2.4 Check Installation (Jump to Here for the Workshop)
 
-ACK! UNFORTUNATELY SINGULARITY HUB IS DOWN FOR MAINTENANCE - NORMALLY SHUB PULLS WORK - WE WILL JUST RUN THE DOCKER PULLS TODAY - YOU CAN COME BACK LATER AND TRY SHUB EXAMPLES WHEN THE HUB IS BACK UP.
-
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
-
-```
->singularity pull shub://vsoch/hello-world
-Progress |===================================| 100.0%
-Done. Container is at: /home/sclevey/vsoch-hello-world-master-latest.simg
-
->singularity run vsoch-hello-world-master-latest.simg
-RaawwWWWWWRRRR!!
-```
-
-View the Singularity help:
 
 ```
 >singularity --help
@@ -148,11 +130,11 @@ website: http://singularity.lbl.gov/
 
 The easiest way to use a Singularity container is to `pull` an existing container from one of the Container Registries maintained by the Singularity group or from Docker Hub.  There are ways to build a container with a recipe similar to how you create a Dockerfile - see [Singulairty Recipie Documentation](https://sylabs.io/guides/2.6/user-guide/quick_start.html#singularity-recipes)
 
-## Exercise 2 (~10 mins)
+## Exercise 1
 
-### 3.1: Pulling a Container from Singularity Hub
+### 3.1: Pulling a Container
 
-You can use the `pull` command to download pre-built images from a number of Container Registries, here we'll be focusing on the [Singularity-Hub](https://www.singularity-hub.org) or [DockerHub](https://hub.docker.com/).
+You can use the `pull` command to download pre-built images from a number of Container Registries, here we'll be focusing on the [DockerHub](https://hub.docker.com/).
 
 Container Registries:
 
@@ -160,52 +142,7 @@ Container Registries:
 * `library` - *this is only accessible on Singularity 3 or greater
 * `docker` - images hosted on Docker Hub
 
-In this example I am pulling a base Ubuntu container from Docker Hub:
-
-```
-    $ singularity pull docker://ubuntu
-```
-
-You can rename the container using the `--name` flag:
-
-```
-    $ singularity pull --name ubuntu_test.simg docker://ubuntu
-```
-
-
-
-
-After your image has finished downloading it should be in the present working directory, unless you specified to download it somewhere else.
-
-```
-	$ singularity pull --name ubuntu_test.simg docker://ubuntu
-	Progress |===================================| 100.0%
-	Done. Container is at: /home/***/ubuntu_test.simg
-	$ singularity run ubuntu_test.simg
-	This is what happens when you run the container...
-	$ singularity shell ubuntu_test.simg
-	Singularity: Invoking an interactive shell within container...
-
-	Singularity ubuntu_test.simg:~> cat /etc/*release
-	DISTRIB_ID=Ubuntu
-	DISTRIB_RELEASE=14.04
-	DISTRIB_CODENAME=trusty
-	DISTRIB_DESCRIPTION="Ubuntu 14.04 LTS"
-	NAME="Ubuntu"
-	VERSION="14.04, Trusty Tahr"
-	ID=ubuntu
-	ID_LIKE=debian
-	PRETTY_NAME="Ubuntu 14.04 LTS"
-	VERSION_ID="14.04"
-	HOME_URL="http://www.ubuntu.com/"
-	SUPPORT_URL="http://help.ubuntu.com/"
-	BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
-	Singularity ubuntu_test.simg:~>
-```
-
-### 3.2: Pulling container from Docker Hub
-
-This example pulls a container from DockerHub
+This example pulls a Ubuntu 16.04 container from DockerHub
 
 Build to your container by pulling an image from Docker:
 
@@ -341,7 +278,7 @@ You can change these by specifying the location of the cache and temporary direc
   $ SINGULARITY_TMPDIR=$PWD/scratch SINGULARITY_CACHEDIR=$PWD/tmp singularity --debug pull --name ubuntu-tmpdir.simg docker://ubuntu
 ```
 
-## 4. Running Singularity Containers
+## 4. Running Singularity Containers  (Lecture)
 
 Commands:
 
@@ -357,23 +294,25 @@ Commands:
 
 `--sandbox` - copies the guts of the container into a directory structure.
 
+## Exercise 2
+
 ### 4.1 Using the `exec` command
 
 
 ```
-    $ singularity exec docker://ubuntu cat /etc/os-release
+    $ singularity exec ubuntu_docker.simg cat /etc/os-release
 ```
 
-###4.2 Using the `shell` command
+### 4.2 Using the `shell` command
 
 ```
-    $ singularity shell docker://ubuntu
+    $ singularity shell ubuntu_docker.simg
 ```
 
 ### 4.3 Using the `run` command
 
 ```
-    $ singularity run docker://ubuntu
+    $ singularity run ubuntu_docker.simg
 ```
 
 ### 4.4 Using the `inspect` command
@@ -423,29 +362,10 @@ The above commands - you create a "xdisk" folder at the root space and then we b
 
 The system administrator can also define what is added to a container. This is important on campus HPC systems that often have a `/scratch` or `/xdisk` directory structure. By editing the `/etc/singularity/singularity.conf` a new path can be added to the system containers.
 
-### 4.7 Overlay
 
-You can make changes to an immutable container which only persist for the duration of the container being run.
+## 5 Singularity Related Resources
 
-First, download a container.
-
-Next, create a new image in the ext3 format.
-
-```
-	$ singularity image.create blank_slate.simg
-```
-
-Now, overlay your blank image file name with the container you just downloaded.
-
-```
-	$ sudo singularity shell --overlay blank_slate.simg ubuntu14.simg
-```
-
-> Note: using the `sudo` command to make the container writable
-
-
-
-## Singularity Related Resources
+We have only scratched the surface of using Singularity. For more information and resources see the links below.
 
 [Singularity Homepage](https://sylabs.io/)
 
