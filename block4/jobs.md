@@ -93,22 +93,16 @@ jobs-output-list -L <jobId>
 
 With this command, you can see the current files in the output folder. When archive is true, all the new files will get copied to archive directory on your archive system. When it is false, all the output files can be found on the execution system's scratch directory
 
-To view the output **predictions.txt** file we will run the below curl command. You will need an auth token for that, which you can find inside the **.agave/current** file
+To retrieve the output **predictions.txt** file we will use the `files-cp` command below:
 
 ```
-cat ~/.agave/current
+files-cp agave://<username>.tacc.corral.storage/<username>/archive/jobs/job-<job-uuid>/predictions.txt predictions.txt
 ```
 
-Save this token in a variable
 
+For example, if using the `train510` account with job uuid `8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007`, the command would be:
 ```
-export token=<acces_token>
-```
-
-Modify the curl command below to include your storage system id, username and job id and run it, it should return the contents of the **predictions.txt** file
-
-```
-curl -sk -H "Authorization: Bearer $token" 'https://api.tacc.utexas.edu/files/v2/media/system/UPDATESTORAGESYSTEM/UPDATEUSER/archive/jobs/job-UPDATEJOBID/predictions.txt'
+files-cp agave://train510.tacc.corral.storage/train510/archive/jobs/job-8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007/predictions.txt predictions.txt
 ```
 
 
