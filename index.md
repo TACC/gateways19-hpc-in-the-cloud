@@ -7,13 +7,13 @@
 
 * 8:30AM - Introduction
 * 9:00AM - Intro to Jupyter, Intro to Docker
-* 10:30AM - Break
-* 10:45AM - Intro to Docker(cont), Intro to Tapis and CLI, Intro to Abaco
-* Noon - Lunch
-* 1PM - Using Abaco, Intro to Singularity
-* 2:30PM - Break
-* 2:45PM - Tapis Systems, Tapis Apps, Tapis Jobs
-* 4:15PM - Workshop Wrap-up
+* 10:00AM - Break
+* 10:30AM - Intro to Docker(cont), Intro to Tapis and CLI, Intro to Abaco
+* 12:00pm-1:30pm - Lunch
+* 1:30PM - Using Abaco, Intro to Singularity
+* 3:00PM - Break
+* 3:30PM - Tapis Systems, Tapis Apps, Tapis Jobs
+* 4:30PM - Workshop Wrap-up
 
 ## Workshop Introduction
 Presenters: 
