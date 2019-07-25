@@ -23,7 +23,7 @@ Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis
 
 * In order to run your application, you will need to create a wrapper template that calls your executable code. For the sake of maintainability, it should be named something simple and intuitive like `wrapper.sh`. 
 * A library subdirectory: This contains all scripts, non-standard dependencies, binaries needed to execute an instance of the application.  
-* A test directory containing a script named something simple and intuitive like `test.sh`, along with any sample data needed to evaluating whether the application can be executed in a current command-line environment. It should exit with a status of 0 on success when executed on the command line. A simple way to create your test script is tohttps://github.com/TACC/pearc19-hpc-in-the-cloud/blob/master/block4/apps.md create a script that sets some sensible default values for your app's inputs and parameters and then call your wrapper template.
+* A test directory containing a script named something simple and intuitive like `test.sh`, along with any sample data needed to evaluating whether the application can be executed in a current command-line environment. It should exit with a status of 0 on success when executed on the command line. A simple way to create your test script is to create a script that sets some sensible default values for your app's inputs and parameters and then call your wrapper template.
 
 The resulting minimal app bundle would look something like the following:
 
