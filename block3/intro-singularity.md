@@ -82,17 +82,6 @@ Type in the following:
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
 
 ```
->singularity pull shub://vsoch/hello-world
-Progress |===================================| 100.0%
-Done. Container is at: /home/sclevey/vsoch-hello-world-master-latest.simg
-
->singularity run vsoch-hello-world-master-latest.simg
-RaawwWWWWWRRRR!!
-```
-
-View the Singularity help:
-
-```
 >singularity --help
 USAGE: singularity [global options...] <command> [command options...] ...
 
