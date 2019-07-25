@@ -23,24 +23,23 @@ Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis
 
 * In order to run your application, you will need to create a wrapper template that calls your executable code. For the sake of maintainability, it should be named something simple and intuitive like `wrapper.sh`. 
 * A library subdirectory: This contains all scripts, non-standard dependencies, binaries needed to execute an instance of the application.  
-* A test directory containing a script named something simple and intuitive like `test.sh`, along with any sample data needed to evaluating whether the application can be executed in a current command-line environment. It should exit with a status of 0 on success when executed on the command line. A simple way to create your test script is to create a script that sets some sensible default values for your app's inputs and parameters and then call your wrapper template.
+* A test directory containing a script named something simple and intuitive like `test.sh`, along with any sample data needed to evaluating whether the application can be executed in a current command-line environment. It should exit with a status of 0 on success when executed on the command line. A simple way to create your test script is to set some sensible default values for your app's inputs and parameters and then call your wrapper template.
 
 The resulting minimal app bundle would look something like the following:
 
 ```
-package-name-version
+classifyApp-1.0
 |- app.json
-|+ bin
- |- script.R
+|- pearc19-classifier.simg
 |+ test
  |- test.sh
 |- wrapper.sh
 ```
 
-package-name-version is a folder that you will create on your Jetstream VM and transfer it to Tapis(Agave) cloud storage system in a designated location. This folder contains binaries, support scripts, test data, etc. all in one package. Before we get into this, lets have a quick look at the App metadata.
+classifyApp-1.0 is a folder present on your Jetstream VM inside the path ~/applications. We have pre-installed singularity image for you. We will create rest of the app assets soon. But before we go into that lets have a quick look at the App Metadata.
 
 
-### Application metadata
+### Application Metadata
 An example Tapis App JSON definition:
 ```
 {
