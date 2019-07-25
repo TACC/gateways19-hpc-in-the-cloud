@@ -362,29 +362,10 @@ The above commands - you create a "xdisk" folder at the root space and then we b
 
 The system administrator can also define what is added to a container. This is important on campus HPC systems that often have a `/scratch` or `/xdisk` directory structure. By editing the `/etc/singularity/singularity.conf` a new path can be added to the system containers.
 
-### 4.7 Overlay
 
-You can make changes to an immutable container which only persist for the duration of the container being run.
+## 5 Singularity Related Resources
 
-First, download a container.
-
-Next, create a new image in the ext3 format.
-
-```
-	$ singularity image.create blank_slate.simg
-```
-
-Now, overlay your blank image file name with the container you just downloaded.
-
-```
-	$ sudo singularity shell --overlay blank_slate.simg ubuntu14.simg
-```
-
-> Note: using the `sudo` command to make the container writable
-
-
-
-## Singularity Related Resources
+We have only scratched the surface of using Singularity. For more information and resources see the links below.
 
 [Singularity Homepage](https://sylabs.io/)
 
