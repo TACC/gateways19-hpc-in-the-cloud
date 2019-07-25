@@ -303,7 +303,7 @@ Commands:
     $ singularity exec ubuntu_docker.simg cat /etc/os-release
 ```
 
-###4.2 Using the `shell` command
+### 4.2 Using the `shell` command
 
 ```
     $ singularity shell ubuntu_docker.simg
