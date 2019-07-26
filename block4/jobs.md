@@ -40,10 +40,11 @@ Lets run our very first Tapis(Aloe) Job! <br/>
 
 Create [job.json](./templates/job.json) file in your home directory on Jetstream VM and update the values for fields **name** and **appID**. 
 
-You can find the appId of the app that you just registered with the command below.
+You can find the appId of the app that you just registered and your storage system id with the command below.
 
 ```
 apps-list
+systems-list
 ```
 In the job.json, you will see archive set as **True**. With this setting, all new files created during job execution will get copied to the archiveSystem. 
 
