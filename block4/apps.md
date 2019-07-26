@@ -191,7 +191,8 @@ and then run command
 ./test.sh
 ```
 
-You should see the output prediction score inside **predicitons.txt** file in classifyApp1.0 folder. 
+Note: You may see some warnings about module not found. 
+The script should run fine and you should see the output file **predicitons.txt** inside the classifyApp1.0 folder. 
 
 
 ### Step 2: Transfering your app bundle to the cloud storage system using Tapis(Agave) Files service. 
