@@ -38,7 +38,7 @@ Lets run our very first Tapis(Aloe) Job! <br/>
 
 ### Step 1: Crafting a Job Definition 
 
-Create [job.json](./templates/job.json) file in your home directory on Jetstream VM and update the values for fields **name** and **appID**. 
+Create [job.json](./templates/job.json) file in your home directory on Jetstream VM and update the values for fields **name**, **appID** and **archiveSystem**. 
 
 You can find the appId of the app that you just registered and your storage system id with the command below.
 
