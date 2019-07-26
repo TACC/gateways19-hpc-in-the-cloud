@@ -29,14 +29,14 @@ An example Job JSON defintion:
 Please refer to all the job parameters here [Job Parameters](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#submission-request-parameters)
 
 
-### Submitting a Job
+### Exercise: Submitting a Job
 Once you have at least one app registered, you can start running jobs.  To run a job, Tapis just needs to know what app you want to run and what inputs and parameters you want to use. <br/>
 There are number of other optional features, which are explained in detail in the [Job Management Tutorial](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/job-submission.html).  <br/>
 Note that you can specify which **queue** to use as well as **runtime limits** in your job.  If those are absent, Tapis falls back to whatever was listed in the app description (also optional). If that app doesn't specify, then it falls back to the defaults given for the execution system.
 
 Lets run our very first Tapis(Aloe) Job! <br/>
 
-* Step 1: Crafting a Job Definition 
+### Step 1: Crafting a Job Definition 
 
 Create [job.json](./templates/job.json) file in your home directory on Jetstream VM and update the values for fields **name** and **appID**. 
 
@@ -48,7 +48,7 @@ apps-list
 In the job.json, you will see archive set as **True**. With this setting, all new files created during job execution will get copied to the archiveSystem. 
 
 
-* Step 2: Submit job 
+### Step 2: Submit job 
 
 Run the job submission command from the directory on your VM, where you created job.json
 
@@ -91,19 +91,22 @@ Job enters into different states throughout the execution. Details about differe
 jobs-output-list -L <jobId>
 ```
 
-With this command, you can see the current files in the output folder. When archive is true, all the new files will get copied to archive directory on your archive system. When it is false, all the output files can be found on the execution system's scratch directory
+With this command, you can see the current files in the output folder. <br/>
+When archive is true, all the new files will get copied to archive directory on your archive system. When it is false, all the output files can be found on the execution system's scratch directory
 
-To retrieve the output **predictions.txt** file we will use the `files-cp` command below:
+To retrieve the output **predictions.txt** file we will use the `jobs-output-get` command below:
 
 ```
-files-cp agave://<username>.tacc.corral.storage/<username>/archive/jobs/job-<job-uuid>/predictions.txt predictions.txt
+jobs-output-get -r <jobId>
 ```
-
 
 For example, if using the `train510` account with job uuid `8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007`, the command would be:
+
 ```
-files-cp agave://train510.tacc.corral.storage/train510/archive/jobs/job-8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007/predictions.txt predictions.txt
+jobs-output-get -r 8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007
 ```
+
+You should see a jobs-<jobId> folder created in your present working directoty, which contains the predictions.txt file along with .err and .log files.
 
 
 ### Jobs Notifications
