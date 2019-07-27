@@ -63,7 +63,7 @@ Alternately, this command can be run with -V option to get a detialed job respon
 jobs-submit -F job.json -V
 ```
 
-You should see a message **Successfully submitted job job-id **. Everytime you submit a job, a unique job id is created. You will use this job id with other CLI commands to get the Job Status, output listing and much more.
+You should see a message "Successfully submitted job job-id". Everytime you submit a job, a unique job id is created. You will use this job id with other CLI commands to get the Job Status, output listing and much more.
 
 
 ### Jobs List
@@ -107,7 +107,7 @@ For example, if using the `train510` account with job uuid `8c7a91ac-7da5-44ad-a
 jobs-output-get -r 8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007
 ```
 
-You should see a jobs-<jobId> folder created in your present working directoty, which contains the predictions.txt file along with .err and .log files.
+You should see a "jobs-jobId" folder created in your present working directoty, which contains the predictions.txt file along with .err and .log files.
 
 
 ### Jobs Notifications
