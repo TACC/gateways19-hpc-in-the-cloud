@@ -53,7 +53,7 @@ FROM tensorflow/tensorflow:1.5.0-py3
 RUN pip install requests
 
 # add our app
-RUN mkdir /apps
+RUN mkdir /app
 ADD classify_image.py /app/classify_image.py
 RUN chmod +x /app/classify_image.py
 ADD abaco.sh /app/abaco.sh
