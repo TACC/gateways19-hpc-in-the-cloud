@@ -211,7 +211,7 @@ docker run YOUR-IMAGE-NAME
 ```
 
 
-#### Exercise: Building a Pre-trained Image Classifier Docker Image
+### Exercise: Building a Pre-trained Image Classifier Docker Image
 In this workshop we will be working with a pre-trained image classifier based on Tensoflow. Our first step will be to 
 build a Docker image containing the image classifier software.
 
