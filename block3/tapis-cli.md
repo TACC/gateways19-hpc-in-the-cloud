@@ -49,7 +49,9 @@ Authentication
 
 Tapis has robust Authentication/Authorization pathways - we could easliy spend an hour or more discussing them, but will keep our focus simple for this tutorial.
 
-The Tapis API uses OAuth 2 for managing authentication and authorization. 
+The Tapis API uses OAuth 2 for managing authentication and authorization. OAuth 2 is an open standard for access delegation, commonly used as a way for Internet users to grant websites or applications access to their information on other websites but without giving them the passwords.
+
+Just understand that instead of passing a username and password every time we want to make an authenticated/authorized request to the Tapis APIs we will be usig an Access Token that has a defined expiration - this keeps our credentials safe and ensures that if someone where to obtain the token it could not be used forever.
 
 Run the following in the CLI
 ```
