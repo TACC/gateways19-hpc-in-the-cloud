@@ -320,7 +320,7 @@ Commands:
 You can inspect the build of your container using the `inspect` command
 
 ```
-    $ singularity inspect ubuntu-docker.simg
+    $ singularity inspect ubuntu_docker.simg
 
 ```
 
