@@ -135,7 +135,7 @@ We covered what some of these keywords are in the storage systems section.  Belo
 * **startupScript** - Path to a script that will be run prior to execution of any command on this system. The path will be a standard path on the remote system. A limited set of system macros are supported in this field. They are rootDir, homeDir, systemId, workDir, and homeDir. The standard set of runtime job attributes are also supported. Between the two set of macros, you should be able to construct distinct paths per job, user, and app. Any environment variables defined in the system description will be added after this script is sourced. If this script fails, output will be logged to the .agave.log file in your job directory. Job submission will still continue regardless of the exit code of the script.
 
 Complete reference information is located here:
-https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/introduction.html
+[https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/introduction.html]
 
 ### Hands-on (We have already provisioned this execution system for the PEARC workshop for you. Skip for the workshop.)
 

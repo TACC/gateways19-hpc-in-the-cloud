@@ -43,5 +43,5 @@ You don't have to do a lot of complex things to use Tapis.  If you just want som
 ### Full Tapis Documentation
 ​
 Full documentation and guides for using Tapis can be found here:
-https://tacc-cloud.readthedocs.io/projects/agave/en/latest/index.html
+[https://tacc-cloud.readthedocs.io/projects/agave/en/latest/index.html]
 ​

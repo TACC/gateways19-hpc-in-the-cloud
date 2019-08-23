@@ -253,7 +253,7 @@ You will need to replace `/path/to/` to the location of where your classify_imag
 Set up an entrypoint in your Dockerfile so that running this executable is the default behavior.
 
 *Note:* A complete Dockerfile for the classifier image is available in the workshop repository:
-https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/Dockerfile
+[https://github.com/TACC/gateways19-hpc-in-the-cloud/blob/master/block1/classifier/Dockerfile]
 
 ##### Step 5. Build the image
 
