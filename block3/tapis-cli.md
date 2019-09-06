@@ -25,7 +25,7 @@ We won't install it in this workshop (since it is already installed on the VM), 
 
 Open a terminal in your Jupyter instance and that is what we will use to run the CLI commands.
 
-Jump to the [Authentication](https://github.com/tapis-project/uh-hpc-in-the-cloud/blob/master/block3/tapis-cli.md#authentication) section for the workshop.
+Jump to the [Authentication](#authentication) section for the workshop.
 
 Installing the Tapis CLI Tools (Skip for Workshop- this is at home )
 ------------------------------
