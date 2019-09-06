@@ -47,7 +47,7 @@ Storage systems tell Tapis where data resides.  You can store files for running 
 
 More details on the possible parameters for storage systems can be found in the [Tapis Storage System documentation](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/systems-storage.html).
 
-### Hands-on (We have already provisioned this storage system for the PEARC workshop for you. Skip for the workshop.)
+### Hands-on (We have already provisioned this storage system for the workshop on your behalf. Skip for the workshop.)
 
 As a hands on exercise, using the Tapis CLI, register a data storage system using PASSWORD authentication with the above template for the TACC Corral Cloud store. Don't forget to replace *UPDATEUSERNAME* and *UPDATE PASSWORD*.  Call the JSON file "cloud_corral.json"
 
