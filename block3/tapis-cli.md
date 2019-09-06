@@ -186,7 +186,3 @@ NOTE that most CLI commands will attempt to do a token refresh on your behalf if
 
 Note that all the CLI commands take the '-h' flag to display a short description and the accept parameters for the command.
 
-
-```python
-
-```
