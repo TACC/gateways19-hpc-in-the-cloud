@@ -26,7 +26,7 @@ The workflow we recommend for most researchers is to create Docker containers of
 
 ## 2. Singularity Installation (Not Needed For the Workshop Today  - Move to Section 2.4)
 
-We don't have to install singularity for this workshop as it is already installed on the VM but the instructions below are useful outside of this workshop.  Jump to section [2.4](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block3/intro-singularity.md#24-check-installation)
+We don't have to install singularity for this workshop as it is already installed on the VM but the instructions below are useful outside of this workshop.  Jump to section [2.4](#24-check-installation)
 
 Singularity homepage: [http://sylabs.io](http://sylabs.io/)
 
@@ -389,7 +389,3 @@ Vanessa Sochat, lead developer of Singularity Hub, also has given a great talk o
 
 
 
-
-```python
-
-```
