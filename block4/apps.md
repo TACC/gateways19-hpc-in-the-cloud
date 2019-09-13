@@ -60,7 +60,7 @@ An example Tapis App JSON definition:
   "testPath": "test/test.sh",
   "executionSystem": "UPDATEUSERNAME.stampede2.execution",
   "executionType": "HPC",
-  "helpURI": "https://github.com/tapis-project/hpc-in-the-cloud/",
+  "helpURI": "https://github.com/TACC/gateways19-hpc-in-the-cloud",
   "parallelism": "SERIAL",
   "modules": ["load tacc-singularity/2.6.0"],
   "inputs": [],
@@ -134,7 +134,7 @@ Registering an app with the Apps service is conceptually simple. Just describe y
 systems-list
 ```
 
-**Note: Skip steps 1 and 2, as the app assets are already created on your storage system**
+### Note: Skip steps 1 and 2, as the app assets are already provisioned your storage system
 
 ### Step 1: Creating the app bundle locally on your Jetstream VM
  *  Inside ~/applications/classifyApp-1.0 directory on your Jetstream VM,  you should see a pre-pulled classifier docker image "gateways19-classifier.simg". 
@@ -215,7 +215,7 @@ Copy the app bundle (Image file, wrapper script and test.sh) to your cloud stora
 ** Note: Make sure you do not miss the trailing / in the files-cp command ***
 
 ```
-files-cp pearc19-classifier.simg agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/
+files-cp gateways19-classifier.simg agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/
 
 files-cp wrapper.sh agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/
 
