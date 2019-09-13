@@ -218,7 +218,7 @@ build a Docker image containing the image classifier software.
 We have a Python script that performs the work of actually calling Tensorflow and classifying image. Our goal is to 
 show how one would package that into a Docker image for computational portability and reproducibility.
 
-Create a new directory called `classifier` to hold the files needed for the classifier image and create an empty text file caled Dockerfile in that directory. You will also need to download the `classify_image.py` script. You can do that by executing the following command from within the `classifier` directory:
+Create a new directory called `classifier` to hold the files needed for the classifier image and create an empty text file caled `Dockerfile` in that directory. You will also need to download the `classify_image.py` script. You can do that by executing the following command from within the `classifier` directory:
 
 ```
 $ wget https://raw.githubusercontent.com/TACC/gateways19-hpc-in-the-cloud/master/block1/classifier/classify_image.py
