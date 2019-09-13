@@ -90,9 +90,9 @@ The full name of an image on the Docker Hub is comprised of components separated
 with the full name
 
 ```
-tacc/pearc19:0.1
+tacc/gateways19:0.1
 ```
-would refer to the `pearc19` image within the "tacc" repository and have a tag of "0.1". TACC maintains multiple repositories on the Docker Hub
+would refer to the `gateways19` image within the "tacc" repository and have a tag of "0.1". TACC maintains multiple repositories on the Docker Hub
 including:
 ```
 tacc
@@ -103,18 +103,18 @@ abaco
 
 ### Exercise: Pulling and Running Images
 
-Let's check that our docker installation is set up correctly by pulling the `tacc/pearc19:0.1` and image
+Let's check that our docker installation is set up correctly by pulling the `tacc/gateways19:0.1` and image
 and running a simple container from it:
 ```
 # pull the image:
-docker pull tacc/pearc19:0.1
+docker pull tacc/gateways19:0.1
 
 # run a container:
-docker run tacc/pearc19:0.1
+docker run tacc/gateways19:0.1
 
 ```
 We'll cover the `docker run` statement in more detail momentarily, but for now just know that it
-should have started a single container from the `tacc/pearc19:0.1` image which printed a welcome
+should have started a single container from the `tacc/gateways19:0.1` image which printed a welcome
 message to standard out.
 
 ### Lecture: About Official Images
@@ -135,7 +135,7 @@ available on your local machine using the `docker images` command:
 ```
 $ docker images
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-tacc/pearc19:0.1       latest              9dfe5a2c4b43        52 minutes ago      81.2 MB
+tacc/gateways19:0.1     latest              9dfe5a2c4b43        52 minutes ago      81.2 MB
 python                 latest              a5b7afcfdcc8        3 hours ago         912 MB
 ```
 
