@@ -15,7 +15,7 @@ Apps service is a central registry for all Tapis(Agave) apps. With Apps service 
 * revise existing apps
 * view information about each app such as its version number, owner, revision number to name a few <br/>
 
-The rest of this tutorial explains details about how to package your Tapis(Agave) app, register your app with the Apps service and some other useful CLI commands for Apps. 
+The rest of this tutorial explains how to package your Tapis(Agave) app and register it with the Apps service along with some other useful CLI commands for Apps. 
 
 
 ### App Packaging 
@@ -30,14 +30,16 @@ The resulting minimal app bundle would look something like the following:
 ```
 classifyApp-1.0
 |- app.json
-|- pearc19-classifier.simg
+|- gateways19-classifier.simg
 |+ test
  |- test.sh
 |- wrapper.sh
 ```
 
-classifyApp-1.0 is a folder present on your Jetstream VM inside the path ~/applications. We have pre-installed singularity image for you. We will create rest of the app assets soon. But before we go into that lets have a quick look at the App Metadata.
+A similar folder structure has been created on your storage systems **tainXXX.tacc.corral.storage** with one exception: all the training accounts will use a publicly shared gateways19-classifier.simg.
 
+
+But before we register app lets have a quick look at the App Metadata.
 
 ### Application Metadata
 An example Tapis App JSON definition:
@@ -132,9 +134,10 @@ Registering an app with the Apps service is conceptually simple. Just describe y
 systems-list
 ```
 
+**Note: Skip steps 1 and 2, as the app assets are already created on your storage system**
 
 ### Step 1: Creating the app bundle locally on your Jetstream VM
- *  Inside ~/applications/classifyApp-1.0 directory on your Jetstream VM,  you should see a pre-pulled classifier docker image "pearc19-classifier.simg". 
+ *  Inside ~/applications/classifyApp-1.0 directory on your Jetstream VM,  you should see a pre-pulled classifier docker image "gateways19-classifier.simg". 
 
 ```
 cd ~/applications/classifyApp-1.0
@@ -152,7 +155,7 @@ touch wrapper.sh
 #!/bin/bash
 module load tacc-singularity/2.6.0
 
-singularity run pearc19-classifier.simg python /classify_image.py ${imagefile} ${predictions} > predictions.txt
+singularity run gateways19-classifier.simg python /classify_image.py ${imagefile} ${predictions} > predictions.txt
 ```
 
 Within a wrapper script, you can reference the ID of any Tapis(Agave) input or parameter from the app description.  Before executing a wrapper script, Tapis(Agave) will look for the these references and substitute in whatever was that value was.  This will make more sense once we start running jobs, but this is the way we connect what you tell the Tapis(Agave) API that you want to do and what actually runs on the execution system.  The other thing Tapis(Agave) will do with the wrapper script is prepend all the scheduler information necessary to run the script on the execution system.
