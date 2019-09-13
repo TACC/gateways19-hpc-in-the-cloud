@@ -108,13 +108,13 @@ When this request is successful, Abaco will put a single message on the actor's 
 result in one container execution with the `$MSG` environment variable having the value `some test message`.
 
 ```
-$ curl -k -H "Authorization: Bearer $TOKEN" - https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID/logs
+$ curl -k -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID/logs
 ```
 
 The same execution could be made using the tapispy Python library like so:
 
 ```
->>> tp.actors.sendMessage(actorId='NolBaJ5y6714M', body={'message': 'test'})
+>>> tp.actors.sendMessage(actorId='NolBaJ5y6714M', body={'message': 'some test message'})
 ```
 
 ### Executing Actors by Passing JSON ###
@@ -226,5 +226,5 @@ Here is an example response:
 
 The equivalent request in Python looks like:
 ```
->>> ag.actors.getExecutionLogs(actorId=aid, executionId=exid)
+>>> tp.actors.getExecutionLogs(actorId=aid, executionId=exid)
 ```
