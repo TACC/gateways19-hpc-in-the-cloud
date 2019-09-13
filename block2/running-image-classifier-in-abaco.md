@@ -88,7 +88,7 @@ $ curl -k -H "Authorization: Bearer $TOKEN" -d "message=https://s3.amazonaws.com
 
 To see the results of the execution, we can check the logs:
 ```
-$ curl -k -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID
+$ curl -k -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID/logs
 ```
 
 
