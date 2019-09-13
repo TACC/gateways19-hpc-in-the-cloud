@@ -134,7 +134,7 @@ Registering an app with the Apps service is conceptually simple. Just describe y
 systems-list
 ```
 
-### Note: Skip steps 1 and 2, as the app assets are already provisioned your storage system
+### Skip steps 1 and 2, as the app assets are already provisioned on your storage system
 
 ### Step 1: Creating the app bundle locally on your Jetstream VM
  *  Inside ~/applications/classifyApp-1.0 directory on your Jetstream VM,  you should see a pre-pulled classifier docker image "gateways19-classifier.simg". 
