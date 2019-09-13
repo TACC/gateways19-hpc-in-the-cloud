@@ -1,4 +1,4 @@
-## PEARC19 Portable, Reproducible High Performance Computing In the Cloud
+## GATEWAYS19 Portable, Reproducible High Performance Computing In the Cloud
 
 ## Part 1: Welcome and Background
 * [Welcome](./welcome/intro.md)
