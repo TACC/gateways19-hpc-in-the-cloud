@@ -154,9 +154,9 @@ touch Dockerfile
 #### The FROM instruction
 Now that you created your own Dockerfile, you can add all the parts you need for it to build and run correctly. First we will start with the FROM instruction. We can use the `FROM` instruction to start our new image from a known image. This should be the first line of our Dockerfile. We will start our image from an official Ubuntu 16.04 image:
 
-
-> FROM ubuntu:16.04 
-
+```
+FROM ubuntu:16.04 
+```
 
 #### The RUN instruction
 We can add files to our image by running commands with the `RUN` instruction. We will use that to install `wget` via `apt`. Keep in mind that the the docker build cannot handle interactive prompts, so we use the `-y` flag in `apt`. We also need to be sure to update our apt packages.
