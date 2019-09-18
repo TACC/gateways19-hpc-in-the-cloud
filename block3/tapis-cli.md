@@ -34,7 +34,7 @@ Tapis has a downloadable set of command line tools that make it easier to work w
 
 During the course, we will use the Jetstream Cloud virtual machines, but if you have a shell on your personal computer, you can install these tools on your own later.
 
-To use access the CLI for this tutorial you can open a Terminal  in Jupyter which give you access to the shell in the Jetstream VM, OR *ssh* into the system from you own terminal:
+To access the CLI for this tutorial you can open a Terminal  in Jupyter which give you access to the shell in the Jetstream VM, OR *ssh* into the system from you own terminal:
 
 ```ssh ubunut@jetstreamVM_ip_address```
 
