@@ -242,11 +242,12 @@ pip install requests
 What Dockerfile instruction would you use to ensure the `requests` package is installed in your image? 
 
 ##### Step 3. Add the python script
-Our app uses a single python script, `classify_image.py`, located in the repository 
-(https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/classify_image.py). You can either copy/paste the code from the github repo into a file called `classify_image.py` or clone this repo and copy this file over to your working directory. 
 
+Now we will need to add the python file `classify_image.py` in our dockerfile. This was downloaded earlier before Step 1. 
 
-Now let's add this Python script to our image.
+```
+ADD path/to/classify_image.py classify_image.py
+```
 
 ##### Step 4. Add the ENTRYPOINT
 
