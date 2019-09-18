@@ -23,7 +23,7 @@ NOTE: In this case, `--image_file` does not refer to a docker image, but a JPEG 
 
 ### Lecture: Changing the Dockerfile
 
-Once we register our actor and sent it a message, Abaco will pass the contents of the message in the `$MSG` environment variable. We can use a bash script to capture it, and then run our classifier script with it.
+Once we register our actor and send it a message, Abaco will pass the contents of the message in the `$MSG` environment variable. We can use a bash script to capture it, and then run our classifier script with it.
 Because we have added this wrapper script, we will need to update our Dockerfile before we create an Abaco actor.
 
 
@@ -78,7 +78,8 @@ $ curl -k -H "Authorization: Bearer $TOKEN" \
 https://api.tacc.cloud/actors/v2
 ```
 
-Take note of the actor ID that is returned, since you will need it to send the actor a message.
+Take note of the actor ID that is returned, since you will need it to send the actor a message. For example:
+`export ACTOR_ID=your-actor-id`
 
 ## Exercise: Executing Classifier with `curl`
 
