@@ -163,10 +163,11 @@ We can add files to our image by running commands with the `RUN` instruction. We
 
 The Dockerfile will look like this now:
 
-> FROM ubuntu:16.04
->
-> RUN apt-get update && apt-get install -y wget
+```
+FROM ubuntu:16.04
 
+RUN apt-get update && apt-get install -y wget
+```
  
 #### The ADD instruction
 We can also add local files to our image using the `ADD` instruction. First, create a new file:
@@ -175,11 +176,13 @@ touch test.txt
 ```
 We can add this file in our local directory to the `/root` directory in our container with the **ADD** instruction:
 
-> FROM ubuntu:16.04
->
-> RUN apt-get update && apt-get install -y wget
->
-> **ADD test.txt /root/test.txt**
+```
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install -y wget
+
+ADD test.txt /root/test.txt
+```
 
 
 #### The ENTRYPOINT instruction
@@ -192,14 +195,15 @@ The value for ENTRYPOINT should be of the form: `["executable", "param1", "param
 
 For this example, we will use the `ls` program as our entrypoint.
 
-> FROM ubuntu:16.04
->
-> RUN apt-get update && apt-get install -y wget
->
-> ADD test.txt /root/test.txt
->
-> **ENTRYPOINT \["ls", "-l"\]**
+```
+FROM ubuntu:16.04
 
+RUN apt-get update && apt-get install -y wget
+
+ADD test.txt /root/test.txt
+
+ENTRYPOINT ["ls", "-l"]
+```
 
 Note: additional arguments can still be passed to the entrypoint when launching a container.
 
