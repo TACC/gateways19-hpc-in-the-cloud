@@ -113,7 +113,7 @@ b2219eaceca1195469a0adcf1e6d6177
 
 *Note:* The -N flag allows you to specify a human-readable name for your client. 
 
-You will need access to the ```consumerKey``` and ```consumerSecret``` values when setting up on other hosts to use that client. "auth-check -v" will provide the current client key and secret in addition to your api token and refersh token.
+You will need access to the ```consumerKey``` and ```consumerSecret``` values when setting up on other hosts to use that client. "auth-check -v" will provide the current client key and secret in addition to your api token and refresh token.
 ```
 >auth-check -v
 {
