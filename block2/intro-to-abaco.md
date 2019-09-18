@@ -23,7 +23,7 @@ To use any TACC API, including Abaco, you will need an access token. Once genera
 for 4 hours. You can refresh your access token using the CLI:
 
 ```bash
-> auth-tokens-refresh -v
+> auth-check -v
 ```
 
 This access token can be saved to a variable for convenience.  
