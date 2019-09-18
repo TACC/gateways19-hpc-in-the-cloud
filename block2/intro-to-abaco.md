@@ -126,25 +126,6 @@ example using curl:
 $ curl -k -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"username": "jdoe", "application_id": "print-env-cli-DggdGbK-0.1.0" }' https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
 ```
 
-For actors written in Python, Abaco provides a set of helper Python functions for tasks such as parsing the message
-data and returning "results". One advantage to passing JSON  is that this library will automatically attempt to
-deserialize the JSON into a pure Python object. This shows up in the `context` object under the `message_dict` key. For example, for the example above,
-the corresponding actor (if written in Python) could retrieve the application_id from the message with the following
-code:
-
-```
-from tapispy.actors import get_context
-context = get_context()
-application_id = context['message_dict']['application_id']
-```
-
-The same actor execution could be made using the Python library like so:
-
-```
->>> message_dict = {"username": "jdoe", "application_id": "print-env-cli-DggdGbK-0.1.0" }
->>> tp.actors.sendMessage(actorId='NolBaJ5y6714M', body=message_dict)
-```
-
 
 ### Retrieving the Logs
 
