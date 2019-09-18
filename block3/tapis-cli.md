@@ -34,7 +34,7 @@ Tapis has a downloadable set of command line tools that make it easier to work w
 
 During the course, we will use the Jetstream Cloud virtual machines, but if you have a shell on your personal computer, you can install these tools on your own later.
 
-To access the CLI for this tutorial you can open a Terminal  in Jupyter which give you access to the shell in the Jetstream VM, OR *ssh* into the system from you own terminal:
+To access the CLI for this tutorial you can open a Terminal  in Jupyter which give you access to the shell in the Jetstream VM, OR *ssh* into the system from your own terminal:
 
 ```ssh ubunut@jetstreamVM_ip_address```
 
@@ -51,7 +51,7 @@ Tapis has robust Authentication/Authorization pathways - we could easliy spend a
 
 The Tapis API uses OAuth 2 for managing authentication and authorization. OAuth 2 is an open standard for access delegation, commonly used as a way for Internet users to grant websites or applications access to their information on other websites but without giving them the passwords.
 
-Just understand that instead of passing a username and password every time we want to make an authenticated/authorized request to the Tapis APIs we will be usig an Access Token that has a defined expiration - this keeps our credentials safe and ensures that if someone where to obtain the token it could not be used forever.
+Just understand that instead of passing a username and password every time we want to make an authenticated/authorized request to the Tapis APIs we will be using an Access Token that has a defined expiration - this keeps our credentials safe and ensures that if someone were to obtain the token it could not be used forever.
 
 Run the following in the CLI
 ```
