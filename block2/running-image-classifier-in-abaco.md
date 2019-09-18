@@ -98,3 +98,8 @@ $ curl -k -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$AC
 ## Exercise: Executing Classifier on Abaco using a Jupyter Notebook & TapisPy
 
 See the jupyter notebook here: [Using tapispy to Execute Actor Containers on the Abaco Cloud.ipynb](../Using%20tapispy%20to%20Execute%20Actor%20Containers%20on%20the%20Abaco%20Cloud.ipynb)
+
+OR download with:
+```
+wget https://raw.githubusercontent.com/TACC/gateways19-hpc-in-the-cloud/master/block2/Using%20tapispy%20to%20Execute%20Actor%20Containers%20on%20the%20Abaco%20Cloud.ipynb
+```
