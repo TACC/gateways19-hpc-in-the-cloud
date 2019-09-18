@@ -7,7 +7,7 @@ Leverage OAuth2 and OpenID Connect, the mechanisms in place for controlling and 
 #### MANAGE ALL YOUR DATA
 Move, share and publish data using any of the multiple data protocols,such as SFTP and gridFTP, supported by the Platform. 
 #### RUN CODE
-Run apps as batch, interactive, or event-driven processes depending on specific application needs.  Tapis also tracks the provenance of each run so you can look back and see exactly what parameters, inputs and applications where used to generate an output.
+Run apps as batch, interactive, or event-driven processes depending on specific application needs.  Tapis also tracks the provenance of each run so you can look back and see exactly what parameters, inputs and applications were used to generate an output.
 #### FIND AND SHARE APPS
 Use the growing catalog of publicly available apps or design custom apps.
 ​
@@ -43,5 +43,5 @@ You don't have to do a lot of complex things to use Tapis.  If you just want som
 ### Full Tapis Documentation
 ​
 Full documentation and guides for using Tapis can be found here:
-[https://tacc-cloud.readthedocs.io/projects/agave/en/latest/index.html]
+<https://tacc-cloud.readthedocs.io/projects/agave/en/latest/index.html>
 ​
