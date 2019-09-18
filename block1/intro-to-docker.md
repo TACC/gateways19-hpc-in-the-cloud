@@ -33,7 +33,7 @@ Docker is a platform (among several) for building and executing containers.
 * Container runtime - Create containers from images and run commands in them. 
 * Docker Hub - Central, public repository of images.
 * Additional Tooling: 
-    * Additional client APIs - run commands in containers, get resources consumed, view logs, 
+    * Additional client APIs - run commands in containers, get resources consumed, view logs
     * Docker Compose, Machine, Swarm - Tools for distributing containers across multiple hosts
 
 ### Exercise: Initial setup
@@ -75,12 +75,12 @@ containers launched from it. The image also contains metadata describing options
 containers from the image.
 
 One of the great things about Docker is that a lot of software has already been packaged into Docker images. One source
-of 100s of thousands of public images is the official docker hub: https://hub.docker.com.
+of 100s of thousands of public images is the offcial docker hub: <https://hub.docker.com>
 
 The docker hub contains images contributed by individual users and organizations as well as "official images". Explore
-the official docker images here: https://hub.docker.com/explore/
+the offcial docker images here: <https://hub.docker.com/explore/>
 
-For example, there is an official image for the Python programming language: https://hub.docker.com/_/python/
+For example, there is an official image for the Python programming language: <https://hub.docker.com/_/python/>
 
 Docker supports the notion of image tags, similar to tags in a git repository. Tags identify a specific version of an
 image.
@@ -212,13 +212,13 @@ docker run YOUR-IMAGE-NAME
 
 
 ### Exercise: Building a Pre-trained Image Classifier Docker Image
-In this workshop we will be working with a pre-trained image classifier based on Tensoflow. Our first step will be to 
+In this workshop we will be working with a pre-trained image classifier based on Tensorflow. Our first step will be to 
 build a Docker image containing the image classifier software.
 
 We have a Python script that performs the work of actually calling Tensorflow and classifying image. Our goal is to 
 show how one would package that into a Docker image for computational portability and reproducibility.
 
-Create a new directory called `classifier` to hold the files needed for the classifier image and create an empty text file caled `Dockerfile` in that directory. You will also need to download the `classify_image.py` script. You can do that by executing the following command from within the `classifier` directory:
+Create a new directory called `classifier` to hold the files needed for the classifier image and create an empty text file called `Dockerfile` in that directory. You will also need to download the `classify_image.py` script. You can do that by executing the following command from within the `classifier` directory:
 
 ```
 $ wget https://raw.githubusercontent.com/TACC/gateways19-hpc-in-the-cloud/master/block1/classifier/classify_image.py
@@ -227,7 +227,7 @@ $ wget https://raw.githubusercontent.com/TACC/gateways19-hpc-in-the-cloud/master
 
 Open a file called Dockerfile in the text editor of your choice and work through the following steps.  
 
-##### Step 1. Descend from the official Tensflow image
+##### Step 1. Descend from the official Tensorflow image
 For this app, we will need Tensorflow. Fortunately, there is an image maintained by the Tensorflow project that has 
 everything we need! The image is `tensorflow/tensorflow:1.5.0-py3`
 
@@ -261,7 +261,7 @@ You will need to replace `/path/to/` to the location of where your classify_imag
 Set up an entrypoint in your Dockerfile so that running this executable is the default behavior.
 
 *Note:* A complete Dockerfile for the classifier image is available in the workshop repository:
-[https://github.com/TACC/gateways19-hpc-in-the-cloud/blob/master/block1/classifier/Dockerfile]
+<https://github.com/TACC/gateways19-hpc-in-the-cloud/blob/master/block1/classifier/Dockerfile>
 
 ##### Step 5. Build the image
 
