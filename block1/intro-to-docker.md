@@ -27,7 +27,7 @@
   * Start up time ~minutes
 
 ### The Docker Platform
-Docker is a platform (among serveral) for building and executing containers.
+Docker is a platform (among several) for building and executing containers.
 
 * Images - Container “templates”. Essentially root filesystems with a little metadata (exposed ports, volumes, etc.)
 * Container runtime - Create containers from images and run commands in them. 
