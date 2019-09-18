@@ -14,6 +14,8 @@ Create a new file called `abaco.sh` and add the following content:
 # print the special MSG variable:
 echo "Contents of MSG: "$MSG
 
+mkdir /app
+
 python /app/classify_image.py --image_file=$MSG
 ```
 
