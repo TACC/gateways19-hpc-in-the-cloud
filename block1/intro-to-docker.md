@@ -266,7 +266,7 @@ Set up an entrypoint in your Dockerfile so that running this executable is the d
 ##### Step 5. Build the image
 
 In general, to build an image from a Dockerfile we use the `docker build` command. We use the `-t` flag to tag the 
-image: that is, give our image a name. We also need to specify the working directory for the buid. We specify the 
+image: that is, give our image a name. We also need to specify the working directory for the build. We specify the 
 current working directory using a dot (.) character.
 
 If you have a docker hub account, you can tag your image using your docker hub username with something like:
@@ -285,7 +285,7 @@ https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231
 we could execute:
 
 ```
-docker run <image> --image_file=https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg
+docker run <your-image-name> --image_file=https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg
 ```  
 
 NOTE: In this case, `--image_file` does not have to do with a docker image, but instead refers to a JPEG picture from the internet. This tag expects a full URL to a picture file. 
@@ -321,6 +321,8 @@ Here we see the container id is `a2f968b8443f`. To execute `bash` in this contai
 docker exec -it a2f968b8443f bash
 ```
 At this point we are attached to the running container. If our bash session exits, the container will keep running because the `sleep infinity` command is still running.
+
+Type `exit` to exit the container. 
 
 *Note: The `docker ps` command only shows you running containers - it does not show you containers that have exited. In order to see all containers
 on the system use `docker ps -a`.
