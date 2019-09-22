@@ -81,9 +81,9 @@ The Jetstream VMs all have the same configuration running Ubuntu 18 with all req
   * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
   * [App Packaging](./block4/apps.md#app-packaging)
   * [Application metadata](./block4/apps.md#application-metadata)
-  * [Registering App](./block4/apps.md#registering-an-app)
+  * [Registering App](./block4/apps.md#step-4-registering-an-app)
   * [List Apps](./block4/apps.md#list-apps)
-  * [Managing App Permissions](./block4/apps.md#apps-permissions)
+  * [Managing App Permissions](./block4/apps.md#managing-app-permissions)
 
 ## Tapis Jobs
 * [Intro to Tapis(Aloe) Jobs](./block4/jobs.md)
