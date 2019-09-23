@@ -40,16 +40,16 @@ These tools make it easier to utilize and build complex workflows and applicatio
 ### Tapis can be simple
 
 You don't have to do a lot of complex things to use Tapis.  If you just want something to automate taking data from one place and moving it to a compute system, run the computation and then move it back with one command from Tapis - you can do that (We will show you how today).  Maybe others in your lab or department want to do the same thing you can share the application and they can run their data against the same software and compute system as well.
-![tapis-workflow](Tapis-workflow.png)
-Typical Workflow Example
+![tapis-workflow](tapis-workshop-workflow.png)
+Workflow for this workshop:
 
-I want to run an image classifier on data from a remote server on a HPC system and archive it to my collaborators/project server.
+1. Register our servers (Corral -storage and Stampede2-execution) with Tapis.
 
-I’ve told Tapis about all the servers and defined a Tapis “app” beforehand.
+2. Create a Tapis App that uses our image classifier container, this App bundle will be stored on our cloud storage system.
 
-To launch this- I tell Tapis which “app” to use, what parameters and input data from what “system” and where to archive using a Tapis “job”
+3. To launch this- we will tell Tapis which “app” to use, what parameters and input data from what “system” and where to archive using a Tapis “job”
 
-Tapis handles the rest… it moves the input data, app bundle to the HPC, schedules the job, monitors progress and move the Input/Output & logs files to the archive server when the job is completed.  The provenance of the entire process is tracked in a “job” so I can reproduce it later or review all the information about how the output was generated.
+Tapis handles the rest… it moves the input data, app bundle to the HPC, schedules the job, monitors progress and moves the Input/Output & logs files to the archive server (corral in our example) when the job is completed.  The provenance of the entire process is tracked in a “job” so we can reproduce it later or review all the information about how the output was generated.
 
 ​
 ### Full Tapis Documentation
