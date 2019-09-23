@@ -41,6 +41,7 @@ These tools make it easier to utilize and build complex workflows and applicatio
 
 You don't have to do a lot of complex things to use Tapis.  If you just want something to automate taking data from one place and moving it to a compute system, run the computation and then move it back with one command from Tapis - you can do that (We will show you how today).  Maybe others in your lab or department want to do the same thing you can share the application and they can run their data against the same software and compute system as well.
 ![tapis-workflow](tapis-workshop-workflow.png)
+
 Workflow for this workshop:
 
 1. Register our servers (Corral -storage and Stampede2-execution) with Tapis.
