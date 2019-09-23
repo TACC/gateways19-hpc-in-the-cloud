@@ -137,7 +137,7 @@ We covered what some of these keywords are in the storage systems section.  Belo
 Complete reference information is located here:
 [https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/introduction.html]
 
-### Hands-on (We have already provisioned this execution system for the workshop on your behalfrem. Skip for the workshop.)
+### Hands-on (We have already provisioned this execution system for the workshop on your behalf. Skip for the workshop.)
 
 As a hands on exercise, register the Stampede2 HPC as a execution system using the Tapis-CLI using the above JSON template. - Don't forget to change *UPDATEUSERNAME* and *UPDATEPASSWORD* to your tutorial or TACC username and *UPDATEPROJECT* and *UPDATERESERVATION* for this workshops Stampede2 provided project and reservation (or your personal ones if doing this on your own).  
 
