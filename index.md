@@ -2,6 +2,7 @@
 
 ## Part 1: Welcome and Background
 * [Welcome](./welcome/intro.md)
+* [Introduction Slides](https://docs.google.com/presentation/d/1rnaIv_OcP1MovklM3_SRFePcQ0LHcQXpjGl9o6Sh3yc/edit#slide=id.g639c1675a6_0_0_)
 
 ## Schedule
 
