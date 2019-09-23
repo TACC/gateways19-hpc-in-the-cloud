@@ -5,10 +5,10 @@
 
 ## Schedule
 
-* 8:30AM - Introduction
-* 9:00AM - Intro to Jupyter, Intro to Docker
-* 10:00AM - Break
-* 10:30AM - Intro to Docker(cont), Intro to Tapis and CLI, Intro to Abaco
+* 9:00AM - Introduction
+* 9:30AM - Intro to Jupyter, Intro to Docker
+* 10:30AM - Break
+* 11:00AM - Intro to Docker(cont), Intro to Tapis and CLI, Intro to Abaco
 * 12:00pm-1:30pm - Lunch
 * 1:30PM - Using Abaco, Intro to Singularity
 * 3:00PM - Break
