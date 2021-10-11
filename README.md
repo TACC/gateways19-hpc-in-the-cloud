@@ -5,15 +5,13 @@
 
 ## Schedule (Eastern Time)
 
-* 11:00AM - Introduction to Tapis
+* 11:00AM - Introduction to Tapis v3
 * 11:20AM - Intro to Docker, Jupyter and Singularity
 * 11:50AM - Tapis Systems, Tapis App, Launch Tapis job on a virtual machine
 * 12:30PM - Break
 * 1:00PM - Launch Tapis Job on a HPC machine
 * 1:50PM - Plotting/ Analyzing results and sharing with collaborators
 * 2:25PM - Workshop Wrap-up
-
-## Workshop Introduction
 
 Presenters:
 * Joe Stubbs (TACC)
@@ -30,11 +28,11 @@ The resources you will be using today are provided by funding from the National 
 For this tutorial you will get a training account for Stampede2 and Jetstream Virtual Machine(VM) IP with username and password for that VM.  These credentials expire soon after this workshop is complete.
 
 
-## Intro to Tapis v3
-* [Tapis v3](https://docs.google.com/presentation/d/1rnaIv_OcP1MovklM3_SRFePcQ0LHcQXpjGl9o6Sh3yc/edit#slide=id.g639c1675a6_0_0_)
+## Workshop Introduction
+* [Introduction](https://docs.google.com/presentation/d/1j8MHB6QqkZPsIBV-SWkTahA1W37FwFIJUGzsTlTisOc/edit?usp=sharing)
 
 ## Intro to Docker
-* [Using Docker](./block1/intro-to-docker.md)
+  * [Using Docker](./block1/intro-to-docker.md)
   * [What is a container?](./block1/intro-to-docker.md#what-is-a-container)
   * [Containers vs VMs](./block1/intro-to-docker.md#containers-vs-vms)
   * [The Docker Platform](./block1/intro-to-docker.md#the-docker-platform)
@@ -68,7 +66,7 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
 
 ## Tapis Jobs
 * [Intro to Tapis(Aloe) Jobs](./block4/jobs.md)
-  * [Tapis(Aloe) Jobs Service](./block4/jobs.md#tapisaloe-jobs-service)
+  * [Tapis Jobs Service](./block4/jobs.md#tapisaloe-jobs-service)
   * [Jobs Parameters](./block4/jobs.md#jobs-parameters)
   * [Submitting a Job ](./block4/jobs.md#submitting-a-job)
   * [Jobs List](./block4/jobs.md#jobs-list)
