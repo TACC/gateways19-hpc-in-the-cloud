@@ -90,9 +90,9 @@ The full name of an image on the Docker Hub is comprised of components separated
 with the full name
 
 ```
-tacc/gateways19:0.1
+tapis/jupyter
 ```
-would refer to the `gateways19` image within the "tacc" repository and have a tag of "0.1". TACC maintains multiple repositories on the Docker Hub
+would refer to the `jupyter` image within the "tapis" repository, if no tag is specified the "latest" tag is pulled. TACC maintains multiple repositories on the Docker Hub
 including:
 ```
 tacc
@@ -103,20 +103,20 @@ abaco
 
 ### Exercise: Pulling and Running Images
 
-Let's check that our docker installation is set up correctly by pulling the `tacc/gateways19:0.1` and image
+Let's check that our docker installation is set up correctly by pulling the `tapis/jupyter` and image
 and running a simple container from it:
 ```
 # pull the image:
-docker pull tacc/gateways19:0.1
+docker pull tapis/jupyter
 
 # run a container:
-docker run tacc/gateways19:0.1
+docker run --rm -it -p 8888:8888 tapis/jupyter
 
 ```
 We'll cover the `docker run` statement in more detail momentarily, but for now just know that it
-should have started a single container from the `tacc/gateways19:0.1` image which printed a welcome
-message to standard out.
+should have started a single container from the `tapis/jupyter` image, which prints out a url to access the jupyter notebook from the browser.
 
+###  Optional Exercises:
 ### Lecture: About Official Images
 Official images such as the python official image are not owned by a repository, but all other images are.
 
@@ -135,208 +135,10 @@ available on your local machine using the `docker images` command:
 ```
 $ docker images
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-tacc/gateways19:0.1     latest              9dfe5a2c4b43        52 minutes ago      81.2 MB
+tapis/jupyter          latest              9dfe5a2c4b43        52 minutes ago      81.2 MB
 python                 latest              a5b7afcfdcc8        3 hours ago         912 MB
 ```
 
-
-### Exercise: Building Images From a DockerFile
-We can build images from a text file called a Dockerfile. You can think of a Dockerfile as a recipe for creating images.
-The instructions within a dockerfile either add files/folders to the image, add metadata to the image, or both.
-
-Create a new file and save it as `Dockerfile`:
-
-```
-touch Dockerfile
-```
-
-
-#### The FROM instruction
-Now that you created your own Dockerfile, you can add all the parts you need for it to build and run correctly. First we will start with the FROM instruction. We can use the `FROM` instruction to start our new image from a known image. This should be the first line of our Dockerfile. We will start our image from an official Ubuntu 16.04 image:
-
-```
-FROM ubuntu:16.04 
-```
-
-#### The RUN instruction
-We can add files to our image by running commands with the `RUN` instruction. We will use that to install `wget` via `apt`. Keep in mind that the the docker build cannot handle interactive prompts, so we use the `-y` flag in `apt`. We also need to be sure to update our apt packages.
-
-The Dockerfile will look like this now:
-
-```
-FROM ubuntu:16.04
-
-RUN apt-get update && apt-get install -y wget
-```
- 
-#### The ADD instruction
-We can also add local files to our image using the `ADD` instruction. First, create a new file:
-```
-touch test.txt
-```
-We can add this file in our local directory to the `/root` directory in our container with the **ADD** instruction:
-
-```
-FROM ubuntu:16.04
-
-RUN apt-get update && apt-get install -y wget
-
-ADD test.txt /root/test.txt
-```
-
-
-#### The ENTRYPOINT instruction
-The ENTRYPOINT instruction defines the executable that will be run within each container started from the image. Though
-it is possible to ignore the ENTRYPOINT and run a different executable when lauching a container, providing an ENTRYPOINT
-definition in the image is convenient.
-
-The value for ENTRYPOINT should be of the form: `["executable", "param1", "param2", ...]`
-
-
-For this example, we will use the `ls` program as our entrypoint.
-
-```
-FROM ubuntu:16.04
-
-RUN apt-get update && apt-get install -y wget
-
-ADD test.txt /root/test.txt
-
-ENTRYPOINT ["ls", "-l"]
-```
-
-Note: additional arguments can still be passed to the entrypoint when launching a container.
-
-Now you can build and run your docker image. To name your docker image, we will need to use the `-t` flag, followed by the name of the image. Note that the `.` at the end of the command is to tell docker where your Dockerfile is located. In this situation, it is located in the current directory, which is `.` in linux systems. Try the command below, replacing "YOUR-IMAGE-HERE" with the name you want to call your image. 
-
-```
-docker build -t YOUR-IMAGE-NAME .
-docker run YOUR-IMAGE-NAME
-```
-
-
-### Exercise: Building a Pre-trained Image Classifier Docker Image
-In this workshop we will be working with a pre-trained image classifier based on Tensorflow. Our first step will be to 
-build a Docker image containing the image classifier software.
-
-We have a Python script that performs the work of actually calling Tensorflow and classifying image. Our goal is to 
-show how one would package that into a Docker image for computational portability and reproducibility.
-
-Create a new directory called `classifier` to hold the files needed for the classifier image and create an empty text file called `Dockerfile` in that directory. You will also need to download the `classify_image.py` script. You can do that by executing the following command from within the `classifier` directory:
-
-```
-$ wget https://raw.githubusercontent.com/TACC/gateways19-hpc-in-the-cloud/master/block1/classifier/classify_image.py
-```
-
-
-Open a file called Dockerfile in the text editor of your choice and work through the following steps.  
-
-##### Step 1. Descend from the official Tensorflow image
-For this app, we will need Tensorflow. Fortunately, there is an image maintained by the Tensorflow project that has 
-everything we need! The image is `tensorflow/tensorflow:1.5.0-py3`
-
-Add a line to your Dockerfile to start your image with this image as a base.
-
-##### Step 2. Install app requirements
-For this app, we need to install the `requests` package (a python package dependency) using the Python package manager `pip`. 
-If you aren't familiar with `pip`  just know that the package can be installed by running the following command in the shell
-```
-pip install requests
-```
-What Dockerfile instruction would you use to ensure the `requests` package is installed in your image? 
-
-##### Step 3. Add the python script
-
-Now we will need to add the python file `classify_image.py` in our dockerfile. This was downloaded earlier before Step 1. 
-
-```
-ADD path/to/classify_image.py classify_image.py
-```
-
-##### Step 4. Add the ENTRYPOINT
-
-We will launch our app using `python` which can be accomplished by executing:
-```
-python /path/to/classify_image.py
-```
-
-You will need to replace `/path/to/` to the location of where your classify_image.py file is. 
-
-Set up an entrypoint in your Dockerfile so that running this executable is the default behavior.
-
-*Note:* A complete Dockerfile for the classifier image is available in the workshop repository:
-<https://github.com/TACC/gateways19-hpc-in-the-cloud/blob/master/block1/classifier/Dockerfile>
-
-##### Step 5. Build the image
-
-In general, to build an image from a Dockerfile we use the `docker build` command. We use the `-t` flag to tag the 
-image: that is, give our image a name. We also need to specify the working directory for the build. We specify the 
-current working directory using a dot (.) character.
-
-If you have a docker hub account, you can tag your image using your docker hub username with something like:
-```
-docker build -t <username>/classify_image .
-```
-Otherwise, you don't need to specify the username, but you will not be able to push it to docker hub later.
-
-### Running a Docker Container
-We use the `docker run` command to run containers from an image. We pass a command to run in the container.
-
-Let's run a container from our classifier Docker image to classify an image! All we need to do is pass it a URL 
-containing an image. For example, if we wanted to classify this URL 
-https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg
-
-we could execute:
-
-```
-docker run <your-image-name> --image_file=https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg
-```  
-
-NOTE: In this case, `--image_file` does not have to do with a docker image, but instead refers to a JPEG picture from the internet. This tag expects a full URL to a picture file. 
-
-Let's look at a few more things we can do with containers.
-
-#### Running and Attaching to a Container
-To run a container and attach to it in one command, use the `-it` flags. Here we run `bash` in a container from the ubuntu image:
-```
-docker run -it ubuntu bash
-```
-
-NOTE: You will need to type the `exit` command to continue from here. 
-
-#### Running a Container in Daemon mode ####
-We can also run a container in the background. We do so using the `-d` flag:
-```
-docker run -d ubuntu sleep infinity
-```
-Keep in mind that the command given to the `docker run` statement will be given PID 1 in the container, and as soon as this process exits the container will stop.
-
-#### Running Additional Commands in a Running Container ####
-Finally, we can execute commands in a running container using the `docker exec` command. First, we need to know the container id, which we can get through the `docker ps` command:
-
-```
-~ $ docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-a2f968b8443f        ubuntu:16.04        "sleep infinity"    9 seconds ago       Up 8 seconds                            awesome_goldwasser
-```
-
-Here we see the container id is `a2f968b8443f`. To execute `bash` in this container we do:
-```
-docker exec -it a2f968b8443f bash
-```
-At this point we are attached to the running container. If our bash session exits, the container will keep running because the `sleep infinity` command is still running.
-
-Type `exit` to exit the container. 
-
-*Note: The `docker ps` command only shows you running containers - it does not show you containers that have exited. In order to see all containers
-on the system use `docker ps -a`.
-
-
-### Removing Docker Containers ###
-We can remove a docker container using the `docker rm` command (optionally passing `-f` to "force" the removal if the container is running). You will need the container name or id to remove the container:
-```
-$ docker rm -f a2f968b8443f
-```
 
 
 
