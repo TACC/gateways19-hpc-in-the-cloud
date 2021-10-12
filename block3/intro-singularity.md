@@ -4,7 +4,7 @@
 ## 1. Docker and Singularity
 
 #### Important: 
-Docker and Singularity are [friends](http://singularity.lbl.gov/docs-docker) but they have distinct differences.
+Docker and [Singularity](http://singularity.lbl.gov/docs-docker) are friends but they have distinct differences.
 
 #### Docker:
 
@@ -19,18 +19,16 @@ Docker and Singularity are [friends](http://singularity.lbl.gov/docs-docker) but
 
 Singularity uses a 'flow' whereby you can (1) create and modify images on your dev system, (2) build containers using recipes or pulling from repositories, and (3) execute containers on production systems.
 
-![singularityflow](http://singularity.lbl.gov/assets/img/diagram/singularity-2.4-flow.png)
-
-
 The workflow we recommend for most researchers is to create Docker containers of their software and then run them on HPC and shared resources with Singularity using Singularity's ability to convert the Docker image to a Singularity image. Docker is simpler to install on most modern operating systems that are on a laptop or desktop.
 
-## 2. Singularity Installation (Not Needed For the Workshop Today  - Move to Section 2.4)
+## 2. In this tutorial, we will run a Machine Learning Image Classifier app that uses Singularity Runtime. You are not required to install Singularity today. You can now navigate to [Intro to Tapis Systems](./block3/tapis-systems.md)
 
-We don't have to install singularity for this workshop as it is already installed on the VM but the instructions below are useful outside of this workshop.  Jump to section [2.4](#24-check-installation-jump-to-here-for-the-workshop)
+
+### Material for self reading
 
 Singularity homepage: [http://sylabs.io](http://sylabs.io/)
 
-While Singularity is more likely to be used on a remote system, e.g. HPC or cloud, you may want to develop your own containers first on a local machine or dev system.
+While Singularity is more likely to be used on a remote system, e.g. HPC or cloud, you may want to develop your own containers first on a local machine.
 
 ## 2.1 Setting up your Laptop (Not Needed For the Workshop Today - Use At Home)
 
@@ -77,7 +75,7 @@ Type in the following:
 ```
 
 
-## 2.4 Check Installation (Jump to Here for the Workshop)
+## 2.4 Check Installation (Not Needed For the Workshop Today - Use At Home)
 
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
 
@@ -126,7 +124,7 @@ website: http://singularity.lbl.gov/
 ```
 
 
-## 3. Downloading Singularity containers
+## 3. Downloading Singularity containers (Not Needed For the Workshop Today - Use At Home)
 
 The easiest way to use a Singularity container is to `pull` an existing container from one of the Container Registries maintained by the Singularity group or from Docker Hub.  There are ways to build a container with a recipe similar to how you create a Dockerfile - see [Singulairty Recipe Documentation](https://sylabs.io/guides/2.6/user-guide/quick_start.html#singularity-recipes)
 
@@ -278,7 +276,7 @@ You can change these by specifying the location of the cache and temporary direc
   $ SINGULARITY_TMPDIR=$PWD/scratch SINGULARITY_CACHEDIR=$PWD/tmp singularity --debug pull --name ubuntu-tmpdir.simg docker://ubuntu
 ```
 
-## 4. Running Singularity Containers  (Lecture)
+## 4. Running Singularity Containers  (Not Needed For the Workshop Today - Use At Home)
 
 Commands:
 

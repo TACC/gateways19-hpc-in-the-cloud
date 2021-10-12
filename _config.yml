@@ -8,11 +8,10 @@ permalink: pretty
 nav:
   - Welcome and Background:
     - Welcome: ''
-  - Intro to Docker and Jupyter:
+  - Intro to Docker, Jupyter, Generating Tapis v3 token:
     - Using Docker: block1/intro-to-docker
     - Intro to Jupyter : block1/intro-to-jupyter
     - Generating a Tapis v3 token: block1/tapis-v3-token
-  - Intro to Singularity:
     - Intro to Singularity: block3/intro-singularity
   - Intro to Tapis Systems:
     - Intro to Tapis Systems: block3/tapis-systems
