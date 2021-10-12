@@ -12,7 +12,7 @@ nav:
     - Using Docker: block1/intro-to-docker
     - Intro to Jupyter : block1/intro-to-jupyter
     - Generating a Tapis v3 token: block1/tapis-v3-token
-    - Intro to Singularity: block3/intro-singularity
+    - Intro to Singularity: block1/intro-singularity
   - Intro to Tapis Systems:
     - Intro to Tapis Systems: block3/tapis-systems
   - Intro to Tapis Apps:

@@ -23,20 +23,20 @@ The workflow we recommend for most researchers is to create Docker containers of
 
 ## 2. Machine Learning App with Singularity Runtime
 In this tutorial, we will run a Machine Learning Image Classifier app that uses Singularity Runtime. You are not required to install Singularity today. Rest of this page can be completed as a self exercise.
-You can now navigate to [Intro to Tapis Systems](./block3/tapis-systems.md)
+You may now navigate to [Intro to Tapis Systems](/block3/tapis-systems.md)
 
 
-## 3.Self Exercises:
+## 3.Further Reading: (Not Needed For the Workshop Today - Use At Home)
 
 Singularity homepage: [http://sylabs.io](http://sylabs.io/)
 
 While Singularity is more likely to be used on a remote system, e.g. HPC or cloud, you may want to develop your own containers first on a local machine.
 
-## 3.1 Setting up your Laptop (Not Needed For the Workshop Today - Use At Home)
+## 3.1 Setting up your Laptop
 
 To Install Singularity on your laptop or desktop PC follow the instructions from Singularity: [Install Singularity Windows or Mac ](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-windows-or-mac) or [Install Singularity on Linux](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-linux)
 
-## 3.2 HPC (Not Needed For the Workshop Today - Use At Home)
+## 3.2 HPC
 
 Load the Singularity module on a HPC
 
@@ -55,7 +55,7 @@ If Singularity is installed:
     
 ```
 
-## 3.3 XSEDE Jetstream Cloud (Not Needed For the Workshop Today - Use At Home)
+## 3.3 XSEDE Jetstream Cloud
 
 We have already installed Singularity for you on your Jestream VM but in the future if you need to you can do the following:
 
@@ -77,7 +77,7 @@ Type in the following:
 ```
 
 
-## 3.4 Check Installation (Not Needed For the Workshop Today - Use At Home)
+## 3.4 Check Installation
 
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
 
@@ -126,7 +126,7 @@ website: http://singularity.lbl.gov/
 ```
 
 
-## 4. Downloading Singularity containers (Not Needed For the Workshop Today - Use At Home)
+## 4. Downloading Singularity containers
 
 The easiest way to use a Singularity container is to `pull` an existing container from one of the Container Registries maintained by the Singularity group or from Docker Hub.  There are ways to build a container with a recipe similar to how you create a Dockerfile - see [Singulairty Recipe Documentation](https://sylabs.io/guides/2.6/user-guide/quick_start.html#singularity-recipes)
 
@@ -278,7 +278,7 @@ You can change these by specifying the location of the cache and temporary direc
   $ SINGULARITY_TMPDIR=$PWD/scratch SINGULARITY_CACHEDIR=$PWD/tmp singularity --debug pull --name ubuntu-tmpdir.simg docker://ubuntu
 ```
 
-## 5. Running Singularity Containers  (Not Needed For the Workshop Today - Use At Home)
+## 5. Running Singularity Containers
 
 Commands:
 

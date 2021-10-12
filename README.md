@@ -50,7 +50,7 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
 * [Generating a Tapis v3 token](./block1/tapis-v3-token.md#generating-a-v3-token)
 
 ## Intro to Singularity
-* [Intro to Singularity](./block3/intro-singularity.md)
+* [Intro to Singularity](./block1/intro-singularity.md)
 
 ## Tapis Systems
 * [Intro to Tapis Systems](./block3/tapis-systems.md)
