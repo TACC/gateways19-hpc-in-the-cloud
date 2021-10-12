@@ -81,17 +81,17 @@ Create a test directory to contain your docker work:
 $ mkdir docker; cd docker
 ```
 
-### Lecture: Docker Images and Tags, Docker Hub, and Images
+### Docker Images, Tags,and Docker Hub
 A Docker image is a container template from which one or more containers can be run. It is a rooted filesystem that,
 by definition, contains all of the file dependencies needed for whatever application(s) will be run within the
 containers launched from it. The image also contains metadata describing options available to the operator running
 containers from the image.
 
 One of the great things about Docker is that a lot of software has already been packaged into Docker images. One source
-of 100s of thousands of public images is the offcial docker hub: <https://hub.docker.com>
+of 100s of thousands of public images is the official docker hub: <https://hub.docker.com>
 
 The docker hub contains images contributed by individual users and organizations as well as "official images". Explore
-the offcial docker images here: <https://hub.docker.com/explore/>
+the official docker images here: <https://hub.docker.com/explore/>
 
 For example, there is an official image for the Python programming language: <https://hub.docker.com/_/python/>
 

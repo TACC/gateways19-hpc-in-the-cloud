@@ -36,9 +36,9 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
   * [What is a container?](./block1/intro-to-docker.md#what-is-a-container)
   * [Containers vs VMs](./block1/intro-to-docker.md#containers-vs-vms)
   * [The Docker Platform](./block1/intro-to-docker.md#the-docker-platform)
-  * [Initial Setup](./block1/intro-to-docker.md#exercise:initial-setup)
-  * [Docker Images and Tags, Docker Hub, and Pulling Images](./block1/intro-to-docker.md#docker-images-and-tags-docker-hub-and-pulling-images)
-  * [Running a Docker Container](./block1/intro-to-docker.md#running-a-docker-container)
+  * [Exercise: Initial Setup](./block1/intro-to-docker.md#initial-setup)
+  * [Docker Images, Tags,and Docker Hub](./block1/intro-to-docker.md#docker-images-and-tags-docker-hub-and-pulling-images)
+  * [Exercise: Pulling and Running Images](./block1/intro-to-docker.md#pulling-and-running-images)
 
 
 ## Intro to Jupyter
