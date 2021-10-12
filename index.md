@@ -45,7 +45,6 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
 * [Introduction to Jupyter](./block1/intro-to-jupyter.md)
   * [Starting a Jupyter Notebook](./block1/intro-to-jupyter.md#starting-up-your-jupyter-notebook-environment)
   * [Creating a Notebook](./block1/intro-to-jupyter.md#creating-a-notebook)
-  * [Starting a Terminal](./block1/intro-to-jupyter.md#starting-a-terminal)
 
 ## Generating a Tapis v3 Token
 * [Generating a Tapis v3 token](./block1/intro-to-jupyter.md#generating-a-v3-token)

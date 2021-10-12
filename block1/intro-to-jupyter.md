@@ -21,10 +21,6 @@ To create a new notebook for writing code, start by clicking 'New' in the upper 
 
 Once you open a notebook, you can write and run python code. To execute a line of code, press `shift + Enter`. 
 
-### Starting a Terminal
-
-To open a terminal for writing CLI commands, click 'New' in the upper right corner. After selecting 'Terminal', a linux terminal will open. 
-
 
 ### Tapis v3 Token
 As discussed in the introduction, we will use the official Tapis Python SDK for all of our interactions with the services. The Python SDK provides Python-native methods and objects for making HTTP requests and parsing HTTP responses to and from the Tapis API.
