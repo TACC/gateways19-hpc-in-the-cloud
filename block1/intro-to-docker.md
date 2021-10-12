@@ -81,9 +81,9 @@ Create a test directory to contain your docker work:
 $ mkdir docker; cd docker
 ```
 
-### Docker Images, Tags,and Docker Hub
+### Docker Images, Tags, and Docker Hub
 A Docker image is a container template from which one or more containers can be run. It is a rooted filesystem that,
-by definition, contains all of the file dependencies needed for whatever application(s) will be run within the
+by definition, contains all the file dependencies needed for whatever application(s) will be run within the
 containers launched from it. The image also contains metadata describing options available to the operator running
 containers from the image.
 
