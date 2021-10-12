@@ -37,29 +37,42 @@ Docker is a platform (among several) for building and executing containers.
     * Docker Compose, Machine, Swarm - Tools for distributing containers across multiple hosts
 
 ### Exercise: Initial setup
-Typically, accessing the docker daemon requires the user to be in the docker group. For the purposes of this introduction,
- we can simply do everything as the ubuntu user, which you are already logged in as. 
-
+Typically, accessing the docker daemon requires the user to be in the docker group.
 
 Make sure you can access the docker daemon; you can verify this by checking the version:
 ```
 $ docker version
 Client:
- Version:      1.13.1
- API version:  1.26
- Go version:   go1.6.2
- Git commit:   092cba3
- Built:        Thu Nov  2 20:40:23 2017
- OS/Arch:      linux/amd64
 
-Server:
- Version:      1.13.1
- API version:  1.26 (minimum version 1.12)
- Go version:   go1.6.2
- Git commit:   092cba3
- Built:        Thu Nov  2 20:40:23 2017
- OS/Arch:      linux/amd64
- Experimental: false
+ Cloud integration: 1.0.17
+ Version:           20.10.7
+ API version:       1.41
+ Go version:        go1.16.4
+ Git commit:        f0df350
+ Built:             Wed Jun  2 11:56:22 2021
+ OS/Arch:           darwin/amd64
+ Context:           default
+ Experimental:      true
+
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          20.10.7
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.13.15
+  Git commit:       b0f5bc3
+  Built:            Wed Jun  2 11:54:58 2021
+  OS/Arch:          linux/amd64
+  Experimental:     true
+ containerd:
+  Version:          1.4.6
+  GitCommit:        d71fcd7d8303cbf684402823e425e9dd2e99285d
+ runc:
+  Version:          1.0.0-rc95
+  GitCommit:        b9ee9c6314599f1b4a7f497e1f1f856fe433d3b7
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
 
 ```
 
@@ -68,7 +81,7 @@ Create a test directory to contain your docker work:
 $ mkdir docker; cd docker
 ```
 
-### Lecture: Docker Images and Tags, Docker Hub, and Pulling Images
+### Lecture: Docker Images and Tags, Docker Hub, and Images
 A Docker image is a container template from which one or more containers can be run. It is a rooted filesystem that,
 by definition, contains all of the file dependencies needed for whatever application(s) will be run within the
 containers launched from it. The image also contains metadata describing options available to the operator running
@@ -103,8 +116,16 @@ abaco
 
 ### Exercise: Pulling and Running Images
 
-Let's check that our docker installation is set up correctly by pulling the `tapis/jupyter` and image
-and running a simple container from it:
+Let's check that our docker installation is set up correctly by running the hello-world
+# run hello world
+docker run hello-world
+
+You should see below message:
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+
+Next, let pull the `tapis/jupyter` image and running a simple container from it:
 ```
 # pull the image:
 docker pull tapis/jupyter
@@ -113,8 +134,8 @@ docker pull tapis/jupyter
 docker run --rm -it -p 8888:8888 tapis/jupyter
 
 ```
-We'll cover the `docker run` statement in more detail momentarily, but for now just know that it
-should have started a single container from the `tapis/jupyter` image, which prints out a url to access the jupyter notebook from the browser.
+It should have started a single container from the `tapis/jupyter` image, which prints out a url to access the jupyter notebook from the browser.
+You can copy paste this url in your browser and access the jupyter notebook. We will learn about Jupyter shortly in this tutorial.
 
 ###  Optional Exercises:
 ### Lecture: About Official Images
@@ -135,7 +156,7 @@ available on your local machine using the `docker images` command:
 ```
 $ docker images
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-tapis/jupyter          latest              9dfe5a2c4b43        52 minutes ago      81.2 MB
+tapis/jupyter          latest              f3cb30161a63        4 days ago          1.25GB
 python                 latest              a5b7afcfdcc8        3 hours ago         912 MB
 ```
 
