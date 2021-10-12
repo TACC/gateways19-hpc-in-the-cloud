@@ -23,7 +23,7 @@ The workflow we recommend for most researchers is to create Docker containers of
 
 ## 2. Machine Learning App with Singularity Runtime
 In this tutorial, we will run a Machine Learning Image Classifier app that uses Singularity Runtime. You are not required to install Singularity today. Rest of this page can be completed as a self exercise.
-You may now navigate to [Intro to Tapis Systems](/block3/tapis-systems.md)
+You may now navigate to [Intro to Tapis Systems](/block3/tapis-systems)
 
 
 ## Further Reading: (Not Needed For the Workshop Today - Use At Home)
@@ -315,7 +315,7 @@ Commands:
     $ singularity run ubuntu_docker.simg
 ```
 
-### 4.4 Using the `inspect` command
+###  Using the `inspect` command
 
 You can inspect the build of your container using the `inspect` command
 
