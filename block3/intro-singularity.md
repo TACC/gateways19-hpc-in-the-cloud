@@ -1,7 +1,7 @@
 
 # Introduction to Singularity
 
-## 1. Docker and Singularity (Lecture)
+## 1. Docker and Singularity
 
 #### Important: 
 Docker and Singularity are [friends](http://singularity.lbl.gov/docs-docker) but they have distinct differences.

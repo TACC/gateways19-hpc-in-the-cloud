@@ -10,7 +10,8 @@ nav:
     - Welcome: ''
   - Intro to Docker and Jupyter:
     - Using Docker: block1/intro-to-docker
-    - Intro to Jupyter: block1/intro-to-jupyter
+    - Intro to Jupyter : block1/intro-to-jupyter
+    - Generating a Tapis v3 token: block1/intro-to-jupyter
   - Intro to Singularity:
     - Intro to Singularity: block3/intro-singularity
   - Intro to Tapis Systems:
