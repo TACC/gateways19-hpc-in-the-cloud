@@ -21,20 +21,22 @@ Singularity uses a 'flow' whereby you can (1) create and modify images on your d
 
 The workflow we recommend for most researchers is to create Docker containers of their software and then run them on HPC and shared resources with Singularity using Singularity's ability to convert the Docker image to a Singularity image. Docker is simpler to install on most modern operating systems that are on a laptop or desktop.
 
-## 2. In this tutorial, we will run a Machine Learning Image Classifier app that uses Singularity Runtime. You are not required to install Singularity today. You can now navigate to [Intro to Tapis Systems](./block3/tapis-systems.md)
+## 2. Machine Learning App with Singularity Runtime
+In this tutorial, we will run a Machine Learning Image Classifier app that uses Singularity Runtime. You are not required to install Singularity today. Rest of this page can be completed as a self exercise.
+You can now navigate to [Intro to Tapis Systems](./block3/tapis-systems.md)
 
 
-### Material for self reading
+## 3.Self Exercises:
 
 Singularity homepage: [http://sylabs.io](http://sylabs.io/)
 
 While Singularity is more likely to be used on a remote system, e.g. HPC or cloud, you may want to develop your own containers first on a local machine.
 
-## 2.1 Setting up your Laptop (Not Needed For the Workshop Today - Use At Home)
+## 3.1 Setting up your Laptop (Not Needed For the Workshop Today - Use At Home)
 
 To Install Singularity on your laptop or desktop PC follow the instructions from Singularity: [Install Singularity Windows or Mac ](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-windows-or-mac) or [Install Singularity on Linux](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-linux)
 
-## 2.2 HPC (Not Needed For the Workshop Today - Use At Home)
+## 3.2 HPC (Not Needed For the Workshop Today - Use At Home)
 
 Load the Singularity module on a HPC
 
@@ -53,7 +55,7 @@ If Singularity is installed:
     
 ```
 
-## 2.3 XSEDE Jetstream Cloud (Not Needed For the Workshop Today - Use At Home)
+## 3.3 XSEDE Jetstream Cloud (Not Needed For the Workshop Today - Use At Home)
 
 We have already installed Singularity for you on your Jestream VM but in the future if you need to you can do the following:
 
@@ -75,7 +77,7 @@ Type in the following:
 ```
 
 
-## 2.4 Check Installation (Not Needed For the Workshop Today - Use At Home)
+## 3.4 Check Installation (Not Needed For the Workshop Today - Use At Home)
 
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
 
@@ -124,13 +126,13 @@ website: http://singularity.lbl.gov/
 ```
 
 
-## 3. Downloading Singularity containers (Not Needed For the Workshop Today - Use At Home)
+## 4. Downloading Singularity containers (Not Needed For the Workshop Today - Use At Home)
 
 The easiest way to use a Singularity container is to `pull` an existing container from one of the Container Registries maintained by the Singularity group or from Docker Hub.  There are ways to build a container with a recipe similar to how you create a Dockerfile - see [Singulairty Recipe Documentation](https://sylabs.io/guides/2.6/user-guide/quick_start.html#singularity-recipes)
 
 ## Exercise 1
 
-### 3.1: Pulling a Container
+### Pulling a Container
 
 You can use the `pull` command to download pre-built images from a number of Container Registries, here we'll be focusing on the [DockerHub](https://hub.docker.com/).
 
@@ -276,7 +278,7 @@ You can change these by specifying the location of the cache and temporary direc
   $ SINGULARITY_TMPDIR=$PWD/scratch SINGULARITY_CACHEDIR=$PWD/tmp singularity --debug pull --name ubuntu-tmpdir.simg docker://ubuntu
 ```
 
-## 4. Running Singularity Containers  (Not Needed For the Workshop Today - Use At Home)
+## 5. Running Singularity Containers  (Not Needed For the Workshop Today - Use At Home)
 
 Commands:
 
@@ -294,20 +296,20 @@ Commands:
 
 ## Exercise 2
 
-### 4.1 Using the `exec` command
+### Using the `exec` command
 
 
 ```
     $ singularity exec ubuntu_docker.simg cat /etc/os-release
 ```
 
-### 4.2 Using the `shell` command
+###  Using the `shell` command
 
 ```
     $ singularity shell ubuntu_docker.simg
 ```
 
-### 4.3 Using the `run` command
+### Using the `run` command
 
 ```
     $ singularity run ubuntu_docker.simg
@@ -322,7 +324,7 @@ You can inspect the build of your container using the `inspect` command
 
 ```
 
-### 4.5 Using the `--sandbox` and `--writable` commands
+### Using the `--sandbox` and `--writable` commands
 
 As of Singularity v2.4 by default `build` produces immutable images in the 'squashfs' file format. This ensures reproducible and verifiable images.
 
@@ -343,7 +345,7 @@ When you use the `--sandbox` the container is written into a directory structure
 	bin  boot  dev  environment  etc  home  lib  lib64  media  mnt  opt  proc  run  sbin  singularity  srv  sys  tmp  usr  var
 ```
 
-### 4.6 Bind Paths
+### Bind Paths
 
 When Singularity creates the new file system inside a container it ignores directories that are not part of the standard kernel, e.g. `/scratch`, `/xdisk`, `/global`, etc. These paths can be added back into the container by binding them when the container is run.
 
@@ -361,7 +363,7 @@ The above commands - you create a "xdisk" folder at the root space and then we b
 The system administrator can also define what is added to a container. This is important on campus HPC systems that often have a `/scratch` or `/xdisk` directory structure. By editing the `/etc/singularity/singularity.conf` a new path can be added to the system containers.
 
 
-## 5 Singularity Related Resources
+## Singularity Related Resources
 
 We have only scratched the surface of using Singularity. For more information and resources see the links below.
 
