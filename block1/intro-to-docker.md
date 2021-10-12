@@ -117,6 +117,7 @@ abaco
 ### Exercise: Pulling and Running Images
 
 Let's check that our docker installation is set up correctly by running the hello-world
+```
 # run hello world
 docker run hello-world
 
@@ -124,6 +125,7 @@ You should see below message:
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 
+```
 
 Next, let pull the `tapis/jupyter` image and running a simple container from it:
 ```
