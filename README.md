@@ -47,7 +47,7 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
   * [Creating a Notebook](./block1/intro-to-jupyter.md#creating-a-notebook)
 
 ## Generating a Tapis v3 Token
-* [Generating a Tapis v3 token](./block1/intro-to-jupyter.md#generating-a-v3-token)
+* [Generating a Tapis v3 token](./block1/tapis-v3-token.md#generating-a-v3-token)
 
 ## Intro to Singularity
 * [Intro to Singularity](./block3/intro-singularity.md)
