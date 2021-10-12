@@ -1,6 +1,6 @@
 # Intro to Docker
 
-## Lecture: What is Docker?
+## What is Docker?
 
 ### What is a Container?
 
@@ -140,7 +140,7 @@ It should have started a single container from the `tapis/jupyter` image, which 
 You can copy paste this url in your browser and access the jupyter notebook. We will learn about Jupyter shortly in this tutorial.
 
 ###  Optional Exercises:
-### Lecture: About Official Images
+### About Official Images
 Official images such as the python official image are not owned by a repository, but all other images are.
 
 To pull an image off Docker Hub use the `docker pull` command and provide the full image name:
