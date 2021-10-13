@@ -1,280 +1,126 @@
-# Intro to Tapis(Agave) Apps 
----
+# Tapis Applications 
 
-### What is a Tapis(Agave) app? 
-A Tapis(Agave) App is versioned, containerized executable that runs on a specific execution system through Tapis(Aloe) Jobs service.  
-So, for example, if you have multiple versions of a software package on a system, you would register each version as its own app. Likewise, if a single application code needs to be run on multiple systems, each combination of app and system needs to be defined as an app.
-Once you have storage and execution systems registered with Tapis(Agave), you are ready to build and use apps. 
+In order to run a job on a system you will need to create or have access to a Tapis **application**.
 
+## Overview
+A Tapis application represents all the information required to run a Tapis job on a Tapis system and produce useful
+results. Each application is versioned and is associated with a specific tenant and owned by a specific user who has
+special privileges for the application. In order to support this purpose an application definition includes information
+which allows the *Jobs* service to:
+* Stage input prior to launching the application
+* Launch the application
+* Monitor the application during execution
+* Archive output after application execution
 
-### Tapis(Agave) Apps service
-Apps service is a central registry for all Tapis(Agave) apps. With Apps service you can:  
-* list or search apps
-* register new apps
-* manage or share app permissions
-* revise existing apps
-* view information about each app such as its version number, owner, revision number to name a few <br/>
+## Versioning
+Applications are expected to evolve over time. An initial version will be created and may enjoy widespread use. When
+the application must be modified it is important to allow for previous versions of the application to be used while new
+versions are created and tested.
 
-The rest of this tutorial explains how to package your Tapis(Agave) app and register it with the Apps service along with some other useful CLI commands for Apps. 
+The versioning scheme is at the discretion of the application author. The combination of ``tenant+id+version`` uniquely
+identifies an application in the Tapis environment. It is recommended that a two or three level form of
+semantic versioning be used. The fully qualified application reference within a tenant is constructed by appending
+a hyphen to the name followed by the version string. For example, the first two versions of an application might
+be *myapp-0.0.1* and *myapp-0.0.2*. If a version is not specified when retrieving an application then by default the most
+recently created version of the application will be returned.
 
+## Model
+An application contains some information that is independent of the version and some information that varies by version.
+At a high level an application represents the following information:
 
-### App Packaging 
-Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis(Aloe) jobs can properly invoke it. Tapis(Aloe) is the new code name for rearchitectured Agave Jobs service. We will discuss more on this in the next part of the tutorial. Though there is plenty of opportunity to establish your own conventions, at the very least, your application folder should have the following in it:
+### Non-Versioned Attributes
 
-* In order to run your application, you will need to create a wrapper template that calls your executable code. For the sake of maintainability, it should be named something simple and intuitive like `wrapper.sh`. 
-* A library subdirectory: This contains all scripts, non-standard dependencies, binaries needed to execute an instance of the application.  
-* A test directory containing a script named something simple and intuitive like `test.sh`, along with any sample data needed to evaluating whether the application can be executed in a current command-line environment. It should exit with a status of 0 on success when executed on the command line. A simple way to create your test script is to set some sensible default values for your app's inputs and parameters and then call your wrapper template.
-
-The resulting minimal app bundle would look something like the following:
-
-```
-classifyApp-1.0
-|- app.json
-|- gateways19-classifier.simg
-|+ test
- |- test.sh
-|- wrapper.sh
-```
-
-A similar folder structure has been created on your storage systems **tainXXX.tacc.corral.storage** with one exception: all the training accounts will use a publicly shared gateways19-classifier.simg.
+* **id** - A short descriptive name for the application that is unique within the tenant.
+* **appType** - type of application, BATCH or FORK
+* **owner** - A specific user set at application creation. Default is ``${apiUserId}``, the user making the request to create the application.
 
 
-But before we register app lets have a quick look at the App Metadata.
+### Versioned Attributes
 
-### Application Metadata
-An example Tapis App JSON definition:
-```
+* **version** - Applications are expected to evolve over time. ``Id`` + ``version`` must be unique within a tenant.
+* **description** - An optional more verbose description for the application.
+* **runtime** - Runtime to be used when executing the application. DOCKER, SINGULARITY. Default is DOCKER.
+* **containerImage** - Reference to be used when running the container image.
+* **maxJobs** - Maximum total number of jobs that can be queued or running for this application on a given execution system at
+  a given time. Note that the execution system may also limit the number of jobs on the system which may further
+  restrict the total number of jobs. Set to -1 for unlimited. Default is unlimited.
+* **maxJobsPerUser** - Maximum total number of jobs associated with a specific job owner that can be queued or running for this application
+  on a given execution system at a given time. Note that the execution system may also limit the number of jobs on the
+  system which may further restrict the total number of jobs. Set to -1 for unlimited. Default is unlimited.
+* **strictFileInputs** -  Flag indicating if a job request is allowed to have unnamed file inputs. If set to true then a job request may only use
+  the named file inputs defined in the application. See attribute *fileInputs* in the JobAttributes table. Default is *false*.
+* **Job related attributes** - Various attributes related to job execution such as *execSystemId*, *execSystemExecDir*, *execSystemInputDir*,
+  *execSystemLogicalQueue* *archiveSystemId*, *fileInputs*, etc. Note that many of these are optional.
+
+For more information about the Applications service please see [Tapis Applications Service documentation](https://tapis.readthedocs.io/en/latest/technical/apps.html).
+
+## Getting Started
+
+Here we review how to create an application and how to retrieve application details. In the examples below we assume you are using
+the TACC tenant with a base URL of ``tacc.tapis.io`` and that you have authenticated using PySDK or obtained an
+authorization token and stored it in the environment variable JWT.
+
+### Creating an Application
+
+Create a local file named ``img_classify_app.json`` with json similar to the following::
+``` json
 {
-  "name": "UPDATEUSERNAME.app.imageclassify",
-  "version": "1.0",
-  "label": "Image Classifier",
-  "shortDescription": "Classify an image using a small ImageNet model",
-  "longDescription": "",
-  "tags": [
-    "tensorflow",
-    "ImageNet"
-  ],
-  "deploymentSystem": "UPDATEUSERNAME.tacc.corral.storage",
-  "deploymentPath": "/home/UPDATEUSERNAME/applications/classifyApp-1.0/",
-  "templatePath": "wrapper.sh",
-  "testPath": "test/test.sh",
-  "executionSystem": "UPDATEUSERNAME.stampede2.execution",
-  "executionType": "HPC",
-  "helpURI": "https://github.com/TACC/gateways19-hpc-in-the-cloud",
-  "parallelism": "SERIAL",
-  "modules": ["load tacc-singularity/2.6.0"],
-  "inputs": [],
-  "parameters": [{
-    "id": "imagefile",
-    "details": {
-      "label": "Image to classify",
-      "description": "",
-      "argument": "--image_file ",
-      "showArgument": true
-    },
-    "semantics": {
-      "minCardinality": 1,
-      "ontology": [
-        "http://edamontology.org/format_3547"
+  "id": "img-classify-<userid>",
+  "version": "0.0.1",
+  "description": "Image classifier run using Singularity in batch mode",
+  "appType": "BATCH",
+  "runtime": "SINGULARITY",
+  "runtimeOptions": ["SINGULARITY_RUN"],
+  "containerImage": "docker://????/img-classify:0.1",
+  "jobAttributes": {
+    "parameterSet": {
+      "appArgs": [ { "arg": "--image_file",
+                       "meta": { "name": "arg1" } },
+                   { "arg": "https://texassports.com/images/2015/10/16/bevo_1000.jpg",
+                       "meta": { "name": "arg2" } }
       ],
-      "maxCardinality": 1
+      "archiveFilter": { "includeLaunchFiles": false }
     },
-    "value": {
-      "default": "https://texassports.com/images/2015/10/16/bevo_1000.jpg",
-      "order": 0,
-      "required": true,
-      "type": "string",
-      "visible": true
-    }
-  },
-    {
-    "id": "predictions",
-    "details": {
-      "label": "Number of predictions to return",
-      "argument": "--num_top_predictions ",
-      "showArgument": true
-    },
-    "semantics": {
-      "maxCardinality": 1,
-      "ontology": [],
-      "minCardinality": 1
-    },
-    "value": {
-      "visible": true,
-      "required": true,
-      "type": "number",
-      "default": 5
-    }
-  }],
-  "outputs": [],
-  "checkpointable": false
+    "nodeCount": 1,
+    "coresPerNode": 1,
+    "memoryMB": 100,
+    "maxMinutes": 10
 }
 ```
 
-* **name** - Apps are given an ID by combining the "name" and "version". That combination must be unique across the entire Tapis(Agave) tenant, so unless you are an admin creating public system, you should probably put your username somewhere in there, and it's often useful to have the system name somehow referenced there too. You shouldn't use spaces in the name.
-* **version** - This should be the version of the software package that you are wrapping.  If you end up updating your app description later on, Tapis(Agave) will keep track of the app revision separately, so there is no need to reflect that here.
-* **deploymentSystem** - The data storage system where you keep the app assets, such as the wrapper script, test script, etc.  App assets are not stored on the execution system where they run.  For provenance and reproducibility, Tapis(Agave) requires that you keep them on a cloud storage system.
-* **deploymentPath** - the directory on the deploymentSystem where the app bundle is located
-* **templatePath** - This template is what Tapis(Agave) uses to run your app.  The path you specify here is relative to the deploymentPath
-* **testPath** - The intention here is that you include a testcase inside of your app bundle.
-* **argument** - In combination with "showArgument", the "argument" keyword is a convenience that lets you build up commandline arguments in your wrapper script.
-* **Cardinality** - Sets the min and max number of files you can give for inputs and outputs.  A "maxCardinality" of -1 will accept an unlimited number of files.
-Some of the above fields are manadatory to register the app. A complete list of application metadata can be found at [Application Metadata](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/app-wrapper-templates.html#application-metadata)
+where ``<userid>`` is replaced with your username.
 
-
-### Exercise: Registering an app  
-Registering an app with the Apps service is conceptually simple. Just describe your app as a JSON document and POST it to the Apps service. 
-
-
-
-### Lets first check:
-
-* Your storage and execution systems that you registered with Tapis(Agave) can be listed with the command below
-```
-systems-list
+#### Using PySDK to register the application:
+``` python
+ import json
+ from tapipy.tapis import Tapis
+ t = Tapis(base_url='https://tacc.tapis.io', username='<userid>', password='************')
+ with open('img_classify_app.json', 'r') as openfile:
+     img_classify_app = json.load(openfile)
+ t.systems.createSystem(**img_classify_app)
 ```
 
-### Skip steps 1 and 2, as the app assets are already provisioned on your storage system
-
-### Step 1: Creating the app bundle locally on your Jetstream VM
- *  Inside ~/applications/classifyApp-1.0 directory on your Jetstream VM,  you should see a pre-pulled classifier docker image "gateways19-classifier.simg". 
-
+#### Using CURL to register the application:
 ```
-cd ~/applications/classifyApp-1.0
-
-ls -la
+   $ curl -X POST -H "content-type: application/json" -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/apps -d @img_classify_app.json
 ```
 
-*  In the same classifyAp-1.0 directory, create a wrapper script file **wrapper.sh** and copy the script below into the wrapper.sh file. We have set this up to have a minimal wrapper script:
+### Viewing Applications
 
-```
-touch wrapper.sh
-```
+To retrieve details for a specific application, such as the one above:
 
-```
-#!/bin/bash
-module load tacc-singularity/2.6.0
-
-singularity run gateways19-classifier.simg python /classify_image.py ${imagefile} ${predictions} > predictions.txt
+#### Using PySDK:
+``` python
+ t.systems.getApplication(appId='img-classify-<userid>')
 ```
 
-Within a wrapper script, you can reference the ID of any Tapis(Agave) input or parameter from the app description.  Before executing a wrapper script, Tapis(Agave) will look for the these references and substitute in whatever was that value was.  This will make more sense once we start running jobs, but this is the way we connect what you tell the Tapis(Agave) API that you want to do and what actually runs on the execution system.  The other thing Tapis(Agave) will do with the wrapper script is prepend all the scheduler information necessary to run the script on the execution system.
-
-* Test data:
-If you have a small set of test data, it can be useful to other developers if you include it in a **test** directory. Inside your classifyApp-1.0 directory, create a directory called **test** and create a test script called **test.sh** inside it.You can make sure your wrapper script runs fine using by running the test.sh on the Jetstream VM.
- 
+#### Using CURL:
 ```
-cd ~/applications/classifyApp-1.0 && mkdir test && cd test && touch test.sh
+ $ curl -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/systems/img-classify-<userid>
 ```
 
-Test script
-It is always a good idea to include a test script that can run your app against test data.  Paste the below bash script in your test.sh file
+## Next Steps
+Now that we have our very first application ready to use, we are ready to run it on a system using the Jobs service. 
 
+ [Next-> Jobs](./jobs.md)
 
-```
-#!/bin/bash
-module load tacc-singularity/2.6.0
-
-export imagefile="--image_file https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg"
-export predictions="--num_top_predictions 5"
-
-cd ../ && bash wrapper.sh
-```
-
-Before you actually tranfer the app bundle to cloud storage, let's just verify if the wrapper script works as expected. We will run test.run on your Jetstream VM.
-Give executable permissions to your test.sh
-
-```
-chmod 700 test.sh
-```
-
-and then run command
-
-```
-./test.sh
-```
-
-Note: You may see some warnings about module not found. 
-The script should run fine and you should see the output file **predicitons.txt** inside the classifyApp1.0 folder. 
-
-
-### Step 2: Transfering your app bundle to the cloud storage system using Tapis(Agave) Files service. 
-You should run below commands from your Jetstream VM's classifyApp-1.0 folder. Replace the UPDATESTORAGESYSTEMID with the name of your storage system.
-
-We are making folders on your cloud storage systems with the commands below
-
-```
-files-mkdir agave://trainXXX.tacc.corral.storage/applications/
-
-files-mkdir agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0
-
-files-mkdir agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/test
-```
-
-Copy the app bundle (Image file, wrapper script and test.sh) to your cloud storage system. 
-** Note: Make sure you do not miss the trailing / in the files-cp command ***
-
-```
-files-cp gateways19-classifier.simg agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/
-
-files-cp wrapper.sh agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/
-
-files-cp test/test.sh agave://trainXXX.tacc.corral.storage/applications/classifyApp-1.0/test/
-```
-
-### Step 3: Crafting your app definition 
-Your classifier app definiton [app.json](./templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as updating the names of storage and execution systems, you should be able to register your very first Tapis(Agave) app.
-
-```
-cd ~/applications/classifyApp-1.0 && touch app.json
-```
-
-copy the template app.json and make changes for your username
-
-
-### Step 4: Registering an app
-Once you have an application bundle ready to go and app definition crafted, you can run the following CLI command from classifyApp-1.0 directory from your Jetstream VM
-
-```
-apps-addupdate -F app.json
-```
-
-Tapis(Agave) will check the app description, look for the app bundle on the deploymentSystem, and if everything passes, make it available to run jobs with Tapis Jobs service.<br/>
-
-Some other useful CLI commands:
-
-### List apps 
-Now if you list apps you should see the app you just registered. You should also see other public apps available to the user in that tenant
-
-```
-apps-list 
-```
-
-To see details about a specific app 
-
-```
-apps-list -V {app_ID}
-```
-
-### Managing App Permissions
-
-To view the permissions on the app for different users 
-
-```
- apps-pems-list {app_ID}
- ```
-
- To grant permissions to a user
- 
- ```
- apps-pems-update -u {uname} -p READ_WRITE  {app_id}
- ```
-
- Now that we have our very first app ready to use, we are ready to run it on Stampede2 using Tapis(Aloe) Jobs service. 
-
- [NEXT-> JOBS](./jobs.md)
-
-
-## More Resources
-
-Building Tapis applications can be very rewarding way to share your code with your colleagues and the world. This is a very simple example. If you are interested to learn more, please check out the [App Management Tutorial](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/introduction.html).

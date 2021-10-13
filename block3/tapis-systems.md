@@ -5,7 +5,6 @@ and execution resources available to you or create your own. In Tapis a storage 
 to as a **system**.
 
 ## Overview
-
 A Tapis system represents a server or collection of servers exposed through a single host name or IP address.
 Each system is associated with a specific tenant. A system can be used for the following purposes:
 
@@ -20,7 +19,7 @@ Each system is associated with a specific tenant. A system can be used for the f
 Each system is of a specific type (such as LINUX or S3) and owned by a specific user who has special privileges for
 the system. The system definition also includes the user that is used to access the system, referred to as
 *effectiveUserId*. This access user can be a specific user (such as a service account) or dynamically specified as
-``${apiUserId}``. For the case of ``${apiUserId}`` the username is extracted from the identity associated with the
+``${apiUserId}``. For the case of ``${apiUserId}``, the username is extracted from the identity associated with the
 request to the service.
 
 At a high level a system represents the following information:
@@ -86,23 +85,23 @@ Create a local file named ``exec_system.json`` with json similar to the followin
 }
 ```
 
-where ``<userid>`` is replaced with your username. Note that although it is possible we have not provided any login
+where ``<userid>`` is replaced with your username. Note that although it is possible, we have not provided any login
 credentials in the system definition. For security reasons, it is recommended that login credentials be updated
 using a separate API call as discussed below.
 
-Using PySDK to register the system:
+#### Using PySDK to register the system:
 ``` python
  import json
  from tapipy.tapis import Tapis
  t = Tapis(base_url='https://tacc.tapis.io', username='<userid>', password='************')
- with open('system_s3.json', 'r') as openfile:
-     my_s3_system = json.load(openfile)
- t.systems.createSystem(**my_s3_system)
+ with open('exec_system.json', 'r') as openfile:
+     exec_system = json.load(openfile)
+ t.systems.createSystem(**exec_system)
 ```
 
-Using CURL to register the system:
+#### Using CURL to register the system:
 ```
-   $ curl -X POST -H "content-type: application/json" -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/systems -d @system_s3.json
+   $ curl -X POST -H "content-type: application/json" -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/systems -d @exec_system.json
 ```
 
 ### Registering Credentials for a System
@@ -110,12 +109,12 @@ Now that you have registered a system you will need to register credentials so y
 Various authentication methods can be used to access a system, such as PASSWORD and PKI_KEYS. Here we will cover
 registering a password.
 
-Using PySDK to register the credential:
+#### Using PySDK to register the credential:
 ``` python
  t.systems.createUserCredential(systemId='tapisv3-exec-<userid>', userName='<userid>', password='<password>'))
 ```
 
-Using CURL to register the credential:
+#### Using CURL to register the credential:
 
 Create a local file named ``cred_tmp.json`` with json similar to the following::
 ``` json
@@ -138,12 +137,18 @@ where ``<userid>`` is replaced with your username.
 
 To retrieve details for a specific system, such as the one above:
 
-Using PySDK:
+#### Using PySDK:
 ``` python
  t.systems.getSystem(systemId='tapisv3-exec-<userid>')
 ```
 
-Using CURL:
+#### Using CURL:
 ```
- $ curl -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/systems/tacc-bucket-sample-<userid>
+ $ curl -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/systems/tapisv3-exec-<userid>
 ```
+
+## Next Steps
+Now that we have covered creating and viewing a system, we are now ready to create an application that can be run on
+the system (or any other system).
+
+ [Next-> Applications](../block4/apps.md)
