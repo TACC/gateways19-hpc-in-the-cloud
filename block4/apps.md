@@ -71,7 +71,7 @@ Create a local file named ``img_classify_app.json`` with json similar to the fol
   "appType": "BATCH",
   "runtime": "SINGULARITY",
   "runtimeOptions": ["SINGULARITY_RUN"],
-  "containerImage": "docker://????/img-classify:0.1",
+  "containerImage": "docker://scblack/img-classify:0.1",
   "jobAttributes": {
     "parameterSet": {
       "appArgs": [ { "arg": "--image_file",
