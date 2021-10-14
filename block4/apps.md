@@ -75,9 +75,7 @@ Create a local file named ``img_classify_app.json`` with json similar to the fol
   "jobAttributes": {
     "parameterSet": {
       "appArgs": [ { "arg": "--image_file",
-                       "meta": { "name": "arg1" } },
-                   { "arg": "https://texassports.com/images/2015/10/16/bevo_1000.jpg",
-                       "meta": { "name": "arg2" } }
+                       "meta": { "name": "arg1" } }
       ],
       "archiveFilter": { "includeLaunchFiles": false }
     },
