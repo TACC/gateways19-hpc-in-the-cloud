@@ -22,10 +22,10 @@ Presenters:
 
 The resources you will be using today are provided by funding from the National Science Foundation:
 
-* [Jetstream](https://jetstream-cloud.org/) is a cloud service for research that provides on-demand, user-controlled, Virtual Machines (VMs) - you can request an account after the workshop using these [instructions](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/76150553/Get+a+Jetstream+Trial+Access+account).
-* Stampede2 is the flagship supercomputer at The University of Texas at Austin's Texas Advanced Computing Center (TACC). A strategic national resource, Stampede2 provides high-performance computing capabilities to thousands of researchers across the U.S.  To gain access after the workshop you need to request a [startup allocation](https://portal.xsede.org/allocations/startup) with an XSEDE portal account, you can [Request an Account](https://portal.xsede.org/my-xsede?p_p_id=58&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_58_struts_action=%2Flogin%2Fcreate_account) and then [Submit an Allocation request](http://portal.xsede.org/submit-request) - If you have any questions please contact us via the TACC-Cloud slack channel.
+* [Jetstream](https://jetstream-cloud.org/) is a cloud service for research that provides on-demand, user-controled, Virtual Machines (VMs) - you can request and account after the workshop using these [instructions](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/76150553/Get+a+Jetstream+Trial+Access+account).
+* Stampede2 is the flagship supercomputer at The University of Texas at Austin's Texas Advanced Computing Center (TACC). A strategic national resource, Stampede2 provides high-performance computing capabilities to thousands of researchers across the U.S.  To gain access after the workshop you need to request a [startup allocation](https://portal.xsede.org/allocations/startup) with an XSEDE portal account, you can [Request and Account](https://portal.xsede.org/my-xsede?p_p_id=58&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_58_struts_action=%2Flogin%2Fcreate_account) and then [Submit an Allocation request](http://portal.xsede.org/submit-request) - If you have question please contact us via the TACC-Cloud slack channel.
 
-For this tutorial you will get a training account for Stampede2 as well as a Jetstream Virtual Machine (VM) with a username and password for that VM. These credentials expire soon after this workshop is complete.
+For this tutorial you will get a training account for Stampede2 and Jetstream Virtual Machine(VM) IP with username and password for that VM.  These credentials expire soon after this workshop is complete.
 
 
 ## Workshop Introduction
@@ -37,7 +37,7 @@ For this tutorial you will get a training account for Stampede2 as well as a Jet
   * [Containers vs VMs](./block1/intro-to-docker.md#containers-vs-vms)
   * [The Docker Platform](./block1/intro-to-docker.md#the-docker-platform)
   * [Exercise: Initial Setup](./block1/intro-to-docker.md#exercise-initial-setup)
-  * [Docker Images, Tags, and Docker Hub](./block1/intro-to-docker.md##lecture-docker-images-and-tags-docker-hub-and-images)
+  * [Docker Images, Tags,and Docker Hub](./block1/intro-to-docker.md##lecture-docker-images-and-tags-docker-hub-and-images)
   * [Exercise: Pulling and Running Images](./block1/intro-to-docker.md#pulling-and-running-images)
 
 
@@ -53,12 +53,12 @@ For this tutorial you will get a training account for Stampede2 as well as a Jet
 * [Intro to Singularity](./block1/intro-singularity.md)
 
 ## Tapis Systems
-* [Introduction to Tapis Systems](./block3/tapis-systems.md)
+* [Intro to Tapis Systems](./block3/tapis-systems.md)
 
 ## Tapis Apps
-* [Introduction to Tapis Applications](./block4/apps.md)
-  * [What is a Tapis application?](./block4/apps.md#what-is-a-tapisagave-app)
-  * [Tapis Apps service](./block4/apps.md#tapisagave-apps-service)
+* [Intro to Apps](./block4/apps.md)
+  * [What is a Tapis(Agave) app?](./block4/apps.md#what-is-a-tapisagave-app)
+  * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
   * [App Packaging](./block4/apps.md#app-packaging)
   * [Application metadata](./block4/apps.md#application-metadata)
   * [Registering App](./block4/apps.md#step-4-registering-an-app)
@@ -66,13 +66,11 @@ For this tutorial you will get a training account for Stampede2 as well as a Jet
   * [Managing App Permissions](./block4/apps.md#managing-app-permissions)
 
 ## Tapis Jobs
-* [Intro to Tapis(Aloe) Jobs](./block4/jobs.md)
+  *  [Intro to Tapis Jobs](./block4/jobs.md)
   * [Tapis Jobs Service](./block4/jobs.md#tapisaloe-jobs-service)
   * [Jobs Parameters](./block4/jobs.md#jobs-parameters)
   * [Submitting a Job ](./block4/jobs.md#submitting-a-job)
   * [Jobs List](./block4/jobs.md#jobs-list)
   * [Jobs Status](./block4/jobs.md#jobs-status)
   * [Jobs Output](./block4/jobs.md#jobs-output)
-  * [Jobs Notifications](./block4/jobs.md#jobs-notifications)
 
-* [Link to Templates](./block4/templates)

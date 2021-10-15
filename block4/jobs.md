@@ -1,69 +1,73 @@
-# Intro to Tapis(Aloe) Jobs
+# Tapis Jobs
 
-### Tapis(Aloe) Jobs service
-The Tapis(Aloe) Jobs service is a basic execution service that allows you to run applications registered with the Tapis Apps service across multiple, distributed, heterogeneous systems through a common REST interface. <br/> This service manages all aspects of execution and job management from data staging, job submission, monitoring, output archiving, event logging, sharing, and notifications. 
-The Agave jobs service has been recently rearchitectured, to a new code-named Aloe, which provides improved reliability, scalability, performance and serviceability. More details on this new jobs service can be found in the [Jobs Tutorial](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/introduction.html)
+### Tapis Jobs service
+Tapis Job service aims at launching applications directly on hosts or as job submitted to schedulers (currently only Slurm).
+The Tapis v3 Jobs service is specialized to run containerized applications on any host that supports container runtimes.
+Currently, Docker and Singularity containers are supported. The Jobs service uses the Systems, Apps, Files and Security Kernel services to process jobs.
 
 
-### Jobs Parameters 
-An example Job JSON defintion:
+### Life cycle of Jobs
+When a job request is recieved as the payload of an POST call, the following steps are taken:
+
+* **Request authorization*** - The tenant, owner, and user values from the request and Tapis JWT are used to authorize access to the application, execution system and, if specified, archive system.
+* **Request validation** - Request values are checked for missing, conflicting or improper values; all paths are assigned; required paths are created on the execution system; and macro substitution is performed to finalize all job parameters.
+* **Job creation** - A Tapis job object is written to the database.
+* **Job queuing** - The Tapis job is queue on an internal queue serviced by one or more Job Worker processes.
+* **Response** - The initial Job object is sent back to the caller in the response. This ends the synchronous portion of job submission.
+
+After these synchronous steps job processing proceeds asynchronously. Each job is assigned a worker thread and job proceeds until it completes successfully, fails or gets blocked.
+
+
+### Job Status
+**PENDING** - Job processing beginning <br/>
+**PROCESSING_INPUTS** - Identifying input files for staging <br/>
+**STAGING_INPUTS** - Transferring job input data to execution system <br/>
+**STAGING_JOB** - Staging runtime assets to execution system <br/>
+**SUBMITTING_JOB** - Submitting job to execution system <br/>
+**QUEUED** - Job queued to execution system queue <br/>
+**RUNNING** - Job running on execution system <br/>
+**ARCHIVING** - Transferring job output to archive system <br/>
+**BLOCKED** - Job blocked <br/>
+**PAUSED** - Job processing suspended <br/>
+**FINISHED** - Job completed successfully <br/>
+**CANCELLED** - Job execution intentionally stopped <br/>
+**FAILED** - Job failed <br/>
+
+
+Simple job submission example:
 ```
 {
-  "name":"UPDATEUSERNAME.app.imageclassify",
-  "appId":"UPDATEAPPID",
-  "archive":true,
-  "archiveSystem":"UPDATESTORAGESYSTEM",
-  "memoryPerNode":"1",
-  "parameters": { 
-    "imagefile": "https://texassports.com/images/2015/10/16/bevo_1000.jpg"
-    } 
+    "name": "myJob",
+    "appId": "myApp",
+    "appVersion": "1.0"
+
 }
 ```
-* **appId**	- The unique ID (name + version) of the application run by this job. This must be a valid application that the user has permission to run.
+* **appId**	- The Tapis application to execute.  This must be a valid application that the user has permission to run.
 * **name**	-  The user selected name for the job.
-* **archive**	-	Whether the job output should be archived. When true, all new files created during job execution will be moved to the archivePath.
-* **memoryPerNode**	-	The memory requested for each node on which the job runs. Values are expressed as [num][units], where num can be a decimal number and units can be KB, MB, GB, TB (default = GB). Examples include 200MB, 1.5GB and 5.
-* **archiveSystem**	-	The unique id of the storage system on which the job output will be archived. 
-* **parameters** - Application-specific parameters with types defined in the application defintion. <br/>
-**appId** and **name** are required parameters. 
-Please refer to all the job parameters here [Job Parameters](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#submission-request-parameters)
+* **appVersion** - The version of the application to execute.
+* execSystemId** - Tapis execution system ID. It can be inherited from the app
+* **parameterSet**	-	Runtime parameters organized by category
+ <br/>
+**appId**, **name** and **appVersion** are required parameters.
+
+Please refer to all the job submission parameters here [Job Submission Parameters](https://tapis.readthedocs.io/en/latest/technical/jobs.html#the-job-submission-request)
 
 
 ### Exercise: Submitting a Job
-Once you have at least one app registered, you can start running jobs.  To run a job, Tapis just needs to know what app you want to run and what inputs and parameters you want to use. <br/>
-There are number of other optional features, which are explained in detail in the [Job Management Tutorial](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/job-submission.html).  <br/>
-Note that you can specify which **queue** to use as well as **runtime limits** in your job.  If those are absent, Tapis falls back to whatever was listed in the app description (also optional). If that app doesn't specify, then it falls back to the defaults given for the execution system.
+Once you have at least one app registered, you can start running jobs.   <br/>
 
-Lets run our very first Tapis(Aloe) Job! <br/>
+Lets run our very first Image Classifier Tapis Job ! <br/>
 
-### Step 1: Crafting a Job Definition 
+### Step 1: Submit job
 
-Create [job.json](./templates/job.json) file in your home directory on Jetstream VM and update the values for fields **name**, **appID** and **archiveSystem**. 
-
-You can find the appId of the app that you just registered and your storage system id with the command below.
+Run the job submission command in your notebook
 
 ```
-apps-list
-systems-list
-```
-In the job.json, you will see archive set as **True**. With this setting, all new files created during job execution will get copied to the archiveSystem. 
-
-
-### Step 2: Submit job 
-
-Run the job submission command from the directory on your VM, where you created job.json
+client.jobs.submitJob(name='img-classifier-job',description='image classifier',appId='img-classifier-scblack',appVersion= '0.0.2')
 
 ```
-jobs-submit -F job.json
-```
-
-Alternately, this command can be run with -V option to get a detialed job response 
-
-```
-jobs-submit -F job.json -V
-```
-
-You should see a message "Successfully submitted job job-id". Everytime you submit a job, a unique job id is created. You will use this job id with other CLI commands to get the Job Status, output listing and much more.
+Everytime you submit a job, a unique job id is created. You will use this job id with tapipy to get the Job Status, output listing and much more.
 
 
 ### Jobs List
@@ -71,18 +75,17 @@ Now, when you do a jobs-list you can see your job id
 
 
 ```
-jobs-list
+client.jobs.list
 ```
 
 ### Jobs Status
-Job status allows you to see the current state of the job. You can also set up email or webhook notification and get notified when the job state changes
-
+Job status allows you to see the current state of the job.
 
 ```
-jobs-status <jobId>
+
 ```
 
-Job enters into different states throughout the execution. Details about different job states are given here [JOB STATES](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#job-states)
+Job enters into different states throughout the execution. Details about different job states are given here [JOB STATES]()
 
 
 ### Jobs Output
@@ -110,21 +113,6 @@ jobs-output-get -r 8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007
 You should see a "jobs-jobId" folder created in your present working directoty, which contains the predictions.txt file along with .err and .log files.
 
 
-### Jobs Notifications
-You can monitor progress of your job by setting by email or webhook notifications
-Add this to your job definition and try to submit the job again
-
-```
-"notifications":[
-    {
-      "url":"UPDATEEMAILADDRESS",
-      "event":"*",
-      "persistent":true
-    }
-    ]
-```
-
-You should see email notifications pop up in your inbox as the job changes state.
 
 ## What's next?
 
@@ -132,6 +120,6 @@ If you made it this far, you have successfully created a new app within a contai
 
 At this point, it would be a good idea to connect with other developers that are publishing apps and running workflows through Tapis by joining the Tapis API Slack channel: [tacc-cloud.slack.com](https://bit.ly/2XHYJEk)
 
-[BACK](https://tacc.github.io/pearc19-hpc-in-the-cloud/)
+[BACK](https://tacc-cloud.github.io/gateways21-portable-computing-cloud-hpc/)
 
 
