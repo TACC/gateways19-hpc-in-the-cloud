@@ -59,7 +59,6 @@ Create a local file named ``exec_system.json`` with json similar to the followin
   "effectiveUserId": "${apiUserId}",
   "defaultAuthnMethod": "PASSWORD",
   "rootDir": "/home/<userid>",
-  "port": 22,
   "canExec": true,
   "jobRuntimes": [ { "runtimeType": "DOCKER" }, { "runtimeType": "SINGULARITY" } ],
   "jobWorkingDir": "workdir",
