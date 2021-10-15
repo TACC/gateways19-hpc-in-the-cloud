@@ -9,29 +9,29 @@ Currently, Docker and Singularity containers are supported. The Jobs service use
 ### Life cycle of Jobs
 When a job request is recieved as the payload of an POST call, the following steps are taken:
 
-* Request authorization - The tenant, owner, and user values from the request and Tapis JWT are used to authorize access to the application, execution system and, if specified, archive system.
-* Request validation - Request values are checked for missing, conflicting or improper values; all paths are assigned; required paths are created on the execution system; and macro substitution is performed to finalize all job parameters.
-* Job creation - A Tapis job object is written to the database.
-* Job queuing - The Tapis job is queue on an internal queue serviced by one or more Job Worker processes.
-* Response - The initial Job object is sent back to the caller in the response. This ends the synchronous portion of job submission.
+* **Request authorization*** - The tenant, owner, and user values from the request and Tapis JWT are used to authorize access to the application, execution system and, if specified, archive system.
+* **Request validation** - Request values are checked for missing, conflicting or improper values; all paths are assigned; required paths are created on the execution system; and macro substitution is performed to finalize all job parameters.
+* **Job creation** - A Tapis job object is written to the database.
+* **Job queuing** - The Tapis job is queue on an internal queue serviced by one or more Job Worker processes.
+* **Response** - The initial Job object is sent back to the caller in the response. This ends the synchronous portion of job submission.
 
 After these synchronous steps job processing proceeds asynchronously. Each job is assigned a worker thread and job proceeds until it completes successfully, fails or gets blocked.
 
 
 ### Job Status
-PENDING - Job processing beginning
-PROCESSING_INPUTS - Identifying input files for staging
-STAGING_INPUTS - Transferring job input data to execution system
-STAGING_JOB - Staging runtime assets to execution system
-SUBMITTING_JOB - Submitting job to execution system
-QUEUED - Job queued to execution system queue
-RUNNING - Job running on execution system
-ARCHIVING - Transferring job output to archive system
-BLOCKED - Job blocked
-PAUSED - Job processing suspended
-FINISHED - Job completed successfully
-CANCELLED - Job execution intentionally stopped
-FAILED - Job failed
+**PENDING** - Job processing beginning <br/>
+**PROCESSING_INPUTS** - Identifying input files for staging <br/>
+**STAGING_INPUTS** - Transferring job input data to execution system <br/>
+**STAGING_JOB** - Staging runtime assets to execution system <br/>
+**SUBMITTING_JOB** - Submitting job to execution system <br/>
+**QUEUED** - Job queued to execution system queue <br/>
+**RUNNING** - Job running on execution system <br/>
+**ARCHIVING** - Transferring job output to archive system <br/>
+**BLOCKED** - Job blocked <br/>
+**PAUSED** - Job processing suspended <br/>
+**FINISHED** - Job completed successfully <br/>
+**CANCELLED** - Job execution intentionally stopped <br/>
+**FAILED** - Job failed <br/>
 
 
 Simple job submission example:
@@ -113,21 +113,6 @@ jobs-output-get -r 8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007
 You should see a "jobs-jobId" folder created in your present working directoty, which contains the predictions.txt file along with .err and .log files.
 
 
-### Jobs Notifications
-You can monitor progress of your job by setting by email or webhook notifications
-Add this to your job definition and try to submit the job again
-
-```
-"notifications":[
-    {
-      "url":"UPDATEEMAILADDRESS",
-      "event":"*",
-      "persistent":true
-    }
-    ]
-```
-
-You should see email notifications pop up in your inbox as the job changes state.
 
 ## What's next?
 
@@ -135,6 +120,6 @@ If you made it this far, you have successfully created a new app within a contai
 
 At this point, it would be a good idea to connect with other developers that are publishing apps and running workflows through Tapis by joining the Tapis API Slack channel: [tacc-cloud.slack.com](https://bit.ly/2XHYJEk)
 
-[BACK](https://tacc.github.io/pearc19-hpc-in-the-cloud/)
+[BACK](https://tacc-cloud.github.io/gateways21-portable-computing-cloud-hpc/)
 
 
