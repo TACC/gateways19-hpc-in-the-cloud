@@ -91,7 +91,7 @@ where ``<userid>`` is replaced with your username.
  import json
  from tapipy.tapis import Tapis
  t = Tapis(base_url='https://tacc.tapis.io', username='<userid>', password='************')
- t.apps.createApp(**app_def)
+ t.apps.createAppVersion(**app_def)
 ```
 
 ### Viewing Applications
@@ -100,7 +100,7 @@ To retrieve details for a specific application, such as the one above:
 
 #### Using ``tapipy``:
 ``` python
- t.systems.getApplication(appId='img-classify-<userid>')
+ t.apps.getAppLatestVersion(appId='img-classify-<userid>')
 ```
 
 ## Next Steps
