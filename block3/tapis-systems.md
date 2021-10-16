@@ -2,7 +2,8 @@
 
 Once you are authorized to make calls to the various services, one of first things you may want to do is view storage
 and execution resources available to you or create your own. In Tapis a storage or execution resource is referred
-to as a **system**.
+to as a **system**. Note that a single system in Tapis can act as both a storage and execution resource. It can also be
+shared among users in the tenant.
 
 ## Overview
 A Tapis system represents a server or collection of servers exposed through a single host name or IP address.
@@ -39,19 +40,18 @@ At a high level a system represents the following information:
 Note that a system may be created as a storage-only resource (*canExec=false*) or as a system that can be used for both
 execution and storage (*canExec=true*).
 
-For more information about the Systems service please see [Tapis Systems Service documentation](https://tapis.readthedocs.io/en/latest/technical/systems.html).
+For more information about systems and the Systems service please see [Tapis Systems Service documentation](https://tapis.readthedocs.io/en/latest/technical/systems.html).
 
 ## Getting Started
 
 Here we review how to create a system and how to retrieve system details. In the examples below we assume you are using
-the TACC tenant with a base URL of ``tacc.tapis.io`` and that you have authenticated using PySDK or obtained an
-authorization token and stored it in the environment variable JWT.
+the tenant named ``tacc`` with a base URL of ``tacc.tapis.io`` and that you have authenticated using ``tapipy``.
 
 ### Creating a System
 
-Create a local file named ``exec_system.json`` with json similar to the following::
-``` json
-{
+Here is an example of a system definition:
+``` python
+system_def = {
   "id": "tapisv3-exec-<userid>",
   "description": "Tapis v3 execution system",
   "systemType": "LINUX",
@@ -64,6 +64,7 @@ Create a local file named ``exec_system.json`` with json similar to the followin
   "jobWorkingDir": "workdir",
   "jobIsBatch": true,
   "batchScheduler": "SLURM",
+  "batchSchedulerProfile": "tacc",
   "batchLogicalQueues": [
     {
       "name": "tapisNormal",
@@ -83,67 +84,37 @@ Create a local file named ``exec_system.json`` with json similar to the followin
   "batchDefaultLogicalQueue": "tapisNormal",
 }
 ```
-
 where ``<userid>`` is replaced with your username. Note that although it is possible, we have not provided any login
 credentials in the system definition. For security reasons, it is recommended that login credentials be updated
 using a separate API call as discussed below.
 
-#### Using PySDK to register the system:
+#### Using ``tapipy`` to register the system:
 ``` python
  import json
  from tapipy.tapis import Tapis
  t = Tapis(base_url='https://tacc.tapis.io', username='<userid>', password='************')
- with open('exec_system.json', 'r') as openfile:
-     exec_system = json.load(openfile)
- t.systems.createSystem(**exec_system)
-```
-
-#### Using CURL to register the system:
-```
-   $ curl -X POST -H "content-type: application/json" -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/systems -d @exec_system.json
+ t.systems.createSystem(**system_def)
 ```
 
 ### Registering Credentials for a System
-Now that you have registered a system you will need to register credentials so you can use Tapis to access the host.
+Now that you have registered a system you will need to register credentials to allow Tapis to access the host.
 Various authentication methods can be used to access a system, such as PASSWORD and PKI_KEYS. Here we will cover
 registering a password.
 
-#### Using PySDK to register the credential:
+#### Using ``tapipy`` to register the credential:
 ``` python
  t.systems.createUserCredential(systemId='tapisv3-exec-<userid>', userName='<userid>', password='<password>'))
 ```
-
-#### Using CURL to register the credential:
-
-Create a local file named ``cred_tmp.json`` with json similar to the following::
-``` json
-{
-  "password": "<password>"
-}
-```
-
-where ``<password>`` is replaced with your password for the host.
-
-Run the CURL command:
-```
-   $ curl -X POST -H "content-type: application/json" -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/systems/credential/tapisv3-exec-<userid>/user/<userid> -d @cred_tmp.json
-```
-
-where ``<userid>`` is replaced with your username.
+where ``<userid>`` is replaced with your username and ``<password>`` is replaced with your password for the host.
 
 
 ### Viewing Systems
 
 To retrieve details for a specific system, such as the one above:
 
-#### Using PySDK:
+#### Using ``tapipy``:
 ``` python
  t.systems.getSystem(systemId='tapisv3-exec-<userid>')
-```
-
-#### Using CURL:
-```
- $ curl -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/systems/tapisv3-exec-<userid>
 ```
 
 ## Next Steps

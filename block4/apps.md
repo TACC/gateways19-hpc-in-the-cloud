@@ -1,6 +1,7 @@
-# Tapis Applications 
+# Tapis Applications
 
-In order to run a job on a system you will need to create or have access to a Tapis **application**.
+In order to run a job on a system you will need to create or have access to a Tapis **application**. Note that
+an application in Tapis is not tied to a particular system and can be shared among users in the tenant.
 
 ## Overview
 A Tapis application represents all the information required to run a Tapis job on a Tapis system and produce useful
@@ -31,9 +32,7 @@ At a high level an application represents the following information:
 ### Non-Versioned Attributes
 
 * **id** - A short descriptive name for the application that is unique within the tenant.
-* **appType** - type of application, BATCH or FORK
 * **owner** - A specific user set at application creation. Default is ``${apiUserId}``, the user making the request to create the application.
-
 
 ### Versioned Attributes
 
@@ -41,37 +40,37 @@ At a high level an application represents the following information:
 * **description** - An optional more verbose description for the application.
 * **runtime** - Runtime to be used when executing the application. DOCKER, SINGULARITY. Default is DOCKER.
 * **containerImage** - Reference to be used when running the container image.
-* **maxJobs** - Maximum total number of jobs that can be queued or running for this application on a given execution system at
-  a given time. Note that the execution system may also limit the number of jobs on the system which may further
-  restrict the total number of jobs. Set to -1 for unlimited. Default is unlimited.
-* **maxJobsPerUser** - Maximum total number of jobs associated with a specific job owner that can be queued or running for this application
-  on a given execution system at a given time. Note that the execution system may also limit the number of jobs on the
-  system which may further restrict the total number of jobs. Set to -1 for unlimited. Default is unlimited.
-* **strictFileInputs** -  Flag indicating if a job request is allowed to have unnamed file inputs. If set to true then a job request may only use
-  the named file inputs defined in the application. See attribute *fileInputs* in the JobAttributes table. Default is *false*.
-* **Job related attributes** - Various attributes related to job execution such as *execSystemId*, *execSystemExecDir*, *execSystemInputDir*,
-  *execSystemLogicalQueue* *archiveSystemId*, *fileInputs*, etc. Note that many of these are optional.
+* **maxJobs** - Maximum total number of jobs that can be queued or running for this application on a given execution  
+  system at a given time. Note that the execution system may also limit the number of jobs on the system which may
+  further restrict the total number of jobs. Set to -1 for unlimited. Default is unlimited.
+* **maxJobsPerUser** - Maximum total number of jobs associated with a specific job owner that can be queued or running for
+  this application on a given execution system at a given time. Note that the execution system may also limit the number
+  of jobs on the system which may further restrict the total number of jobs. Set to -1 for unlimited. Default is unlimited.
+* **strictFileInputs** -  Flag indicating if a job request is allowed to have unnamed file inputs. If set to true then a
+  job request may only use the named file inputs defined in the application. See attribute *fileInputs* in the
+  JobAttributes table. Default is *false*.
+* **Job related attributes** - Various attributes related to job execution such as *execSystemId*, *execSystemExecDir*,
+  *execSystemInputDir*, *execSystemLogicalQueue* *archiveSystemId*, *fileInputs*, etc. Many of these are optional.
 
-For more information about the Applications service please see [Tapis Applications Service documentation](https://tapis.readthedocs.io/en/latest/technical/apps.html).
+For more information about applications and the Applications service please see [Tapis Applications Service documentation](https://tapis.readthedocs.io/en/latest/technical/apps.html).
 
 ## Getting Started
 
 Here we review how to create an application and how to retrieve application details. In the examples below we assume you are using
-the TACC tenant with a base URL of ``tacc.tapis.io`` and that you have authenticated using PySDK or obtained an
-authorization token and stored it in the environment variable JWT.
+the tenant named ``tacc`` with a base URL of ``tacc.tapis.io`` and that you have authenticated using ``tapipy``.
 
 ### Creating an Application
 
-Create a local file named ``img_classify_app.json`` with json similar to the following::
-``` json
-{
+Here is an example of an application definition:
+``` python
+app_def = {
   "id": "img-classify-<userid>",
   "version": "0.0.1",
   "description": "Image classifier run using Singularity in batch mode",
   "appType": "BATCH",
   "runtime": "SINGULARITY",
   "runtimeOptions": ["SINGULARITY_RUN"],
-  "containerImage": "docker://scblack/img-classify:0.1",
+  "containerImage": "docker://tapis/img-classify:0.1",
   "jobAttributes": {
     "parameterSet": {
       "appArgs": [ { "arg": "--image_file",
@@ -81,44 +80,30 @@ Create a local file named ``img_classify_app.json`` with json similar to the fol
     },
     "nodeCount": 1,
     "coresPerNode": 1,
-    "memoryMB": 100,
+    "memoryMB": 1,
     "maxMinutes": 10
 }
 ```
-
 where ``<userid>`` is replaced with your username.
 
-#### Using PySDK to register the application:
+#### Using ``tapipy`` to register the application:
 ``` python
  import json
  from tapipy.tapis import Tapis
  t = Tapis(base_url='https://tacc.tapis.io', username='<userid>', password='************')
- with open('img_classify_app.json', 'r') as openfile:
-     img_classify_app = json.load(openfile)
- t.systems.createSystem(**img_classify_app)
-```
-
-#### Using CURL to register the application:
-```
-   $ curl -X POST -H "content-type: application/json" -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/apps -d @img_classify_app.json
+ t.apps.createApp(**app_def)
 ```
 
 ### Viewing Applications
 
 To retrieve details for a specific application, such as the one above:
 
-#### Using PySDK:
+#### Using ``tapipy``:
 ``` python
  t.systems.getApplication(appId='img-classify-<userid>')
-```
-
-#### Using CURL:
-```
- $ curl -H "X-Tapis-Token: $JWT" https://tacc.tapis.io/v3/systems/img-classify-<userid>
 ```
 
 ## Next Steps
 Now that we have our very first application ready to use, we are ready to run it on a system using the Jobs service. 
 
  [Next-> Jobs](./jobs.md)
-
