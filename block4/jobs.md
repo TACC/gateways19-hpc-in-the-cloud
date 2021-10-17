@@ -55,16 +55,28 @@ Please refer to all the job submission parameters here [Job Submission Parameter
 
 
 ### Exercise: Running Image Classifier app on VM
+When the Image classifier app runs it will execute a Singularity run command. To launch a container, the Jobs service will SSH to the target host and issue a command using this template: </br>
+```
+ singularity run [singularity options.] <image id> [application arguments] > tapisjob.out 2>&1 &
 
-### Step 1: App Arguments
+```
+Tapis jobs service will add environment variables such as application dir, execution directories, app version, etc. in the singularity options. <br>
+image id for this job is docker://tapis/img-classify:0.1 </br>
+Application arguments are as defined below. </br>
+Output of job is written to tapisjob.out file under the jobs working directory on the execution system. </br>
+
+# Application Arguments
+With appArgs parameter you  can specify one or more command line arguments for the user application. </br>
+Arguments specified in the application definition are appended to those in the submission request. Metadata can be attached to any argument.</br>
 
 Image classifier app needs two arguments:
 * --image-file
-* url of an image to be classified
-We will provide these app arguments in the job definition
+* url of an image to be classified.
+
 
 ```
-# In the arg pass a url of the image you would like to classify
+We will provide these app arguments in the job definition. In the arg2 pass a url of the image you would like to classify.
+```
 pa = {
  "parameterSet": {
       "appArgs": [
@@ -75,17 +87,18 @@ pa = {
       ]
 }
 }
-# Submit a job
+### Submit a job
 job_output=client.jobs.submitJob(name='img-classifier-job-vm',description='image classifier',appId=app_id,execSystemId=system_id_vm,appVersion= '0.0.1',
   **pa)
 print(job_output.uuid)
+
 ```
 
-Everytime a job is submitted, a unique job id is created. We will use this job id with tapipy to get the Job Status, and Download the output.
+Everytime a job is submitted, a unique job id (uuid) is generated. We will use this job id with tapipy to get the job status, and download the job output.
 
 
 ### Jobs List
-Now, when you do a jobs-list you can see your job id
+Now, when you do a jobs-list now, you can see your jobUuid.
 
 ```
 client.jobs.getJobList()
@@ -104,25 +117,23 @@ Job enters into different states throughout the execution. Details about differe
 
 
 ### Jobs Output
-To download the output of job
+To download the output of job you need to give it jobUuid and output path. Output path is
 
 ```
 client.jobs.getJobOutputDownload(jobUuid=job_uuid,outputPath='tapisjob.out')
 
 ```
-
-With this command, you can see the contents of output file. <br/>
-```
+Your jobs output should look something like this:
 
 ```
-
-For example, if using the `train510` account with job uuid `8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007`, the command would be:
+Labrador retriever (score = 0.97471)
+golden retriever (score = 0.00324)
+kuvasz (score = 0.00099)
+bull mastiff (score = 0.00095)
+Saint Bernard, St Bernard (score = 0.00067)
 
 ```
-jobs-output-get -r 8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007
-```
 
-You should see a "jobs-jobId" folder created in your present working directoty, which contains the predictions.txt file along with .err and .log files.
 
 
 
