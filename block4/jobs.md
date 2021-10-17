@@ -224,10 +224,21 @@ b'Labrador retriever (score = 0.97471)'
 
 ### Sharing Results by sharing Tapis System and Jobs output
 
-Tapis allows sharing your systems and output files with collaborators in the same tenant
+Tapis allows sharing your systems and output files with collaborators in the same tenant. Only the system owner may grant or revoke permissions on a storage system. <br/>
+For example, if you want to grant a user train301 READ permissions on your system. You can run following command:
+
+```
+client.systems.grantUserPerms(systemId=system_id_vm,userName='train301',permissions=['READ'])
+
+```
+More on System [permissions]( https://tapis.readthedocs.io/en/latest/technical/systems.html#permissions)
 
 
+Next, we will share the output file with another user.output
+```
+client.files.grantPermissions(systemId=system_id_vm, path='tapisjob.out', username='train301', permission='READ')
 
+```
 
 
 
