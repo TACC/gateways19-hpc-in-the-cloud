@@ -88,15 +88,23 @@ pa = {
       ]
 }
 }
-### Submit a job
-job_output=client.jobs.submitJob(name='img-classifier-job-vm',description='image classifier',appId=app_id,execSystemId=system_id_vm,appVersion= '0.0.1',
+### Submit a job on VM
+job_response_vm=client.jobs.submitJob(name='img-classifier-job-vm',description='image classifier',appId=app_id,execSystemId=system_id_vm,appVersion= '0.0.1',
   **pa)
-print(job_output.uuid)
+print(job_output_vm.uuid)
 
 ```
 
 Everytime a job is submitted, a unique job id (uuid) is generated. We will use this job id with tapipy to get the job status, and download the job output.
 
+```
+# Get job uuid from the job submission response
+print("****************************************************")
+job_uuid_vm=job_response_vm.uuid
+print("Job UUID: " + job_uuid_vm)
+print("****************************************************")
+
+```
 
 ### Jobs List
 Now, when you do a jobs-list now, you can see your jobUuid.
@@ -110,10 +118,12 @@ client.jobs.getJobList()
 Job status allows you to see the current state of the job.
 
 ```
-client.jobs.getJobStatus(jobUuid=job_uuid))
+# Check the status of the job
+print("****************************************************")
+print(client.jobs.getJobStatus(jobUuid=job_uuid_vm))
+print("****************************************************")
 
 ```
-
 Job enters into different states throughout the execution. Details about different job states are given here [JOB STATES](https://tapis.readthedocs.io/en/latest/technical/jobs.html#job-status)
 
 
@@ -121,9 +131,65 @@ Job enters into different states throughout the execution. Details about differe
 To download the output of job you need to give it jobUuid and output path. Output path is
 
 ```
-client.jobs.getJobOutputDownload(jobUuid=job_uuid,outputPath='tapisjob.out')
+# Download output of the job
+print("Job Output file:")
+
+print("****************************************************")
+jobs_output_vm= client.jobs.getJobOutputDownload(jobUuid=job_uuid_vm,outputPath='tapisjob.out')
+print(jobs_output_vm)
+print("****************************************************")
+```
+We will soon show you how to analyze the results. Before that lets try to submit a job on HPC machine.
+
+## Submit job on HPC
+Tapis supports porting the app from a virtual machine to HPC. You can run the same app on Stampede2 today by chaning the exec-system name registered on HPC in the job submission request.output
 
 ```
+# Run Image classifier app on the HPC Machine
+# In the arg pass a url of the image you would like to classify
+pa = {
+ "parameterSet": {
+      "appArgs": [
+          {"arg": "--image_file"},
+          {"arg": "'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg'"}
+
+      ],
+      "schedulerOptions": [
+        {"arg": "--tapis-profile tacc"}
+
+      ]
+}
+}
+# Submit a hpc job
+job_response_hpc=client.jobs.submitJob(name='img-classifier-job-vm',description='image classifier',appId=app_id,execSystemId=system_id_hpc,appVersion= '0.0.1',
+  **pa)
+
+```
+##  Get the Job Status
+
+```
+# Check the status of the job
+print("****************************************************")
+job_uuid_hpc=job_response_hpc.uuid
+print(client.jobs.getJobStatus(jobUuid=job_uuid_hpc))
+print("****************************************************")
+
+
+```
+
+## Download job output
+
+```
+
+# Download output of the job
+print("Job Output file:")
+
+print("****************************************************")
+jobs_output_hpc= client.jobs.getJobOutputDownload(jobUuid=job_uuid_hpc,outputPath='tapisjob.out')
+print(jobs_output_hpc)
+print("****************************************************")
+```
+
 
 ### Analyzing Jobs Output
 With the code below, you can extract the image classifier output, which returns 5 prediction scores
@@ -131,6 +197,8 @@ With the code below, you can extract the image classifier output, which returns 
 ```
 print ("==============Image Classifier Scores ============================")
 s = jobs_output_vm.split(b'\n')
+# If you want to analyze the results of hpc output uncomment the line below and comment line above
+# s = jobs_output_hpc.split(b'\n')
 s.reverse()
 scores=[]
 for i in range(1,6):
@@ -152,6 +220,7 @@ b'Labrador retriever (score = 0.97471)'
 
 ### Sharing Results by sharing Tapis System and Jobs output
 
+Tapis allows sharing your systems and output files with collaborators in the same tenant
 
 
 
