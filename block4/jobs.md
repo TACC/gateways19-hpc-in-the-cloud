@@ -9,7 +9,7 @@ Currently, Docker and Singularity containers are supported. The Jobs service use
 ### Life cycle of Jobs
 When a job request is recieved as the payload of an POST call, the following steps are taken:
 
-* **Request authorization*** - The tenant, owner, and user values from the request and Tapis JWT are used to authorize access to the application, execution system and, if specified, archive system.
+* **Request authorization** - The tenant, owner, and user values from the request and Tapis JWT are used to authorize access to the application, execution system and, if specified, archive system.
 * **Request validation** - Request values are checked for missing, conflicting or improper values; all paths are assigned; required paths are created on the execution system; and macro substitution is performed to finalize all job parameters.
 * **Job creation** - A Tapis job object is written to the database.
 * **Job queuing** - The Tapis job is queue on an internal queue serviced by one or more Job Worker processes.
@@ -54,54 +54,66 @@ Simple job submission example:
 Please refer to all the job submission parameters here [Job Submission Parameters](https://tapis.readthedocs.io/en/latest/technical/jobs.html#the-job-submission-request)
 
 
-### Exercise: Submitting a Job
-Once you have at least one app registered, you can start running jobs.   <br/>
+### Exercise: Running Image Classifier app on VM
 
-Lets run our very first Image Classifier Tapis Job ! <br/>
+### Step 1: App Arguments
 
-### Step 1: Submit job
-
-Run the job submission command in your notebook
-
-```
-client.jobs.submitJob(name='img-classifier-job',description='image classifier',appId='img-classifier-scblack',appVersion= '0.0.2')
+Image classifier app needs two arguments:
+* --image-file
+* url of an image to be classified
+We will provide these app arguments in the job definition
 
 ```
-Everytime you submit a job, a unique job id is created. You will use this job id with tapipy to get the Job Status, output listing and much more.
+# In the arg pass a url of the image you would like to classify
+pa = {
+ "parameterSet": {
+      "appArgs": [
+          {"arg": "--image_file", "meta": { "name": "arg1", "required": True}},
+          {"arg": "'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg'",
+           "meta": {"name": "arg2", "required": True}
+          }
+      ]
+}
+}
+# Submit a job
+job_output=client.jobs.submitJob(name='img-classifier-job-vm',description='image classifier',appId=app_id,execSystemId=system_id_vm,appVersion= '0.0.1',
+  **pa)
+print(job_output.uuid)
+```
+
+Everytime a job is submitted, a unique job id is created. We will use this job id with tapipy to get the Job Status, and Download the output.
 
 
 ### Jobs List
 Now, when you do a jobs-list you can see your job id
 
-
 ```
-client.jobs.list
+client.jobs.getJobList()
+
 ```
 
 ### Jobs Status
 Job status allows you to see the current state of the job.
 
 ```
+client.jobs.getJobStatus(jobUuid=job_uuid))
 
 ```
 
-Job enters into different states throughout the execution. Details about different job states are given here [JOB STATES]()
+Job enters into different states throughout the execution. Details about different job states are given here [JOB STATES](https://tapis.readthedocs.io/en/latest/technical/jobs.html#job-status)
 
 
 ### Jobs Output
-
-
-```
-jobs-output-list -L <jobId>
-```
-
-With this command, you can see the current files in the output folder. <br/>
-When archive is true, all the new files will get copied to archive directory on your archive system. When it is false, all the output files can be found on the execution system's scratch directory
-
-To retrieve the output **predictions.txt** file we will use the `jobs-output-get` command below:
+To download the output of job
 
 ```
-jobs-output-get -r <jobId>
+client.jobs.getJobOutputDownload(jobUuid=job_uuid,outputPath='tapisjob.out')
+
+```
+
+With this command, you can see the contents of output file. <br/>
+```
+
 ```
 
 For example, if using the `train510` account with job uuid `8c7a91ac-7da5-44ad-a6dd-39f010e87e54-007`, the command would be:
