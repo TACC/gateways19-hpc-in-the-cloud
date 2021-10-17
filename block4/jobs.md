@@ -88,7 +88,11 @@ pa = {
       ]
 }
 }
+```
+
 ### Submit a job on VM
+
+```
 job_response_vm=client.jobs.submitJob(name='img-classifier-job-vm',description='image classifier',appId=app_id,execSystemId=system_id_vm,appVersion= '0.0.1',
   **pa)
 print(job_output_vm.uuid)
@@ -161,7 +165,7 @@ pa = {
 }
 }
 # Submit a hpc job
-job_response_hpc=client.jobs.submitJob(name='img-classifier-job-vm',description='image classifier',appId=app_id,execSystemId=system_id_hpc,appVersion= '0.0.1',
+job_response_hpc=client.jobs.submitJob(name='img-classifier-job-hpc',description='image classifier',appId=app_id,execSystemId=system_id_hpc,appVersion= '0.0.1',
   **pa)
 
 ```
