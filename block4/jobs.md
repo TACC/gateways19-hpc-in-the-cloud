@@ -46,7 +46,7 @@ Simple job submission example:
 * **appId**	- The Tapis application to execute.  This must be a valid application that the user has permission to run.
 * **name**	-  The user selected name for the job.
 * **appVersion** - The version of the application to execute.
-* execSystemId** - Tapis execution system ID. It can be inherited from the app
+* **execSystemId** - Tapis execution system ID. It can be inherited from the app
 * **parameterSet**	-	Runtime parameters organized by category
  <br/>
 **appId**, **name** and **appVersion** are required parameters.
@@ -55,27 +55,28 @@ Please refer to all the job submission parameters here [Job Submission Parameter
 
 
 ### Exercise: Running Image Classifier app on VM
-When the Image classifier app runs it will execute a Singularity run command. To launch a container, the Jobs service will SSH to the target host and issue a command using this template: </br>
-```
- singularity run [singularity options.] <image id> [application arguments] > tapisjob.out 2>&1 &
+When the Image classifier app runs it will execute a Singularity run command. To launch a container, the Jobs service will SSH to the target host and issue a command using this template: <br/>
 
 ```
-Tapis jobs service will add environment variables such as application dir, execution directories, app version, etc. in the singularity options. <br>
-image id for this job is docker://tapis/img-classify:0.1 </br>
-Application arguments are as defined below. </br>
-Output of job is written to tapisjob.out file under the jobs working directory on the execution system. </br>
+singularity run [singularity options.] <image id> [application arguments] > tapisjob.out 2>&1 &
 
-# Application Arguments
-With appArgs parameter you  can specify one or more command line arguments for the user application. </br>
-Arguments specified in the application definition are appended to those in the submission request. Metadata can be attached to any argument.</br>
+```
+
+Tapis jobs service will add environment variables such as application dir, execution directories, app version, etc. in the singularity options. <br/>
+image id for this job is docker://tapis/img-classify:0.1 <br/>
+Application arguments are as defined below. <br/>
+Output of job is written to tapisjob.out file under the jobs working directory on the execution system. <br/>
+
+### Application Arguments
+With appArgs parameter you  can specify one or more command line arguments for the user application. <br/>
+Arguments specified in the application definition are appended to those in the submission request. Metadata can be attached to any argument.<br/>
 
 Image classifier app needs two arguments:
 * --image-file
 * url of an image to be classified.
 
-
-```
 We will provide these app arguments in the job definition. In the arg2 pass a url of the image you would like to classify.
+
 ```
 pa = {
  "parameterSet": {
@@ -123,6 +124,7 @@ To download the output of job you need to give it jobUuid and output path. Outpu
 client.jobs.getJobOutputDownload(jobUuid=job_uuid,outputPath='tapisjob.out')
 
 ```
+
 Your jobs output should look something like this:
 
 ```
