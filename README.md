@@ -66,11 +66,13 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
   * [Managing App Permissions](./block4/apps.md#managing-app-permissions)
 
 ## Tapis Jobs
-  *  [Intro to Tapis Jobs](./block4/jobs.md)
+  * [Intro to Tapis Jobs](./block4/jobs.md)
   * [Tapis Jobs Service](./block4/jobs.md#tapisaloe-jobs-service)
   * [Jobs Parameters](./block4/jobs.md#jobs-parameters)
   * [Submitting a Job ](./block4/jobs.md#submitting-a-job)
   * [Jobs List](./block4/jobs.md#jobs-list)
   * [Jobs Status](./block4/jobs.md#jobs-status)
   * [Jobs Output](./block4/jobs.md#jobs-output)
+  * [Jobs Results](./block4/jobs.md#jobs-results)
+  * [Sharing Results](./block4/jobs.md#sharing-results)
 

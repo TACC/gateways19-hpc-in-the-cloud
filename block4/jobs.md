@@ -125,16 +125,35 @@ client.jobs.getJobOutputDownload(jobUuid=job_uuid,outputPath='tapisjob.out')
 
 ```
 
-Your jobs output should look something like this:
+### Analyzing Jobs Output
+With the code below, you can extract the image classifier output, which returns 5 prediction scores
 
 ```
-Labrador retriever (score = 0.97471)
-golden retriever (score = 0.00324)
-kuvasz (score = 0.00099)
-bull mastiff (score = 0.00095)
-Saint Bernard, St Bernard (score = 0.00067)
+print ("==============Image Classifier Scores ============================")
+s = jobs_output_vm.split(b'\n')
+s.reverse()
+scores=[]
+for i in range(1,6):
+    scores.append(s[i])
+    print (s[i])
 
 ```
+
+You should see the result as below:
+
+```
+==============Image Classifier Scores ============================
+b'Saint Bernard, St Bernard (score = 0.00067)'
+b'bull mastiff (score = 0.00095)'
+b'kuvasz (score = 0.00099)'
+b'golden retriever (score = 0.00324)'
+b'Labrador retriever (score = 0.97471)'
+```
+
+### Sharing Results by sharing Tapis System and Jobs output
+
+
+
 
 
 

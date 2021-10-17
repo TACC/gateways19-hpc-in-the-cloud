@@ -19,6 +19,4 @@ nav:
     - Intro to Apps: block4/apps
   - Intro to Tapis Jobs:
     - Intro to Tapis Jobs: block4/jobs
-  - Analyzing results and sharing them with collaborators:
-    - Analyzing job outputs : block4/jobs
-    - Sharing results : block4/jobs
+    - Analyzing job outputs and sharing results: block4/jobs
