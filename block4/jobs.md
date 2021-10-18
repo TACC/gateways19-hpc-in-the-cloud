@@ -236,7 +236,7 @@ More on System [permissions]( https://tapis.readthedocs.io/en/latest/technical/s
 
 Next, we will share the output file with another user.output
 ```
-client.files.grantPermissions(systemId=system_id_vm, path='tapisjob.out', username='train301', permission='READ')
+client.files.grantPermissions(systemId=system_id_vm, path='/workdir', username='train301', permission='READ')
 
 ```
 
