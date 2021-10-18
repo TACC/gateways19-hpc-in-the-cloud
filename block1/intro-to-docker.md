@@ -118,6 +118,7 @@ Let's check that our docker installation is set up correct by running the hello-
 ```
 # run hello world
 docker run hello-world
+```
 
 You should see below message:
 
