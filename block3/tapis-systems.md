@@ -38,7 +38,7 @@ At a high level a system represents the following information:
 * **job execution attributes** - Various attributes related to job execution such as *jobRuntimes*, *jobWorkingDir*, etc.
 
 Note that a system may be created as a storage-only resource (*canExec=false*) or as a system that can be used for both
-execution and storage (*canExec=true*).
+execution and storage (*canExec=True*).
 
 For more information about systems and the Systems service please see [Tapis Systems Service documentation](https://tapis.readthedocs.io/en/latest/technical/systems.html).
 
@@ -60,10 +60,10 @@ system_def = {
   "effectiveUserId": "${apiUserId}",
   "defaultAuthnMethod": "PASSWORD",
   "rootDir": "/home/<userid>",
-  "canExec": true,
+  "canExec": True,
   "jobRuntimes": [ { "runtimeType": "DOCKER" }, { "runtimeType": "SINGULARITY" } ],
   "jobWorkingDir": "workdir",
-  "jobIsBatch": true,
+  "jobIsBatch": True,
   "batchScheduler": "SLURM",
   "batchSchedulerProfile": "tacc",
   "batchLogicalQueues": [
