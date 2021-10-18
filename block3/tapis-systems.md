@@ -38,7 +38,7 @@ At a high level a system represents the following information:
 * **job execution attributes** - Various attributes related to job execution such as *jobRuntimes*, *jobWorkingDir*, etc.
 
 Note that a system may be created as a storage-only resource (*canExec=false*) or as a system that can be used for both
-execution and storage (*canExec=true*).
+execution and storage (*canExec=True*).
 
 For more information about systems and the Systems service please see [Tapis Systems Service documentation](https://tapis.readthedocs.io/en/latest/technical/systems.html).
 
@@ -46,6 +46,7 @@ For more information about systems and the Systems service please see [Tapis Sys
 
 Here we review how to create a system and how to retrieve system details. In the examples below we assume you are using
 the tenant named ``tacc`` with a base URL of ``tacc.tapis.io`` and that you have authenticated using ``tapipy``.
+During the hands-on portion of the tutorial you will create two systems, one for a VM and one for an HPC cluster.
 
 ### Creating a System
 
@@ -59,10 +60,10 @@ system_def = {
   "effectiveUserId": "${apiUserId}",
   "defaultAuthnMethod": "PASSWORD",
   "rootDir": "/home/<userid>",
-  "canExec": true,
+  "canExec": True,
   "jobRuntimes": [ { "runtimeType": "DOCKER" }, { "runtimeType": "SINGULARITY" } ],
   "jobWorkingDir": "workdir",
-  "jobIsBatch": true,
+  "jobIsBatch": True,
   "batchScheduler": "SLURM",
   "batchSchedulerProfile": "tacc",
   "batchLogicalQueues": [
