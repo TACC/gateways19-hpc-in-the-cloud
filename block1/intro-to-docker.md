@@ -1,4 +1,4 @@
-# Intro to Docker
+# Introduction to Docker
 
 ### What is a Container?
 
