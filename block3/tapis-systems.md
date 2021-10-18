@@ -46,6 +46,7 @@ For more information about systems and the Systems service please see [Tapis Sys
 
 Here we review how to create a system and how to retrieve system details. In the examples below we assume you are using
 the tenant named ``tacc`` with a base URL of ``tacc.tapis.io`` and that you have authenticated using ``tapipy``.
+During the hands-on portion of the tutorial you will create two systems, one for a VM and one for an HPC cluster.
 
 ### Creating a System
 
