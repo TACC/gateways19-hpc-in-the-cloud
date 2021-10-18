@@ -166,7 +166,7 @@ pa = {
       ],
       "schedulerOptions": [
         {"arg": "--tapis-profile tacc"},
-        {"arg": "--account RES-NAME"}
+        {"arg": "--account Frontera-Training"}
 
       ]
 }
