@@ -16,7 +16,7 @@ Once you open a browser with your Jupyter environment, you should see something 
 
 Git clone the tutorial repo https://github.com/TACC-Cloud/gateways21-portable-computing-cloud-hpc.git in your local computer
 ```
-git clone https://github.com/TACC-Cloud/gateways21-portable-computing-cloud-hpc/blob/master/img_classify.ipynb
+git clone https://github.com/TACC-Cloud/gateways21-portable-computing-cloud-hpc.git
 
 ```
 From your Jupyter notebook, upload the img_classify.ipynb and you will be all set to work through the hands-on exercises.

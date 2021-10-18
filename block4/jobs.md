@@ -136,7 +136,8 @@ Job enters into different states throughout the execution. Details about differe
 
 
 ### Jobs Output
-To download the output of job you need to give it jobUuid and output path. Output path is
+To download the output of job you need to give it jobUuid and output path. You can download a directory in the jobs’ outputPath in zip format. The outputPath is relative to archive system specified.
+
 
 ```
 # Download output of the job
@@ -164,7 +165,8 @@ pa = {
 
       ],
       "schedulerOptions": [
-        {"arg": "--tapis-profile tacc"}
+        {"arg": "--tapis-profile tacc"},
+        {"arg": "--account RES-NAME"}
 
       ]
 }
