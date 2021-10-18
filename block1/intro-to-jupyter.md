@@ -12,8 +12,18 @@ Once you open a browser with your Jupyter environment, you should see something 
 
 <img src="../images/jupyter1.png" class="img-responsive" alt="Jupyter interface"> 
 
+**Note**: You can either create a new notebook or upload the example img_classify.ipynb for this tutorial. We recommend using the existing notebook, so it will be easily to follow along.
 
-### Creating a Notebook
+Git clone the tutorial repo https://github.com/TACC-Cloud/gateways21-portable-computing-cloud-hpc.git in your local computer
+```
+git clone https://github.com/TACC-Cloud/gateways21-portable-computing-cloud-hpc/blob/master/img_classify.ipynb
+
+```
+From you Jupyter notebook, upload the img_classify.ipynb and you will be all set to work through the hands-on exercises.
+
+**OR**
+
+### Creating a new Notebook.
 
 To create a new notebook for writing code, start by clicking 'New' in the upper right corner. From here, you will be able to choose what type of notebook you want. For this tutorial, we will be using Python 3. 
 
