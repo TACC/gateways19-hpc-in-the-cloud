@@ -7,7 +7,7 @@ Please join the TACC Cloud Slack:
 
 http://bit.ly/join-tapis 
 
-Join the channel #gateways21
+Join the channel #gateways21-tapis-tutorial
 
 ### Access Information
 

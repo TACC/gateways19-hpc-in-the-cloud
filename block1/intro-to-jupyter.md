@@ -19,7 +19,7 @@ Git clone the tutorial repo https://github.com/TACC-Cloud/gateways21-portable-co
 git clone https://github.com/TACC-Cloud/gateways21-portable-computing-cloud-hpc/blob/master/img_classify.ipynb
 
 ```
-From you Jupyter notebook, upload the img_classify.ipynb and you will be all set to work through the hands-on exercises.
+From your Jupyter notebook, upload the img_classify.ipynb and you will be all set to work through the hands-on exercises.
 
 **OR**
 
