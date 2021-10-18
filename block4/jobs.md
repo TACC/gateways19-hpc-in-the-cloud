@@ -3,11 +3,12 @@
 ### Tapis Jobs service
 Tapis Job service aims at launching applications directly on hosts or as job submitted to schedulers (currently only Slurm).
 The Tapis v3 Jobs service is specialized to run containerized applications on any host that supports container runtimes.
-Currently, Docker and Singularity containers are supported. The Jobs service uses the Systems, Apps, Files and Security Kernel services to process jobs.
+Currently, Docker and Singularity containers are supported. The Jobs service uses the Systems, Apps, Files and Security
+Kernel services to process jobs.
 
 
 ### Life cycle of Jobs
-When a job request is recieved as the payload of an POST call, the following steps are taken:
+When a job request is received as the payload of an POST call, the following steps are taken:
 
 * **Request authorization** - The tenant, owner, and user values from the request and Tapis JWT are used to authorize access to the application, execution system and, if specified, archive system.
 * **Request validation** - Request values are checked for missing, conflicting or improper values; all paths are assigned; required paths are created on the execution system; and macro substitution is performed to finalize all job parameters.
@@ -55,21 +56,23 @@ Please refer to all the job submission parameters here [Job Submission Parameter
 
 
 ### Exercise: Running Image Classifier app on VM
-When the Image classifier app runs it will execute a Singularity run command. To launch a container, the Jobs service will SSH to the target host and issue a command using this template: <br/>
+When the Image classifier app runs it will execute a Singularity run command. To launch a container, the Jobs service
+will SSH to the target host and issue a command using this template: <br/>
 
 ```
 singularity run [singularity options.] <image id> [application arguments] > tapisjob.out 2>&1 &
 
 ```
 
-Tapis jobs service will add environment variables such as application dir, execution directories, app version, etc. in the singularity options. <br/>
-image id for this job is docker://tapis/img-classify:0.1 <br/>
+Tapis jobs service will add environment variables such as application dir, execution directories, app version, etc. in
+the singularity options. <br/> image id for this job is docker://tapis/img-classify:0.1 <br/>
 Application arguments are as defined below. <br/>
 Output of job is written to tapisjob.out file under the jobs working directory on the execution system. <br/>
 
 ### Application Arguments
 With appArgs parameter you  can specify one or more command line arguments for the user application. <br/>
-Arguments specified in the application definition are appended to those in the submission request. Metadata can be attached to any argument.<br/>
+Arguments specified in the application definition are appended to those in the submission request. Metadata can be
+attached to any argument.<br/>
 
 Image classifier app needs two arguments:
 * --image-file
@@ -99,7 +102,8 @@ print(job_output_vm.uuid)
 
 ```
 
-Everytime a job is submitted, a unique job id (uuid) is generated. We will use this job id with tapipy to get the job status, and download the job output.
+Everytime a job is submitted, a unique job id (uuid) is generated. We will use this job id with tapipy to get the job
+status, and download the job output.
 
 ```
 # Get job uuid from the job submission response
@@ -146,7 +150,8 @@ print("****************************************************")
 We will soon show you how to analyze the results. Before that lets try to submit a job on HPC machine.
 
 ## Submit job on HPC
-Tapis supports porting the app from a virtual machine to HPC. You can run the same app on Stampede2 today by chaning the exec-system name registered on HPC in the job submission request.output
+Tapis supports porting the app from a virtual machine to HPC. You can run the same app on Stampede2 today by changing
+the exec-system name registered on HPC in the job submission request.output
 
 ```
 # Run Image classifier app on the HPC Machine
@@ -224,7 +229,8 @@ b'Labrador retriever (score = 0.97471)'
 
 ### Sharing Results by sharing Tapis System and Jobs output
 
-Tapis allows sharing your systems and output files with collaborators in the same tenant. Only the system owner may grant or revoke permissions on a storage system. <br/>
+Tapis allows sharing your systems and output files with collaborators in the same tenant. Only the system owner may
+grant or revoke permissions on a storage system. <br/>
 For example, if you want to grant a user train301 READ permissions on your system. You can run following command:
 
 ```
@@ -240,14 +246,12 @@ client.files.grantPermissions(systemId=system_id_vm, path='/workdir', username='
 
 ```
 
-
-
 ## What's next?
 
-If you made it this far, you have successfully created a new app within a container and have deployed that tool on an HPC system, and now you can run that tool through the cloud from anywhere!  That is quite a lot in one workshop.
+If you made it this far, you have successfully created a new app within a container and have deployed that tool on an
+HPC system, and now you can run that tool through the cloud from anywhere!  That is quite a lot in one workshop.
 
-At this point, it would be a good idea to connect with other developers that are publishing apps and running workflows through Tapis by joining the Tapis API Slack channel: [tacc-cloud.slack.com](https://bit.ly/2XHYJEk)
+At this point, it would be a good idea to connect with other developers that are publishing apps and running workflows
+through Tapis by joining the Tapis API Slack channel: [tacc-cloud.slack.com](https://bit.ly/2XHYJEk)
 
 [BACK](https://tacc-cloud.github.io/gateways21-portable-computing-cloud-hpc/)
-
-
