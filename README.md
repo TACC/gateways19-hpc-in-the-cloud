@@ -57,13 +57,6 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
 
 ## Tapis Apps
 * [Intro to Apps](./block4/apps.md)
-  * [What is a Tapis(Agave) app?](./block4/apps.md#what-is-a-tapisagave-app)
-  * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
-  * [App Packaging](./block4/apps.md#app-packaging)
-  * [Application metadata](./block4/apps.md#application-metadata)
-  * [Registering App](./block4/apps.md#step-4-registering-an-app)
-  * [List Apps](./block4/apps.md#list-apps)
-  * [Managing App Permissions](./block4/apps.md#managing-app-permissions)
 
 ## Tapis Jobs
   * [Intro to Tapis Jobs](./block4/jobs.md)
