@@ -76,7 +76,7 @@ app_def = {
       "appArgs": [ { "arg": "--image_file",
                        "meta": { "name": "arg1" } }
       ],
-      "archiveFilter": { "includeLaunchFiles": false }
+      "archiveFilter": { "includeLaunchFiles": False }
     },
     "nodeCount": 1,
     "coresPerNode": 1,
