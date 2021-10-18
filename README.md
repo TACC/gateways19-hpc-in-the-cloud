@@ -10,7 +10,7 @@
 * 11:50AM - Tapis Systems, Tapis App, Launch Tapis job on a virtual machine
 * 12:30PM - Break
 * 1:00PM - Launch Tapis Job on a HPC machine
-* 1:50PM - Plotting/ Analyzing results and sharing with collaborators
+* 1:50PM - Results and sharing with collaborators
 * 2:25PM - Workshop Wrap-up
 
 Presenters:
