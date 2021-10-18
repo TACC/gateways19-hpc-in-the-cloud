@@ -93,7 +93,7 @@ pa = {
 }
 ```
 
-### Submit a job on VM
+### Submit a job on VM Host
 
 ```
 job_response_vm=client.jobs.submitJob(name='img-classifier-job-vm',description='image classifier',appId=app_id,execSystemId=system_id_vm,appVersion= '0.0.1',
@@ -149,7 +149,7 @@ print("****************************************************")
 ```
 We will soon show you how to analyze the results. Before that lets try to submit a job on HPC machine.
 
-### Submit job on HPC
+### Submit job on HPC Cluster
 Tapis supports porting the app from a virtual machine to HPC. You can run the same app on Stampede2 today by changing
 the exec-system name registered on HPC in the job submission request.output
 
