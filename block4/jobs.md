@@ -98,7 +98,7 @@ pa = {
 ```
 job_response_vm=client.jobs.submitJob(name='img-classifier-job-vm',description='image classifier',appId=app_id,execSystemId=system_id_vm,appVersion= '0.0.1',
   **pa)
-print(job_output_vm.uuid)
+print(job_response_vm.uuid)
 
 ```
 
