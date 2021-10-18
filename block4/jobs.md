@@ -149,7 +149,7 @@ print("****************************************************")
 ```
 We will soon show you how to analyze the results. Before that lets try to submit a job on HPC machine.
 
-## Submit job on HPC
+### Submit job on HPC
 Tapis supports porting the app from a virtual machine to HPC. You can run the same app on Stampede2 today by changing
 the exec-system name registered on HPC in the job submission request.output
 
@@ -169,12 +169,12 @@ pa = {
       ]
 }
 }
-# Submit a hpc job
+### Submit a hpc job
 job_response_hpc=client.jobs.submitJob(name='img-classifier-job-hpc',description='image classifier',appId=app_id,execSystemId=system_id_hpc,appVersion= '0.0.1',
   **pa)
 
 ```
-##  Get the Job Status
+###  Get the Job Status
 
 ```
 # Check the status of the job
@@ -186,7 +186,7 @@ print("****************************************************")
 
 ```
 
-## Download job output
+### Download job output
 
 ```
 
@@ -246,7 +246,7 @@ client.files.grantPermissions(systemId=system_id_vm, path='/workdir', username='
 
 ```
 
-## What's next?
+### What's next?
 
 If you made it this far, you have successfully created a new app within a container and have deployed that tool on an
 HPC system, and now you can run that tool through the cloud from anywhere!  That is quite a lot in one workshop.
