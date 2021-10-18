@@ -1,7 +1,7 @@
 
 # Introduction to Singularity
 
-## 1. Docker and Singularity
+## Docker and Singularity
 
 #### Important: 
 Docker and [Singularity](http://singularity.lbl.gov/docs-docker) are friends but they have distinct differences.
@@ -21,12 +21,12 @@ Singularity uses a 'flow' whereby you can (1) create and modify images on your d
 
 The workflow we recommend for most researchers is to create Docker containers of their software and then run them on HPC and shared resources with Singularity using Singularity's ability to convert the Docker image to a Singularity image. Docker is simpler to install on most modern operating systems that are on a laptop or desktop.
 
-## 2. Machine Learning App with Singularity Runtime
+## Machine Learning App with Singularity Runtime
 In this tutorial, we will run a Machine Learning Image Classifier app that uses Singularity Runtime. You are not required to install Singularity today. Rest of this page can be completed as a self exercise.
 You may now navigate to [Intro to Tapis Systems](https://tacc-cloud.github.io/gateways21-portable-computing-cloud-hpc/block3/tapis-systems/)
 
 
-## Further Reading: (Not Needed For the Workshop Today - Use At Home)
+## Further Reading: (Not Needed For the Tutorial Today - Use At Home)
 
 Singularity homepage: [http://sylabs.io](http://sylabs.io/)
 
@@ -77,7 +77,7 @@ Type in the following:
 ```
 
 
-## 3.4 Check Installation
+## Check Installation
 
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
 
