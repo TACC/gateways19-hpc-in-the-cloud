@@ -1,6 +1,6 @@
 ## GATEWAYS2021 Portable, Scalable, and Reproducible Scientific Computing: from Cloud to HPC
 
-## Part 1: Welcome and Background
+## Welcome
 * [Welcome](./welcome/intro.md)
 
 ## Schedule (Eastern Time)
