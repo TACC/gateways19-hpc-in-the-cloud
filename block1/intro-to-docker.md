@@ -1,7 +1,5 @@
 # Intro to Docker
 
-## What is Docker?
-
 ### What is a Container?
 
 * Isolated Userland processes
@@ -116,18 +114,20 @@ abaco
 
 ### Exercise: Pulling and Running Images
 
-Let's check that our docker installation is set up correctly by running the hello-world
+Let's check that our docker installation is set up correct by running the hello-world
 ```
 # run hello world
 docker run hello-world
 
 You should see below message:
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
 
 ```
+Hello from Docker!
+```
+This message shows that your installation appears to be working correctly.
 
-Next, let pull the `tapis/jupyter` image and running a simple container from it:
+Next, lets pull the `tapis/jupyter` image and run a simple container from it:
+
 ```
 # pull the image:
 docker pull tapis/jupyter
@@ -139,7 +139,7 @@ docker run --rm -it -p 8888:8888 tapis/jupyter
 It should have started a single container from the `tapis/jupyter` image, which prints out a url to access the jupyter notebook from the browser.
 You can copy paste this url in your browser and access the jupyter notebook. We will learn about Jupyter shortly in this tutorial.
 
-###  Optional Exercises:
+###  Optional Exercises: (Can be done later)
 ### About Official Images
 Official images such as the python official image are not owned by a repository, but all other images are.
 
