@@ -27,7 +27,7 @@ At a high level a system represents the following information:
 
 * **id** - A short descriptive name for the system that is unique within the tenant.
 * **description** - An optional more verbose description for the system.
-* **systemType** - Type of system. LINUX, S3, IRODS or GLOBUS
+* **systemType** - Type of system: LINUX, S3. Support for  IRODS and GLOBUS is under development.
 * **owner** - A specific user set at system creation. By default, this is ``${apiUserId}``, the user making the request to
               create the system.
 * **host** Host name or IP address.
