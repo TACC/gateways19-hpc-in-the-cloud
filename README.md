@@ -56,7 +56,7 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
 * [Intro to Tapis Systems](./block3/tapis-systems.md)
 
 ## Tapis Apps
-* [Intro to Apps](./block4/apps.md)
+* [Intro to Tapis Applications](./block4/apps.md)
 
 ## Tapis Jobs
   * [Intro to Tapis Jobs](./block4/jobs.md)
