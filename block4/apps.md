@@ -82,6 +82,7 @@ app_def = {
     "coresPerNode": 1,
     "memoryMB": 1,
     "maxMinutes": 10
+  }
 }
 ```
 where ``<userid>`` is replaced with your username.
