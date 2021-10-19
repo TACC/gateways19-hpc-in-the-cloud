@@ -70,7 +70,7 @@ app_def = {
   "appType": "BATCH",
   "runtime": "SINGULARITY",
   "runtimeOptions": ["SINGULARITY_RUN"],
-  "containerImage": "docker://tapis/img-classify:0.1",
+  "containerImage": "/tmp/img-classify.sif",
   "jobAttributes": {
     "parameterSet": {
       "appArgs": [ { "arg": "--image_file",
