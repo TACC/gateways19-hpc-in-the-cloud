@@ -5,13 +5,14 @@
 
 ## Schedule (Eastern Time)
 
-* 11:00AM - Introduction to Tapis v3
-* 11:20AM - Intro to Docker, Jupyter and Singularity
-* 11:50AM - Tapis Systems, Tapis App, Launch Tapis job on a virtual machine
-* 12:30PM - Break
-* 1:00PM - Launch Tapis Job on a HPC machine
-* 1:50PM - Results and sharing with collaborators
-* 2:25PM - Workshop Wrap-up
+
+* 8:30 AM - Introduction to Tapis v3
+* 8:50 AM - Intro to Docker, Jupyter and Singularity, Setting up Jupyter Notebooks
+* 9:20 AM - Tapis Systems, Tapis App, Files
+* 9:50 AM - Break
+* 10:00 PM - Launch Tapis Job on a VM and HPC machine, Results and sharing with collaborators
+* 10:40 PM - Serverless Gateway with Tapis UI 
+
 
 Presenters:
 * Steve Black (TACC)
