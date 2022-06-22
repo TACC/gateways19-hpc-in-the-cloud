@@ -1,4 +1,4 @@
-## GATEWAYS2022 Portable, Scalable, and Reproducible Scientific Computing: from Cloud to HPC
+## PEARC2022 Portable, Scalable, and Reproducible Scientific Computing: from Cloud to HPC
 
 ## Welcome
 * [Welcome](./welcome/intro.md)
