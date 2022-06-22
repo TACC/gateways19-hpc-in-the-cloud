@@ -1,4 +1,4 @@
-Welcome to GATEWAYS21 Tutorial
+Welcome to GATEWAYS22 Tutorial
 ===
 
 ### Join Slack
@@ -7,7 +7,7 @@ Please join the TACC Cloud Slack:
 
 http://bit.ly/join-tapis 
 
-Join the channel #gateways21-tapis-tutorial
+Join the channel #gateways22-tapis-tutorial
 
 ### Access Information
 
