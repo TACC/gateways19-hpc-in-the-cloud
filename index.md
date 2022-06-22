@@ -21,8 +21,8 @@ Presenters:
 
 The resources you will be using today are provided by funding from the National Science Foundation:
 
-* [Jetstream](https://jetstream-cloud.org/) is a cloud service for research that provides on-demand, user-controled, Virtual Machines (VMs) - you can request an account after the workshop using these [instructions](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/76150553/Get+a+Jetstream+Trial+Access+account).
-* Stampede2 is the flagship supercomputer at The University of Texas at Austin's Texas Advanced Computing Center (TACC). A strategic national resource, Stampede2 provides high-performance computing capabilities to thousands of researchers across the U.S.  To gain access after the workshop you need to request a [startup allocation](https://portal.xsede.org/allocations/startup) with an XSEDE portal account, you can [Request and Account](https://portal.xsede.org/my-xsede?p_p_id=58&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_58_struts_action=%2Flogin%2Fcreate_account) and then [Submit an Allocation request](http://portal.xsede.org/submit-request) - If you have question please contact us via the TACC-Cloud slack channel.
+* [Jetstream](https://jetstream-cloud.org/) is a cloud service for research that provides on-demand, user-controlled, Virtual Machines (VMs) - you can request an account after the workshop using these [instructions](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/76150553/Get+a+Jetstream+Trial+Access+account).
+* Stampede2 is the flagship supercomputer at The University of Texas at Austin's Texas Advanced Computing Center (TACC). A strategic national resource, Stampede2 provides high-performance computing capabilities to thousands of researchers across the U.S. To gain access after the workshop you need to request a [startup allocation](https://portal.xsede.org/allocations/startup) with an XSEDE portal account, you can [Request and Account](https://portal.xsede.org/my-xsede?p_p_id=58&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_58_struts_action=%2Flogin%2Fcreate_account) and then [Submit an Allocation request](http://portal.xsede.org/submit-request) - If you have question please contact us via the TACC-Cloud slack channel.
 
 For this tutorial you will get a training account for Stampede2 and Jetstream Virtual Machine(VM) IP with username and password for that VM.  These credentials expire soon after this workshop is complete.
 
@@ -55,14 +55,7 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
 * [Intro to Tapis Systems](./block3/tapis-systems.md)
 
 ## Tapis Apps
-* [Intro to Apps](./block4/apps.md)
-  * [What is a Tapis(Agave) app?](./block4/apps.md#what-is-a-tapisagave-app)
-  * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
-  * [App Packaging](./block4/apps.md#app-packaging)
-  * [Application metadata](./block4/apps.md#application-metadata)
-  * [Registering App](./block4/apps.md#step-4-registering-an-app)
-  * [List Apps](./block4/apps.md#list-apps)
-  * [Managing App Permissions](./block4/apps.md#managing-app-permissions)
+* [Intro to Tapis Applications](./block4/apps.md)
 
 ## Tapis Jobs
   * [Intro to Tapis Jobs](./block4/jobs.md)
@@ -74,4 +67,3 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
   * [Jobs Output](./block4/jobs.md#jobs-output)
   * [Jobs Results](./block4/jobs.md#jobs-results)
   * [Sharing Results](./block4/jobs.md#sharing-results)
-
