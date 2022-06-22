@@ -21,4 +21,4 @@ nav:
     - Intro to Tapis Jobs: block4/jobs
     - Job outputs and sharing results: block4/jobs
 
-theme: jekyll-theme-merlot
+theme: jekyll-theme-minimal
