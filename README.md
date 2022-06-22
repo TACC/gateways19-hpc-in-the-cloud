@@ -1,4 +1,4 @@
-## GATEWAYS2021 Portable, Scalable, and Reproducible Scientific Computing: from Cloud to HPC
+## GATEWAYS2022 Portable, Scalable, and Reproducible Scientific Computing: from Cloud to HPC
 
 ## Welcome
 * [Welcome](./welcome/intro.md)
@@ -14,11 +14,10 @@
 * 2:25PM - Workshop Wrap-up
 
 Presenters:
-* Joe Stubbs (TACC)
-* Anagha Jamthe (TACC)
-* Julia Looney (TACC)
-* Sean Cleveland (UH)
 * Steve Black (TACC)
+* Anagha Jamthe (TACC)
+* Sean Cleveland (UH)
+* Joon Yee Chuah (TACC)
 
 The resources you will be using today are provided by funding from the National Science Foundation:
 
