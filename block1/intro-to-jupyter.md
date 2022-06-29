@@ -14,10 +14,10 @@ Once you open a browser with your Jupyter environment, you should see something 
 
 **Note**: You can either create a new notebook or upload the example img_classify.ipynb for this tutorial. We recommend using the existing notebook, so it will be easily to follow along.
 
-Git clone the tutorial repo [https://github.com/TACC-Cloud/gateways21-portable-computing-cloud-hpc.git]([https://github.com/TACC-Cloud/pearc22-portable-computing-cloud-hpc.git](https://github.com/TACC-Cloud/pearc22-portable-computing-cloud-hpc.git)) in your local computer
+Git clone the tutorial repo in your local computer
 
 ```
-git clone [https://github.com/TACC-Cloud/gateways21-portable-computing-cloud-hpc.git](https://github.com/TACC-Cloud/pearc22-portable-computing-cloud-hpc.git)
+git clone https://github.com/TACC-Cloud/pearc22-portable-computing-cloud-hpc.git
 
 ```
 From your Jupyter notebook, upload the img_classify.ipynb and you will be all set to work through the hands-on exercises.
