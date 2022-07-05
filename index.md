@@ -68,3 +68,9 @@ For this tutorial you will get a training account for Stampede2 and Jetstream Vi
   * [Jobs Output](./block4/jobs.md#jobs-output)
   * [Jobs Results](./block4/jobs.md#jobs-results)
   * [Sharing Results](./block4/jobs.md#sharing-results)
+
+## Tapis UI
+
+  * [Intro to Tapis UI](./block5/intro.md)
+  * [Setting up your Github Account](./block5/github.md)
+  * [Deploying Tapis UI](./block5/deploying.md)
